@@ -16,7 +16,7 @@ public enum UserType {
 	/**
 	 * The name associated with the user.
 	 */
-	private char myName;
+	private String myName;
 	
 	/**
      * Default constructor.
@@ -26,14 +26,14 @@ public enum UserType {
 	/**
 	 * Initializes the user type enum.
 	 */
-	UserType(final char theName) {
+	UserType(final String theName) {
 		myName = theName;
 	}
 	
 	/**
      * @return the name associated with the user.
      */
-    public char getChar() {
+    public String getStr() {
         return myName;
     }
 }
