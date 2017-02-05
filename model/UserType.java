@@ -3,11 +3,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  * @author John Bako
  *
  */
-public enum UserType {
+public enum UserType implements Serializable {
 	
 	UrbanPark,
 	ParkManager,
@@ -16,7 +18,7 @@ public enum UserType {
 	/**
 	 * The name associated with the user.
 	 */
-	private String myName;
+	private char myName;
 	
 	/**
      * Default constructor.
@@ -26,14 +28,14 @@ public enum UserType {
 	/**
 	 * Initializes the user type enum.
 	 */
-	UserType(final String theName) {
+	UserType(final char theName) {
 		myName = theName;
 	}
 	
 	/**
      * @return the name associated with the user.
      */
-    public String getStr() {
+    public char getChar() {
         return myName;
     }
 }

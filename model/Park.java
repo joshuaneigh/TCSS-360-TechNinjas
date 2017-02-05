@@ -3,12 +3,19 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  * @author John Bako
  *
  */
-public class Park {
-	
+public class Park implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8924424660909193303L;
+
 	static Location parkLocation;
 	
 	private static String parkName;

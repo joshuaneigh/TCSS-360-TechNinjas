@@ -1,4 +1,7 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  * 
  */
@@ -7,7 +10,7 @@ package model;
  * @author John Bako
  *
  */
-public interface UrbanParkUser {
+public interface UrbanParkUser extends Serializable {
 	
 	void isFlagged();
 	void isBlackBalled();
