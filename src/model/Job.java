@@ -4,15 +4,16 @@
 package model;
 
 import java.util.List;
+import java.io.Serializable;
 
 /**
  * @author Jasmine Dacones
  *
  */
-public class Job {
+public class Job implements Serializable {
 	int MAX_VOLUME = 30;
 	int MAX_LENGTH = 2;
-	
+
 	private String desc;
 	private Park park;
 	private List<UserType> volunteersList;
