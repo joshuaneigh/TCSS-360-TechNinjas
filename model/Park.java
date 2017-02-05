@@ -22,7 +22,7 @@ public class Park implements Serializable {
 	
 	private static boolean hasAjob;
 	
-	private static int numOfJobs;
+	private static int numOfJobs; 
 	
 	public Park() {
 		this(parkLocation, parkName, hasAjob, numOfJobs);
@@ -65,5 +65,9 @@ public class Park implements Serializable {
 	
 	public void setNumOfJobs(int theNumOfJobs) {
 		numOfJobs = theNumOfJobs;
+	}
+	
+	public String toString() {
+		return "Park Name: " + parkName + "\t" + "Number of Jobs: " + numOfJobs;
 	}
 }
