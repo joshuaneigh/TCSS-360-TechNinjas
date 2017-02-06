@@ -18,17 +18,17 @@ public class Park implements Serializable {
     /**
      * The location of this park.
      */
-    private Location parkLocation;
+    private Location myParkLocation;
 
     /**
      * The name of this park.
      */
-    private String parkName;
+    private String myParkName;
 
     /**
      * The pending and past jobs for this park.
      */
-    private ArrayList<Job> jobs = new ArrayList<Job>();
+    private ArrayList<Job> myJobs = new ArrayList<Job>();
 
     /**
      * Creates a park with the given location and name.
@@ -37,8 +37,8 @@ public class Park implements Serializable {
      * @param theParkName The name to give this park
      */
     public Park(final Location theParkLocation, final String theParkName) {
-        parkLocation = theParkLocation;
-        parkName = theParkName;
+        myParkLocation = theParkLocation;
+        myParkName = theParkName;
     }
 
     /**
@@ -46,7 +46,7 @@ public class Park implements Serializable {
      * @return The location of this park
      */
     public Location getParkLocation() {
-        return parkLocation;
+        return myParkLocation;
     }
 
     /**
@@ -54,7 +54,7 @@ public class Park implements Serializable {
      * @return the name of this park
      */
     public String getParkName() {
-        return parkName;
+        return myParkName;
     }
 
     /**
@@ -62,7 +62,7 @@ public class Park implements Serializable {
      * @return If there are jobs in the list
      */
     public boolean hasJob() {
-        return !(jobs.isEmpty());
+        return !(myJobs.isEmpty());
     }
 
     /**
@@ -70,7 +70,7 @@ public class Park implements Serializable {
      * The number of jobs in the list
      */
     public int getNumOfJobs() {
-        return jobs.size();
+        return myJobs.size();
     }
 
     /**
@@ -78,7 +78,7 @@ public class Park implements Serializable {
      * @param theParkLocation The location to give this park
      */
     public void setParkLocation(final Location theParkLocation) {
-        parkLocation = theParkLocation;
+        myParkLocation = theParkLocation;
     }
 
     /**
@@ -86,7 +86,17 @@ public class Park implements Serializable {
      * @param theParkName The name to give this park
      */
     public void setParkName(final String theParkName) {
-        parkName = theParkName;
+        myParkName = theParkName;
+    }
+    
+    /**
+     * Gets the list of jobs for this park.
+     * If the park is for a specific user, the jobs are only jobs
+     * associated with that user.
+     * @return The list of jobs for this park
+     */
+    public ArrayList<Job> getJobs() {
+        return myJobs;
     }
 
     /**
@@ -97,14 +107,14 @@ public class Park implements Serializable {
      */
     public void addJob(final Job theJob) {
         if (Controller.getNumJobs() < Controller.getMaxJobs()) {
-            jobs.add(theJob);
+            myJobs.add(theJob);
         } else {
             throw new JobException("Maximum pending job limit reached.");
         }
     }
 
     public String toString() {
-        return "Name: " + parkName + "\tLocation: " + parkLocation
-               + "\tNumber of Jobs: " + numOfJobs;
+        return "Name: " + myParkName + "\tLocation: " + myParkLocation
+               + "\tNumber of Jobs: " + getNumOfJobs();
     }
 }
