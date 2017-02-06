@@ -7,15 +7,21 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
- * @author John Bako
+ * @author John Bako, Michael Loundagin
  *
  */
 public class Calendar {
 
+        /**
+         * The names of the months. Used to convert int myMonth into a name.
+         */
         private static final String[] MONTH_NAMES = ["January", "February",
                 "March", "April", "May", "June", "July", "August",
                 "September", "October", "November", "December"];
 
+        /**
+         * The maximum number of days possible across all months.
+         */
         private static final MAX_DAYS_OF_MONTH = 31;
 	
 	private static int myMonth;
@@ -49,6 +55,10 @@ public class Calendar {
 		myYear = theYear;
 	}
 	
+        /**
+         * Creates a formatted list of jobs by day for the set month.
+         * @return A formatted list of jobs by day for the set month
+         */
 	public String toString() {
                 //jobs are stored by day into this array
                 final ArrayList<Job>[] jobsByDay
