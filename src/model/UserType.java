@@ -18,7 +18,7 @@ public enum UserType implements Serializable {
 	/**
 	 * The name associated with the user.
 	 */
-	private char myName;
+	private String userName;
 	
 	/**
      * Default constructor.
@@ -28,15 +28,15 @@ public enum UserType implements Serializable {
 	/**
 	 * Initializes the user type enum.
 	 */
-	UserType(final char theName) {
-		myName = theName;
+	UserType(final String theUserName) {
+		userName = theUserName;
 	}
 	
 	/**
      * @return the name associated with the user.
      */
-    public char getChar() {
-        return myName;
+    public String getUserName() {
+        return userName;
     }
 }
 
