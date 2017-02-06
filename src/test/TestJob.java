@@ -12,9 +12,11 @@ public class TestJob {
 
 	public static void main(String[] args) {
 		Job jobOne = new Job();
-		jobOne.setDesc("Rake the leaves at Point Defiance Park.");	
+			
 	}
 	
-	public
+	public void testSetDesc(String theDesc) {
+		assertTrue(jobOne.setDesc("Rake the leaves at Point Defiance Park."), getDesc());
+	}
 	
 }
