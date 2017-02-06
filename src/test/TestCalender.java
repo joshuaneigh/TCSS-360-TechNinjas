@@ -1,8 +1,9 @@
 /**
  * 
  */
-package model;
+package test;
 
+import model.Calender;
 
 /**
  * @author John Bako

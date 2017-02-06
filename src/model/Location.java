@@ -24,8 +24,12 @@ public class Location implements Serializable {
     
     private static int zipcode; 
     
-    public Location() {
-    	this(locName, city, state, zipcode);
+    public Location(final int zipcode) {
+    	
+    }
+    
+    public Location(final String address, final String city, final String state) {
+    	
     }
 
 	public Location(String theLocName, String theCity, String theState, int theZipcode) {
@@ -51,23 +55,8 @@ public class Location implements Serializable {
 		return zipcode;
 	}
 	
-	public void setLocName(String theLocName) {
-		locName = theLocName;
-	}
-	
-	public void setCity(String theCity) {
-		city = theCity;
-	}
-	
-	public void steState(String theState) {
-		state = theState;
-	}
-	
-	public void setZipcode(int theZipcode) {
-		zipcode = theZipcode;
-	}
-	
 	// returns string representation of this location
+	@Override
     public String toString() {
         return locName + ", " + city + ", " + state + ", " + zipcode;
     }

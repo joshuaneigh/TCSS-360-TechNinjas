@@ -23,7 +23,7 @@ import java.util.Map;
 import model.exception.NoSuchUserException;
 
 /**
- * This class is primarily responsible for ...
+ * This class is primarily responsible for handling 
  *
  * @author Joshua Neighbarger | jneigh@uw.edu
  * @version 06 Feb 2017
@@ -150,24 +150,31 @@ public final class Controller implements Serializable {
 	 * 
 	 * @param username the name of the {@link User} which wishes to disconnect
 	 * @return if the disconnection was successful
+	 * @throws NoSuchUserException if the specified User is not already logged in
 	 */
-	public static boolean disconnect(final String username) {
-		try {
-			final Path path = Paths.get(SAVE_PATH);
-			final String serialized = serialize(INSTANCE);
-			if (path.toFile().isFile()) {
-				// TODO: Sleep Thread and wait for response of whether to override file.
-			} else {
+	public static boolean disconnect(final String username) throws NoSuchUserException {
+		if (!CURRENT_USERS.contains(username)) {
+			throw new NoSuchUserException("The specified User is not logged in.");
+		} else {
+			try {
+				final Path path = Paths.get(SAVE_PATH);
+				final String serialized = serialize(INSTANCE);
+				
+				if (path.toFile().isFile()) {
+					// TODO: Sleep Thread and wait for response of whether to override file.
+				}
+				
 				final PrintStream out = new PrintStream(new FileOutputStream(SAVE_PATH));
 				out.print(serialized);
 				out.close();
+				CURRENT_USERS.remove(INSTANCE.userMap.get(username));
+				return true;
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
 			}
-			CURRENT_USERS.remove(INSTANCE.userMap.get(username));
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
 		}
+		
 	}
 	
 	/**
