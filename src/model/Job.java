@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 
 /**
- * @author Jasmine Dacones
+ * @author Jasmine Dacones, @author Youcef Bennour
  *
  */
 public class Job implements Serializable {
@@ -17,7 +17,8 @@ public class Job implements Serializable {
 	
 	int MAX_VOLUME = 30;
 	int MAX_LENGTH = 2;
-
+	
+	LocalTime time = LocalTime.now();
 	
 	private String jobDescription;
 	private Park park;
