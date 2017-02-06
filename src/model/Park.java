@@ -31,6 +31,16 @@ public class Park implements Serializable {
     private ArrayList<Job> myJobs = new ArrayList<Job>();
 
     /**
+     * The total number of pending jobs across all parks.
+     */
+    private static int numJobs;
+
+    /**
+     * The maximum number of pending jobs allowed across all parks.
+     */
+    private static int maxJobs = 30;
+
+    /**
      * Creates a park with the given location and name.
      * The list of jobs is empty.
      * @param theParkLocation The location to give this park
@@ -106,8 +116,9 @@ public class Park implements Serializable {
      *                     has reached the maximum allowed.
      */
     public void addJob(final Job theJob) {
-        if (Controller.getNumJobs() < Controller.getMaxJobs()) {
+        if (Park.numJobs < Park.maxJobs) {
             myJobs.add(theJob);
+            numJobs++;
         } else {
             throw new JobException("Maximum pending job limit reached.");
         }
@@ -116,5 +127,36 @@ public class Park implements Serializable {
     public String toString() {
         return "Name: " + myParkName + "\tLocation: " + myParkLocation
                + "\tNumber of Jobs: " + getNumOfJobs();
+    }
+
+    /**
+     * Gets the total number of pending jobs across all parks.
+     * @return The number of pending jobs across all parks
+     */
+    public static int getNumJobs() {
+        return numJobs;
+    }
+
+    /**
+     * Gets the maximum number of pending jobs allowed across all parks.
+     * @return The maximum number of pending jobs allowed across all parks
+     */
+    public static int getMaxJobs() {
+        return maxJobs;
+    }
+
+    /**
+     * Sets the maximum number of pending jobs allowed across all parks.
+     * @param theMaxJobs The new maximum number of pending jobs allowed
+     *                   across all parks
+     * @throw IllegalArgumentException If theMaxJobs is negative
+     */
+    public static void setMaxJobs(final int theMaxJobs) {
+        if (theMaxJobs >= 0) {
+            maxJobs = theMaxJobs;
+        } else {
+            throw new IllegalArgumentException("The limit cannot be "
+                                               + "negative.");
+        }
     }
 }
