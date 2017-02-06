@@ -26,7 +26,7 @@ public class Job implements Serializable {
 	private DateAndTime start;
 	private DateAndTime end;
 	
-	public Job(String theJobDescription, Park thePark, DateAndTime theStart, DateAndTime theEnd) {
+	public Job(String theJobDescription, Park thePark, LocalTime theStart, LocalTime theEnd) {
 		jobDescription = theJobDescription;
 		park = thePark;
 		start = theStart;
@@ -71,11 +71,11 @@ public class Job implements Serializable {
 		park = thePark;
 	}
 	
-	public void setStartTime(DateAndTime theStart){
+	public void setStartTime(LocalTime theStart){
 		start = theStart;
 	}
 	
-	public void setEndTime(DateAndTime theEnd){
+	public void setEndTime(LocalTime theEnd){
 		end = theEnd;
 	}
 	
