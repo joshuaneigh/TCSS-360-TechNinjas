@@ -90,14 +90,13 @@ public class Park implements Serializable {
     }
 
     /**
-     * Adds a job to this park's list if the maximum number of pending jobs
-     * allowed across all parks has not been reached.
+     * Adds a job to this park's list.
      * @param theJob The job to add to the list
      * @throw JobException If the number of pending jobs across all parks
-     *        has reached the maximum allowed.
+     *                     has reached the maximum allowed.
      */
     public void addJob(final Job theJob) {
-        if (Controller.numJobs < Controller.maxJobs) {
+        if (Controller.getNumJobs() < Controller.getMaxJobs()) {
             jobs.add(theJob);
         } else {
             throw new JobException("Maximum pending job limit reached.");

@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * This class is primarily responsible for ...
  *
- * @author Joshua Neighbarger | jneigh@uw.edu
+ * @author Joshua Neighbarger | jneigh@uw.edu, Michael Loundagin | loundm@uw.edu
  * @version 05 Feb 2017
  */
 
@@ -39,6 +39,15 @@ public final class Controller implements Serializable {
 	private final HashMap<String, User> userMap;
 	private final HashMap<User, ArrayList<Park>> parkMap;
 	private final List<Park> parkList;
+
+        /**
+         * The total number of pending jobs across all parks in parkMap.
+         */
+        private int numJobs;
+        /**
+         * The maximum number of pending jobs allowed across all parks in parkMap.
+         */
+        private int maxJobs;
 	
 	static {
 		SAVE_PATH = "./data/data.ser";
@@ -66,6 +75,7 @@ public final class Controller implements Serializable {
 		parkMap = new HashMap<>();
 		userMap = new HashMap<>();
 		parkList = new ArrayList<>();
+                maxJobs = 30;
 	}
 	
 	private static final <T extends Serializable> String serialize(final T object) throws IOException {
@@ -141,5 +151,36 @@ public final class Controller implements Serializable {
 			return false;
 		}
 	}
+
+        /**
+         * Gets the number of pending jobs across all parks.
+         * @return The number of pending jobs across all parks
+         */
+        public static int getNumJobs() {
+                return INSTANCE.numJobs;
+        }
+
+        /**
+         * Gets the maximum number of pending jobs allowed across all parks.
+         * @return The maximum number of pending jobs allowed across all parks
+         */
+        public static int getMaxJobs() {
+                return INSTANCE.maxJobs;
+        }
+
+        /**
+         * Sets the maximum number of pending jobs allowed across all parks.
+         * @param theMaxJobs The new maximum number of pending jobs allowed
+         *                   across all parks
+         * @throw IllegalArgumentException If 'theMaxJobs' is negative
+         */
+        public static void setMaxJobs(final int theMaxJobs) {
+                if (theMaxJobs >= 0) {
+                        INSTANCE.maxJobs = theMaxJobs;
+                } else {
+                        throw new IllegalArgumentException(
+                        "Parameter 'theMaxJobs' must be nonnegative.");
+                }
+        }
 	
 }
