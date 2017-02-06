@@ -40,4 +40,40 @@ public class Job implements Serializable {
 	public List<UserType> getVolunteers() {
 		return volunteersList;
 	}
+	
+	public String getDesc() {
+		return desc;
+	}
+	
+	public void setDesc(String theDesc) {
+		desc = theDesc;
+	}
+	
+	public Park getPark() {
+		return park;
+	}
+	
+	public void setPark(Park thePark) {
+		park = thePark;
+	}
+	
+	public DateAndTime getStartTime() {
+		return start;
+	}
+	
+	public void setStartTime(DateAndTime theStart) {
+		start = theStart;
+	}
+	
+	public DateAndTime getEndTime() {
+		return end;
+	}
+	
+	public void setEndTime(DateAndTime theEnd) {
+		end = theEnd;
+	}
+	
+	public String toString() {
+		return String.format("Description: %s\nPark: %s", getDesc(), getPark());
+	}
  }
