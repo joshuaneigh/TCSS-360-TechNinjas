@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 
 /**
- * @author Jasmine Dacones, @author Youcef Bennour
+ * @author Jasmine Dacones, Youcef Bennour
  *
  */
 public class Job implements Serializable {
@@ -47,38 +47,71 @@ public class Job implements Serializable {
 		return volunteersList;
 	}
 
+	/*
+	 * Gets the description of this job.
+	 * @return the description of this job
+	 */
 	public String getJobDescription(){
 		return jobDescription;
 	}
 	
+	/*
+	 * Gets the park where the job is located.
+	 * @return the park where the job is located
+	 */
 	public Park getPark(){
 		return park;
 	}
-	
-	public DateAndTime getStartTime(){
+		
+	/*
+	 * Gets the start time of this job.
+	 * @return the start time of this job
+	 */
+	public LocalTime getStartTime(){
 		return start;
 	}
 	
-	public DateAndTime getEndTime(){
+	/*
+	 * Gets the end time of this job.
+	 * @return the end time of this job
+	 */
+	public LocalTime getEndTime(){
 		return end;
 	}
 	
+	/*
+	 * Sets the description of this job.
+	 * @param theJobDescription the description of the job
+	 */
 	public void setJobDescription(String theJobDescription){
 		jobDescription = theJobDescription;
 	}
 	
+	/*
+	 * Sets the name of the park for this job.
+	 * @param thePark the name of the park for this job
+	 */
 	public void setPark(Park thePark){
 		park = thePark;
 	}
 	
+	/* Sets the start time of this job.
+	 * @param theStart the start time of this job
+	 */ 
 	public void setStartTime(LocalTime theStart){
 		start = theStart;
 	}
 	
+	/* Sets the end time of this job.
+	 * @param theEnd the end time of this job
+	 */ 
 	public void setEndTime(LocalTime theEnd){
 		end = theEnd;
 	}
 	
+	/* Returns a string of all information regarding a job.
+	 * @return a string of all information regarding a job.
+	 */ 
 	public String toString() {
 		return String.format("Description: %s\nPark: %s", getDesc(), getPark());
 	}
