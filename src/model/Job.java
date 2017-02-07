@@ -7,14 +7,7 @@ import java.util.List;
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
-/**
- * @author Jasmine Dacones, Youcef Bennour
- *
- */
 public class Job implements Serializable {
 	private static final long serialVersionUID = 812488421841214L;
 	
@@ -45,7 +38,6 @@ public class Job implements Serializable {
 	
 	/*
 	 * @author Jasmine Dacones
-	 *
 	 * Adds a volunteer to the list of volunteers for a job.
 	 * @param volunteer worker for a job
 	 */
@@ -55,7 +47,6 @@ public class Job implements Serializable {
 	
 	/*
 	 * @author Jasmine Dacones
-	 *
 	 * Returns a list of volunteers for a job.
 	 */
 	public List<UserType> getVolunteers() {
@@ -81,7 +72,7 @@ public class Job implements Serializable {
 	}
 		
 	/*
-	 * @author Youcef Bennour
+	 * @author Jasmine Dacones
 	 * Gets the start time of this job.
 	 * @return the start time of this job
 	 */
@@ -126,7 +117,7 @@ public class Job implements Serializable {
 	}
 	
 	/* 
-	 * @author Jasmine Dacones
+	 * @author Youcef Bennour
 	 * Sets the end time of this job.
 	 * @param theEnd the end time of this job
 	 */ 
@@ -136,9 +127,8 @@ public class Job implements Serializable {
 	
 	/* 
 	 * @author Jasmine Dacones
-	 *
 	 * Returns a string of all information regarding a job.
-	 * @return a string of all information regarding a job.
+	 * @return a string of all information regarding a job
 	 */ 
 	public String toString() {
 		return String.format("Description: %s\nPark: %s", getJobDescription(), getPark());
