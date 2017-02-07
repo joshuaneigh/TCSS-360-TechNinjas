@@ -11,10 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-/**
- * @author Jasmine Dacones, Youcef Bennour
- *
- */
 public class Job implements Serializable {
 	private static final long serialVersionUID = 812488421841214L;
 	
@@ -47,11 +43,8 @@ public class Job implements Serializable {
 	 * @author Jasmine Dacones
 	 *
 	 * Adds a volunteer to the list of volunteers for a job.
-<<<<<<< HEAD
 	 * @param volunteer a worker for the job
-=======
 	 * @param volunteer worker for a job
->>>>>>> jasmine
 	 */
 	public void addVolunteer(UserType volunteer) {
 		volunteersList.add(volunteer);	
