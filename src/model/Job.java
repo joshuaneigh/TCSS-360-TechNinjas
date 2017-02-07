@@ -75,15 +75,6 @@ public class Job implements Serializable {
 		return park;
 	}
 	
-	
-	public void setStartTime(){
-        	String start = now.format(formatter);
-	}
-	
-	
-	public void setEndTime(){
-		String end = now.format(formatter);
-	}
 		
 	/*
 	 * @author Youcef Bennour
@@ -103,6 +94,22 @@ public class Job implements Serializable {
 		return end;
 	}
 	
+	
+	/*
+	 * @author Youcef Bennour
+	 * Sets the time when the job starts
+	 */
+	public void setStartTime(String start){
+        	String start = now.format(formatter);
+	}
+	
+	/*
+	 * @author Youcef Bennour
+	 * Sets the time when the job ends
+	 */
+	public void setEndTime(string end){
+		String end = now.format(formatter);
+	}
 	/* 
 	 * @author Jasmine Dacones
 	 *
