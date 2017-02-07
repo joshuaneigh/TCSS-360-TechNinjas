@@ -67,8 +67,8 @@ public class Job implements Serializable {
 	 * Gets the park where the job is located.
 	 * @return the park where the job is located
 	 */
-	public Park getPark(){
-		return park;
+	public String getPark(){
+		return park.getName();
 	}
 	
 		
@@ -77,9 +77,10 @@ public class Job implements Serializable {
 	 * Gets the start time of this job.
 	 * @return the start time of this job
 	 */
-	public LocalTime getStartTime(){
+	public String getStartTime(){
 		return start;
 	}
+	
 	
 	/*
 	 * @author Jasmine Dacones
@@ -87,7 +88,7 @@ public class Job implements Serializable {
 	 * Gets the end time of this job.
 	 * @return the end time of this job
 	 */
-	public LocalTime getEndTime(){
+	public String getEndTime(){
 		return end;
 	}
 	
@@ -98,7 +99,7 @@ public class Job implements Serializable {
 	 * @param the time when the job starts
 	 */
 	public void setStartTime(String start){
-        	String start = now.format(formatter);
+		start = now.format(formatter);
 	}
 	
 	/*
@@ -106,8 +107,8 @@ public class Job implements Serializable {
 	 * Sets the time when the job ends
 	 * @param the time when the job ends
 	 */
-	public void setEndTime(string end){
-		String end = now.format(formatter);
+	public void setEndTime(String end){
+		end = now.format(formatter);
 	}
 	
 	/* 
