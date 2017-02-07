@@ -113,6 +113,6 @@ public class Job implements Serializable {
 	 * @return a string of all information regarding a job.
 	 */ 
 	public String toString() {
-		return String.format("Description: %s\nPark: %s", getDesc(), getPark());
+		return String.format("Description: %s\nPark: %s", getJobDescription(), getPark());
 	}
  }
