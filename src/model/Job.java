@@ -7,9 +7,6 @@ import java.util.List;
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class Job implements Serializable {
 	private static final long serialVersionUID = 812488421841214L;
@@ -19,6 +16,7 @@ public class Job implements Serializable {
 		
 	LocalDateTime now = LocalDateTime.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+	
 	private String jobDescription;
 	private Park park;
 	private List<UserType> volunteersList;
