@@ -3,12 +3,15 @@
  */
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
-import java.time.LocalTime;
-import java.time.ZoneId;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class Job implements Serializable {
+	
 	private static final long serialVersionUID = 812488421841214L;
 	
 	int MAX_VOLUME = 30;
@@ -19,7 +22,7 @@ public class Job implements Serializable {
 	
 	private String jobDescription;
 	private Park park;
-	private List<UserType> volunteersList;
+	private List<UserType> volunteersList = new ArrayList<UserType>();
 	private String start;
 	private String end;
 	
@@ -91,7 +94,7 @@ public class Job implements Serializable {
 	public String getEndTime(){
 		return end;
 	}
-	
+		
 	
 	/*
 	 * @author Youcef Bennour
