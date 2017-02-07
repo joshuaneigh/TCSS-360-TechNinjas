@@ -19,11 +19,13 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import model.exception.NoSuchUserException;
 
 /**
- * This class is primarily responsible for handling 
+ * This class is primarily responsible for handling ... 
+ *
  *
  * @author Joshua Neighbarger | jneigh@uw.edu
  * @version 06 Feb 2017
@@ -135,8 +137,10 @@ public final class Controller implements Serializable {
 	 * @throws NoSuchUserException if the specified username is not associated with any {@link User} {@link Object}
 	 */
 	public static boolean authenticate(final String username) throws NoSuchUserException {
-		if (INSTANCE.userMap.containsKey(username)) {
-			CURRENT_USERS.add(INSTANCE.userMap.get(username));
+		// TODO: Throw exception if user is not logged in
+		Objects.requireNonNull(username);
+		if (INSTANCE.userMap.containsKey(username.toLowerCase())) {
+			CURRENT_USERS.add(INSTANCE.userMap.get(username.toLowerCase()));
 			return true;
 		} else {
 			throw new NoSuchUserException("The specified username is not associated with any User Object.");
@@ -153,7 +157,9 @@ public final class Controller implements Serializable {
 	 * @throws NoSuchUserException if the specified User is not already logged in
 	 */
 	public static boolean disconnect(final String username) throws NoSuchUserException {
-		if (!CURRENT_USERS.contains(username)) {
+		// TODO: Throw exception if user is not logged in
+		Objects.requireNonNull(username);
+		if (!CURRENT_USERS.contains(INSTANCE.userMap.get(username.toLowerCase()))) {
 			throw new NoSuchUserException("The specified User is not logged in.");
 		} else {
 			try {
@@ -162,12 +168,15 @@ public final class Controller implements Serializable {
 				
 				if (path.toFile().isFile()) {
 					// TODO: Sleep Thread and wait for response of whether to override file.
+				} else {
+					path.toFile().getParentFile().mkdirs();
+					path.toFile().createNewFile();
 				}
 				
 				final PrintStream out = new PrintStream(new FileOutputStream(SAVE_PATH));
 				out.print(serialized);
 				out.close();
-				CURRENT_USERS.remove(INSTANCE.userMap.get(username));
+				CURRENT_USERS.remove(INSTANCE.userMap.get(username.toLowerCase()));
 				return true;
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -188,13 +197,16 @@ public final class Controller implements Serializable {
 	 * @throws IllegalStateException if the passed {@link Park} has already been added
 	 */
 	public static boolean addPark(final String username, final Park park) throws NoSuchUserException, IllegalStateException {
-		if (INSTANCE.userMap.get(username) == null) {
+		// TODO: Throw exception if user is not logged in
+		Objects.requireNonNull(username);
+		Objects.requireNonNull(park);
+		if (INSTANCE.userMap.get(username.toLowerCase()) == null) {
 			throw new NoSuchUserException("The specified username is not associated with any User Object.");
 		} else if (INSTANCE.parkList.contains(park)) {
-			throw new IllegalStateException("The specified Park has not been added or created.");
+			throw new IllegalStateException("The specified Park has already been added.");
 		} else {
 			INSTANCE.parkList.add(park);
-			INSTANCE.parkMap.get(INSTANCE.userMap.get(username)).add(park);
+			INSTANCE.parkMap.get(INSTANCE.userMap.get(username.toLowerCase())).add(park);
 			return true;
 		}
 	}
@@ -207,11 +219,14 @@ public final class Controller implements Serializable {
 	 * @throws IllegalStateException if the {@link User} has already been added
 	 */
 	public static boolean addUser(final String username, final UserType type) throws IllegalStateException {
-		if (INSTANCE.userMap.containsKey(username)) {
-			return false;
+		// TODO: Throw exception if user is not logged in
+		Objects.requireNonNull(username);
+		Objects.requireNonNull(type);
+		if (INSTANCE.userMap.containsKey(username.toLowerCase())) {
+			throw new IllegalStateException("The passed User is already added.");
 		} else {
-			final User user = new User(username, type);
-			INSTANCE.userMap.put(username, user);
+			final User user = new User(username.toLowerCase(), type);
+			INSTANCE.userMap.put(username.toLowerCase(), user);
 			INSTANCE.parkMap.put(user, new ArrayList<>());
 			return true;
 		}
@@ -226,9 +241,11 @@ public final class Controller implements Serializable {
 	 * @throws NoSuchUserException if there is no {@link User} already in the {@link Collection}.
 	 */
 	public static boolean removeUser(final String username) throws NoSuchUserException {
-		if (INSTANCE.userMap.containsKey(username)) {
-			final User user = INSTANCE.userMap.get(username);
-			INSTANCE.userMap.remove(username);
+		// TODO: Throw exception if user is not logged in
+		Objects.requireNonNull(username);
+		if (INSTANCE.userMap.containsKey(username.toLowerCase())) {
+			final User user = INSTANCE.userMap.get(username.toLowerCase());
+			INSTANCE.userMap.remove(username.toLowerCase());
 			INSTANCE.parkMap.remove(user);
 			return true;
 		} else {
