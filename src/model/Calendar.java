@@ -3,50 +3,111 @@
  */
 package model;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
- * @author John Bako
+ * @author John Bako, Michael Loundagin
  *
  */
 public class Calendar {
-	
-	private static final List<DayOfWeek> days = Arrays.asList(
-			DayOfWeek.SUNDAY,
-			DayOfWeek.MONDAY,
-			DayOfWeek.TUESDAY,
-			DayOfWeek.WEDNESDAY,
-			DayOfWeek.THURSDAY,
-			DayOfWeek.FRIDAY,
-			DayOfWeek.SATURDAY
-	);
 
-	private final List<Job> jobs;
+        /**
+         * The names of the months. Used to convert int myMonth into a name.
+         */
+        private static final String[] MONTH_NAMES = ["January", "February",
+                "March", "April", "May", "June", "July", "August",
+                "September", "October", "November", "December"];
+
+        /**
+         * The maximum number of days possible across all months.
+         */
+        private static final MAX_DAYS_OF_MONTH = 31;
 	
-	public Calendar(final List<Job> jobs) {
-		this.jobs = jobs;
+	private static int myMonth;
+	
+	private static int myYear;
+	
+	public Calender() {
+                final Calendar currentDate = Calendar.getInstance();
+		this(currentDate.get(Calendar.MONTH) + 1,
+                     currentDate.get(Calendar.YEAR));
+	}
+
+	public Calender(int theDay, int myMonth2, int theYear) {
+		myMonth = myMonth2;
+		myYear = theYear;
 	}
 	
-	@Override
-	public final String toString() {
-		final LocalDate today = LocalDate.now();
-		final StringBuilder sb = new StringBuilder();
-		sb.append("\t").append(today.getMonth().toString()).append(today.getYear()).append('\n');
-		sb.append("-----------------------------------------\n");
-		sb.append(" Sat | Mon | Tue | Wed | Thu | Fri | Sun \n");
-		sb.append("-----------------------------------------\n");
-		for (int i = 0; i < days.indexOf(today.getDayOfWeek()) - 1; i++) sb.append("     |");
-		for (int day = today.getDayOfMonth(); day < today.lengthOfMonth(); day++) {
-			// TODO: implement if Saturday, append newline char
-			sb.append("  ");
-			if (Math.log10(day) < 2) sb.append(' ');
-			sb.append(day).append(" |");
-		}
-		sb.append("\n");
-		return sb.toString();
+	public int getMonth() {
+		return myMonth;
 	}
+	
+	public int getYear() {
+		return myYear;
+	}
+	
+	public void setMonth(int themonth) {
+		myMonth = themonth;
+	}
+	
+	public void setYear(int theYear) {
+		myYear = theYear;
+	}
+	
+        /**
+         * Creates a formatted list of jobs by day for the set month.
+         * @return A formatted list of jobs by day for the set month
+         */
+	public String toString() {
+                //jobs are stored by day into this array
+                final ArrayList<Job>[] jobsByDay
+                        = new ArrayList<Job>[MAX_DAYS_OF_MONTH];
+                boolean hasJobs;
+                for (ArrayList<Job> jobsList : jobsByDay) {
+                        jobsList = new ArrayList<Job>();
+                }
+                for (final Park park : Controller.getParks()) {
+                        for (final Job job : park.getJobs()) {
+                                final jobDate = job.getStart()
+                                if (jobDate.getMonth() == myMonth) {
+                                        jobsByDay[jobDate.getDay()].add(job);
+                                        hasJobs = true;
+                                }
+                        }
+                }
+                String returnString = "";
+                monthName = MONTH_NAMES[myMonth];
+                if (!hasJobs) {
+                        returnString = "There are no jobs for" + monthName
+                               + " " + myYear;
+                } else {
+                        returnString = "Jobs for" + monthName + " "
+                        + myYear + "\n";
+                        boolean dayFormatFlag;
+                        for (int day = 0; i < MAX_DAYS_OF_MONTH; i++) {
+                                final ArrayList<Job> jobsForDay = jobsByDay.get(i);
+                                if (dayFormatFlag) {
+                                        returnString += "\n\n"
+                                }
+                                if (!(jobsForDay.isEmpty())) {
+                                        boolean jobFormatFlag;
+                                        returnString += "    " + monthName
+                                                + " " + (day + 1) + "\n";
+                                        for (final Job job : jobsForDay) {
+                                                if (jobFormatFlag) {
+                                                        returnString += "\n\n"
+                                                }
+                                                returnString += "        "
+                                                        + job.getPark() + "\n"
+                                                        + job.getDesc()
+                                                jobFormatFlag = true;
+                                        }
+                                        dayFormatFlag = true;
+                                }
+                        }
+                }
+                return returnString;
+        }
 
 }
