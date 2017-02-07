@@ -18,12 +18,18 @@ public class User implements Serializable {
 	private boolean blackballed;
 	private boolean flagged;
 	
+	/*
+	 * @author Youcef Bennour
+	 * @param username represents the usernma of the user
+	 * @param type represents the type of the user
+	 */	
 	public User(final String username, final UserType type) {
 		this.username = username;
 		this.type = type;
 	}
 	
 	/*
+	 * @author Youcef Bennour
 	 * Gets the usernmae of the user.
 	 * @return the user name of the current user.
 	 */
@@ -32,6 +38,7 @@ public class User implements Serializable {
 	}
 	
 	/*
+	 * @author Youcef Bennour
 	 * Return an enum type of the user.
 	 * @return the type of the user.
 	 */
@@ -40,6 +47,7 @@ public class User implements Serializable {
 	}
 	
 	/*
+	 * @author Youcef Bennour
 	 * returns whether the user is blackballed or not
 	 * @return a boolean representing whether the user is blackballed.
 	 */
@@ -48,6 +56,7 @@ public class User implements Serializable {
 	}
 
 	/*
+	 * @author Youcef Bennour
 	 * returns whether the user is flagged
 	 * @return a boolean representing whether the user is flagged
 	 */
