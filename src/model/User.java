@@ -63,5 +63,14 @@ public class User implements Serializable {
 	public boolean isFlagged() {
 		return flagged;
 	}
+	
+	/*
+	 * @author Youcef Bennour
+	 * tests whether the code is right
+	 */
+	@Override
+    	public String toString() {
+        	return username + ", " + type + ", " + blackballed + ", " + flagged;
+	}
 
 }
