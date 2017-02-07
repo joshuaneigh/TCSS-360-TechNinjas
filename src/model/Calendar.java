@@ -18,13 +18,6 @@ import java.util.Objects;
 public class Calendar {
 
     /**
-     * The names of the months. Used to convert int myMonth into a name.
-     */
-    private static final String[] MONTH_NAMES = ["January", "February",
-		        "March", "April", "May", "June", "July", "August",
-		        "September", "October", "November", "December"];
-    
-    /**
      * The number of days in a week.
      */
     private static final int DAYS_IN_WEEK = 7;
@@ -38,6 +31,16 @@ public class Calendar {
      * The format expected from Job.getStartTime().
      */
     private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    
+    /**
+     * The current date.
+     */
+    private LocalDateTime currentDate;
+    
+    /**
+     * Used across helper methods.
+     */
+    private LocalDateTime endDate;
 
     /**
      * The list of all jobs.
@@ -50,7 +53,15 @@ public class Calendar {
      */
     public Calendar(final List<Job> theJobs) {
     	Objects.isNull(theJobs);
-        jobs = theJobs
+        jobs = theJobs;
+    }
+    
+    /**
+     * Sets the current date. This is for debugging and should not be used otherwise.
+     * @param theCurrentDate The new current date
+     */
+    public void setCurrentDate(final LocalDateTime theCurrentDate) {
+    	currentDate = theCurrentDate;
     }
 	
     /**
@@ -58,10 +69,9 @@ public class Calendar {
      * @return A formatted calendar of jobs for the coming month
      */
 	public String toString() {
-        final LocalDateTime currentDate = LocalDateTime.now();
         final int numOfWeekRows = calculateNumOfWeekRows(currentDate);
         final int[][] jobsForCalendarDays = createJobCalendar(currentDate, numOfWeekRows);
-        final String returnString = "   Su      M      T      W      T      F      S\n";
+        String returnString = "   Su      M      T      W      T      F      S\n";
         returnString += "               [" + currentDate.getMonth().toString() + "]\n";
         returnString += "|";
         final LocalDateTime iterDate = LocalDateTime.now();
@@ -82,12 +92,13 @@ public class Calendar {
         		}
         		returnString += " " + String.format("%1$2d", iterDate.getDayOfMonth()) + ":" + jobsForCalendarDays[i][j] + " |";
         	}
-        	returnString += "\n|"
+        	returnString += "\n|";
         }
+        return returnString;
 	}
 	
 	private int calculateNumOfWeekRows(final LocalDateTime currentDate) {
-		int numOfWeekRows;
+		int numOfWeekRows = 0;
 		final LocalDateTime iterDate = LocalDateTime.now().plusDays(1);
 		final int currentDayOfMonth = currentDate.getDayOfMonth();
         while (iterDate.getDayOfMonth() != currentDayOfMonth) {
@@ -96,6 +107,7 @@ public class Calendar {
         	}
         	iterDate.plusDays(1);
         }
+        endDate = iterDate;
         return numOfWeekRows;
 	}
 	
@@ -113,7 +125,7 @@ public class Calendar {
             if (jobMonth.equals(currentMonth) && jobDay >= currentDayOfMonth
                     || jobMonth.plus(1).equals(currentMonth) && jobDay < currentDayOfMonth) {
                 //increment the position that is the number of days away from the current day
-                final long numOfDaysPastCurrentDay = currentDate.until(jobDate, ChronoUnit.DAYS);
+                final int numOfDaysPastCurrentDay = (int) currentDate.until(jobDate, ChronoUnit.DAYS);
                 final int row = numOfDaysPastCurrentDay / numOfWeekRows;
                 final int col = numOfDaysPastCurrentDay % DAYS_IN_WEEK;
                 jobsForCalendarDays[row][col]++;
@@ -139,11 +151,11 @@ public class Calendar {
         
         //set the prior days of the first week row as nondisplayed
         for (DayOfWeek i = DayOfWeek.SUNDAY; i.compareTo(currentDate.getDayOfWeek()) < 0; i.plus(1)) {
-        	jobsForCalendarDay[0][i] = NONDISPLAYED_DAY;
+        	jobsForCalendarDays[0][i.getValue() - 1] = NONDISPLAYED_DAY;
         }
         //set the days at and after one month in the future as nondisplayed
-        for (DayOfWeek i = DayOfWeek.SATURDAY; i.compareTo(multiUseDate.getDayOfWeek()) >= 0; i.minus(1)) {
-        	jobsForCalendarDay[numOfWeekRows - 1][i] = NONDISPLAYED_DAY;
+        for (DayOfWeek i = DayOfWeek.SATURDAY; i.compareTo(endDate.getDayOfWeek()) >= 0; i.minus(1)) {
+        	jobsForCalendarDays[numOfWeekRows - 1][i.getValue() - 1] = NONDISPLAYED_DAY;
         }
         return jobsForCalendarDays;
 	}
