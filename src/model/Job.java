@@ -35,6 +35,7 @@ public class Job implements Serializable {
 	
 	/*
 	 * Adds a volunteer to the list of volunteers for a job.
+	 * @param volunteer a worker for the job
 	 */
 	public void addVolunteer(UserType volunteer) {
 		volunteersList.add(volunteer);	
