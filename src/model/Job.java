@@ -16,14 +16,14 @@ public class Job implements Serializable {
 	
 	int MAX_VOLUME = 30;
 	int MAX_LENGTH = 2;
-	
-	LocalTime time = LocalTime.now();
-	
+		
+	LocalDateTime now = LocalDateTime.now();
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	private String jobDescription;
 	private Park park;
 	private List<UserType> volunteersList;
-	private DateAndTime start;
-	private DateAndTime end;
+	private String start;
+	private String end;
 	
 	/*
 	 * @author Jasmine Dacones
@@ -32,11 +32,9 @@ public class Job implements Serializable {
 	 * @param theStart when the job will start
 	 * @param theEnd when the job will end
 	 */	
-	public Job(String theJobDescription, Park thePark, LocalTime theStart, LocalTime theEnd) {
+	public Job(String theJobDescription, Park thePark) {
 		jobDescription = theJobDescription;
 		park = thePark;
-		start = theStart;
-		end = theEnd;
 	}
 	
 	/*
@@ -76,6 +74,7 @@ public class Job implements Serializable {
 	public Park getPark(){
 		return park;
 	}
+	
 		
 	/*
 	 * @author Youcef Bennour
@@ -95,42 +94,22 @@ public class Job implements Serializable {
 		return end;
 	}
 	
-	/*
-	 * @author Youcef Bennour
-	 * Sets the description of this job.
-	 * @param theJobDescription the description of the job
-	 */
-	public void setJobDescription(String theJobDescription){
-		jobDescription = theJobDescription;
-	}
 	
 	/*
-	 * @author Jasmine Dacones
-	 * Sets the name of the park for this job.
-	 * @param thePark the name of the park for this job
-	 */
-	public void setPark(Park thePark){
-		park = thePark;
-	}
-	
-	/* 
 	 * @author Youcef Bennour
-	 * Sets the start time of this job.
-	 * @param theStart the start time of this job
-	 */ 
-	public void setStartTime(LocalTime theStart){
-		start = theStart;
+	 * Sets the time when the job starts
+	 */
+	public void setStartTime(String start){
+        	String start = now.format(formatter);
 	}
 	
-	/* 
-	 * @author Jasmine Dacones
-	 * Sets the end time of this job.
-	 * @param theEnd the end time of this job
-	 */ 
-	public void setEndTime(LocalTime theEnd){
-		end = theEnd;
+	/*
+	 * @author Youcef Bennour
+	 * Sets the time when the job ends
+	 */
+	public void setEndTime(string end){
+		String end = now.format(formatter);
 	}
-	
 	/* 
 	 * @author Jasmine Dacones
 	 *
