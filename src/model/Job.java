@@ -18,7 +18,7 @@ public class Job implements Serializable {
 	int MAX_LENGTH = 2;
 		
 	LocalDateTime now = LocalDateTime.now();
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 	private String jobDescription;
 	private Park park;
 	private List<UserType> volunteersList;
@@ -39,7 +39,6 @@ public class Job implements Serializable {
 	
 	/*
 	 * @author Jasmine Dacones
-	 *
 	 * Adds a volunteer to the list of volunteers for a job.
 	 * @param volunteer a worker for the job
 	 * @param volunteer worker for a job
@@ -50,7 +49,6 @@ public class Job implements Serializable {
 	
 	/*
 	 * @author Jasmine Dacones
-	 *
 	 * Returns a list of volunteers for a job.
 	 */
 	public List<UserType> getVolunteers() {
@@ -58,7 +56,7 @@ public class Job implements Serializable {
 	}
 
 	/*
-	 * @author Youcef Bennour
+	 * @author Jasmine Dacones
 	 * Gets the description of this job.
 	 * @return the description of this job
 	 */
@@ -77,7 +75,7 @@ public class Job implements Serializable {
 	
 		
 	/*
-	 * @author Youcef Bennour
+	 * @author Jasmine Dacones
 	 * Gets the start time of this job.
 	 * @return the start time of this job
 	 */
@@ -87,6 +85,7 @@ public class Job implements Serializable {
 	
 	/*
 	 * @author Jasmine Dacones
+	 *
 	 * Gets the end time of this job.
 	 * @return the end time of this job
 	 */
@@ -98,6 +97,7 @@ public class Job implements Serializable {
 	/*
 	 * @author Youcef Bennour
 	 * Sets the time when the job starts
+	 * @param the time when the job starts
 	 */
 	public void setStartTime(String start){
         	String start = now.format(formatter);
@@ -106,13 +106,14 @@ public class Job implements Serializable {
 	/*
 	 * @author Youcef Bennour
 	 * Sets the time when the job ends
+	 * @param the time when the job ends
 	 */
 	public void setEndTime(string end){
 		String end = now.format(formatter);
 	}
+	
 	/* 
 	 * @author Jasmine Dacones
-	 *
 	 * Returns a string of all information regarding a job.
 	 * @return a string of all information regarding a job.
 	 */ 
