@@ -95,42 +95,6 @@ public class Job implements Serializable {
 		return end;
 	}
 	
-	/*
-	 * @author Youcef Bennour
-	 * Sets the description of this job.
-	 * @param theJobDescription the description of the job
-	 */
-	public void setJobDescription(String theJobDescription){
-		jobDescription = theJobDescription;
-	}
-	
-	/*
-	 * @author Jasmine Dacones
-	 * Sets the name of the park for this job.
-	 * @param thePark the name of the park for this job
-	 */
-	public void setPark(Park thePark){
-		park = thePark;
-	}
-	
-	/* 
-	 * @author Youcef Bennour
-	 * Sets the start time of this job.
-	 * @param theStart the start time of this job
-	 */ 
-	public void setStartTime(LocalTime theStart){
-		start = theStart;
-	}
-	
-	/* 
-	 * @author Jasmine Dacones
-	 * Sets the end time of this job.
-	 * @param theEnd the end time of this job
-	 */ 
-	public void setEndTime(LocalTime theEnd){
-		end = theEnd;
-	}
-	
 	/* 
 	 * @author Jasmine Dacones
 	 *
