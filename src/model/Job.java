@@ -16,14 +16,14 @@ public class Job implements Serializable {
 	
 	int MAX_VOLUME = 30;
 	int MAX_LENGTH = 2;
-	
-	LocalTime time = LocalTime.now();
-	
+		
+	LocalDateTime now = LocalDateTime.now();
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	private String jobDescription;
 	private Park park;
 	private List<UserType> volunteersList;
-	private DateAndTime start;
-	private DateAndTime end;
+	private String start;
+	private String end;
 	
 	/*
 	 * @author Jasmine Dacones
@@ -32,11 +32,9 @@ public class Job implements Serializable {
 	 * @param theStart when the job will start
 	 * @param theEnd when the job will end
 	 */	
-	public Job(String theJobDescription, Park thePark, LocalTime theStart, LocalTime theEnd) {
+	public Job(String theJobDescription, Park thePark) {
 		jobDescription = theJobDescription;
 		park = thePark;
-		start = theStart;
-		end = theEnd;
 	}
 	
 	/*
@@ -75,6 +73,16 @@ public class Job implements Serializable {
 	 */
 	public Park getPark(){
 		return park;
+	}
+	
+	
+	public void setStartTime(){
+        	String start = now.format(formatter);
+	}
+	
+	
+	public void setEndTime(){
+		String end = now.format(formatter);
 	}
 		
 	/*
