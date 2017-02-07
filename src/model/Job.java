@@ -7,6 +7,9 @@ import java.util.List;
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * @author Jasmine Dacones, Youcef Bennour
@@ -26,6 +29,13 @@ public class Job implements Serializable {
 	private DateAndTime start;
 	private DateAndTime end;
 	
+	/*
+	 * @author Jasmine Dacones
+	 * @param theJobDescription description of the job
+	 * @param thePark name of the park where the job will take place
+	 * @param theStart when the job will start
+	 * @param theEnd when the job will end
+	 */	
 	public Job(String theJobDescription, Park thePark, LocalTime theStart, LocalTime theEnd) {
 		jobDescription = theJobDescription;
 		park = thePark;
@@ -34,13 +44,18 @@ public class Job implements Serializable {
 	}
 	
 	/*
+	 * @author Jasmine Dacones
+	 *
 	 * Adds a volunteer to the list of volunteers for a job.
+	 * @param volunteer worker for a job
 	 */
 	public void addVolunteer(UserType volunteer) {
 		volunteersList.add(volunteer);	
 	}
 	
 	/*
+	 * @author Jasmine Dacones
+	 *
 	 * Returns a list of volunteers for a job.
 	 */
 	public List<UserType> getVolunteers() {
@@ -48,6 +63,7 @@ public class Job implements Serializable {
 	}
 
 	/*
+	 * @author Youcef Bennour
 	 * Gets the description of this job.
 	 * @return the description of this job
 	 */
@@ -56,6 +72,7 @@ public class Job implements Serializable {
 	}
 	
 	/*
+	 * @author Jasmine Dacones
 	 * Gets the park where the job is located.
 	 * @return the park where the job is located
 	 */
@@ -64,6 +81,7 @@ public class Job implements Serializable {
 	}
 		
 	/*
+	 * @author Youcef Bennour
 	 * Gets the start time of this job.
 	 * @return the start time of this job
 	 */
@@ -72,6 +90,7 @@ public class Job implements Serializable {
 	}
 	
 	/*
+	 * @author Jasmine Dacones
 	 * Gets the end time of this job.
 	 * @return the end time of this job
 	 */
@@ -80,6 +99,7 @@ public class Job implements Serializable {
 	}
 	
 	/*
+	 * @author Youcef Bennour
 	 * Sets the description of this job.
 	 * @param theJobDescription the description of the job
 	 */
@@ -88,6 +108,7 @@ public class Job implements Serializable {
 	}
 	
 	/*
+	 * @author Jasmine Dacones
 	 * Sets the name of the park for this job.
 	 * @param thePark the name of the park for this job
 	 */
@@ -95,24 +116,31 @@ public class Job implements Serializable {
 		park = thePark;
 	}
 	
-	/* Sets the start time of this job.
+	/* 
+	 * @author Youcef Bennour
+	 * Sets the start time of this job.
 	 * @param theStart the start time of this job
 	 */ 
 	public void setStartTime(LocalTime theStart){
 		start = theStart;
 	}
 	
-	/* Sets the end time of this job.
+	/* 
+	 * @author Jasmine Dacones
+	 * Sets the end time of this job.
 	 * @param theEnd the end time of this job
 	 */ 
 	public void setEndTime(LocalTime theEnd){
 		end = theEnd;
 	}
 	
-	/* Returns a string of all information regarding a job.
+	/* 
+	 * @author Jasmine Dacones
+	 *
+	 * Returns a string of all information regarding a job.
 	 * @return a string of all information regarding a job.
 	 */ 
 	public String toString() {
-		return String.format("Description: %s\nPark: %s", getDesc(), getPark());
+		return String.format("Description: %s\nPark: %s", getJobDescription(), getPark());
 	}
  }
