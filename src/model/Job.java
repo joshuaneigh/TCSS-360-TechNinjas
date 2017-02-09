@@ -14,8 +14,7 @@ import java.time.format.DateTimeFormatter;
  * System.out.println("Date: " + newDate.getMonth() + " " + newDate.getDayOfMonth() + " " + newDate.getYear());
  *
  */
-
-## getVolunteers
+ 
 public class Job implements Serializable {
 	
 	private static final long serialVersionUID = 812488421841214L;
@@ -60,7 +59,6 @@ public class Job implements Serializable {
 	 * @author Jasmine Dacones
 	 * Returns a list of volunteers for a job.
 	 */
-	 [getVolunteers](#getVolunteers)
 	public List<UserType> getVolunteers() {
 		return volunteersList;
 	}
