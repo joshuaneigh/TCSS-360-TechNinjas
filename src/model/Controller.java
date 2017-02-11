@@ -306,4 +306,10 @@ public final class Controller implements Serializable {
 		}
 	}
 
+	public static UserType getUserType(final String username) {
+		Objects.requireNonNull(username);
+		final User user = INSTANCE.userMap.get(username.toLowerCase());
+		return user.getType();
+	}
+
 }
