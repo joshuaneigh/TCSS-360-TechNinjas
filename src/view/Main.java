@@ -28,7 +28,7 @@ public class Main {
 		new Runnable() {
 			@Override
 			public void run() {
-				new TextUI().launch();
+				TextUI.launch();
 				try {
 					SOCKET.close();
 				} catch (final IOException e) {
