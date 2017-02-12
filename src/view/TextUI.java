@@ -6,18 +6,29 @@ import view.menu.LoginMenu;
 import view.menu.Menu;
 import view.menu.WelcomeMenu;
 
-public class TextUI {
+public final class TextUI {
 	
-	private final Stack<Menu> menus;
+	private static final Stack<Menu> MENUS;
 	
-	public TextUI() {
-		menus = new Stack<>();
+	static {
+		MENUS = new Stack<>();
 	}
 	
-	public void launch() {
+	private TextUI() {}
+	
+	public static void launch() {
 		new LoginMenu().activate();
-		menus.add(new WelcomeMenu());
-		menus.peek().activate();
+		MENUS.add(new WelcomeMenu());
+		MENUS.peek().activate();
+	}
+	
+	public static void register(final Menu menu) {
+		MENUS.push(menu);
+	}
+	
+	public static void back() {
+		MENUS.pop();
+		MENUS.peek().activate();
 	}
 	
 }
