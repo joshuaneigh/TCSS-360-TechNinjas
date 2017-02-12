@@ -2,7 +2,6 @@ package model;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 import java.util.List;
@@ -89,45 +88,11 @@ public class Calendar {
         returnString.append(CALENDAR_HEADER);
         returnString.append(createMonthHeader(currentDate.getMonth()));
         LocalDateTime iterationDate = currentDate;
-        for (int row = 0; row < jobsByCalendarDays.length; row++) {
-            //start of the week
-            returnString.append("|");
-            for (int col = 0; col < DAYS_IN_WEEK; col++) {
-                //if the current day should not be displayed
-                if (jobsByCalendarDays[row][col] == NONDISPLAYED_DAY) {
-                	//NOTE that the date does not increment!
-                    returnString.append(EMPTY_DAY);
-                //if it should be displayed
-                } else {
-                    /*
-                     * If the next month has just been entered, we must break to the next row and
-                     * add the header for the next month.
-                     * Specifically, this checks if the day of month is 1 and if the month isn't the
-                     * same as the current date's
-                     */
-                    if (iterationDate.getDayOfMonth() == 1
-                            && !iterationDate.getMonth().equals(currentDate.getMonth())) {
-                        //fill in the remaining days in the row as empty
-                        for (int col2 = col; col2 < DAYS_IN_WEEK; col2++) {
-                            returnString.append(EMPTY_DAY);
-                        }
-                        returnString.append("\n");
-                        //insert header for next month. iterationDate currently is in next month
-                        returnString.append(createMonthHeader(iterationDate.getMonth()));
-                        returnString.append("|");
-                        //fill in enough days to align with the correct day of week
-                        for (int col2 = 0; col2 < col; col2++) {
-                            returnString.append(EMPTY_DAY);
-                        }
-                    }
-                    //insert " dd:j |" where 'dd' is the day of month and 'j' is jobs for the day
-                    returnString.append(String.format("%1$3d", iterationDate.getDayOfMonth())
-                        + ":" + jobsByCalendarDays[row][col] + " |");
-                    iterationDate = iterationDate.plusDays(1);
-                    //END IF-ELSE
-                }
-                //END FOR COLUMN
-            }
+        //set the date back to the last Sunday
+        iterationDate = iterationDate.minusDays(daysSinceSunday(iterationDate));
+        //iterate over each week
+        for (int row = 0; row < jobsByCalendarDays.length; row++, iterationDate = iterationDate.plusDays(7)) {
+        	returnString.append(createWeekLine(jobsByCalendarDays[row], iterationDate));
             //if this is not the last row, add a line break
             if (row < jobsByCalendarDays.length - 1) {
                 returnString.append("\n");
@@ -152,7 +117,7 @@ public class Calendar {
      * @param theDate The given date
      * @return The date one month later than the given date.
      */
-    private LocalDateTime monthLater(final LocalDateTime theDate) {
+    public LocalDateTime monthLater(final LocalDateTime theDate) {
         LocalDateTime monthLater = theDate.plusMonths(1);
         /*
          * If the given date's day of month is nonexistent in the next month, monthLater will be off
@@ -172,7 +137,7 @@ public class Calendar {
      * @param theEndDate The ending date
      * @return The size of the calendar in rows
      */
-    private int calendarSize(LocalDateTime startDate, LocalDateTime endDate) {
+    public int calendarSize(LocalDateTime startDate, LocalDateTime endDate) {
         //If the startDate is after the endDate, swap the arguments
         if (startDate.compareTo(endDate) > 0) {
             final LocalDateTime tmp = startDate;
@@ -195,7 +160,7 @@ public class Calendar {
      * day. If a day is not shown in this calendar, it is set as NONDISPLAYED_DAY.
      * @return The calendar of jobs for the upcoming month.
      */
-    private int[][] createJobCalendar() {
+    public int[][] createJobCalendar() {
         final int currentDateDaysSinceSunday = daysSinceSunday(currentDate);
         final LocalDateTime monthLater = monthLater(currentDate);
         final int calendarRows = calendarSize(currentDate, monthLater.minusDays(1));
@@ -233,5 +198,103 @@ public class Calendar {
     private String createMonthHeader(final Month theMonth) {
         final String monthName = MONTH_NAMES[theMonth.getValue() - 1];
         return MONTH_HEADER_START + monthName + MONTH_HEADER_END;
+    }
+    
+    /**
+     * Creates the string representing a week on the calendar
+     * @param theWeekArray The array of the number of jobs each day for the week
+     * @param theSundayDate The date of the given week's Sunday
+     * @return The string representation of the given week array
+     * @throws IllegalArgumentException If the given Sunday date is not a Sunday
+     */
+    public String createWeekLine(final int[] theWeekArray, final LocalDateTime theSundayDate) {
+    	if (daysSinceSunday(theSundayDate) > 0) {
+    		throw new IllegalArgumentException("Given Sunday date is not a Sunday!");
+    	}
+    	//create a copy of theSundayDate for naming conventions
+    	LocalDateTime iterationDate = LocalDateTime.from(theSundayDate);
+    	final StringBuilder weekString = new StringBuilder(128);
+    	/*
+    	 * If the next month has been entered already, we must make the header before starting the
+    	 * next week.
+    	 */
+    	if (checkEnteredNextMonth(iterationDate)) {
+    		weekString.append(createMonthHeader(iterationDate.getMonth()));
+    	}
+    	//start of the week
+    	weekString.append("|");
+        //iterate over each day
+        for (int col = 0; col < DAYS_IN_WEEK; col++, iterationDate = iterationDate.plusDays(1)) {
+            //if the current day should not be displayed
+            if (theWeekArray[col] == NONDISPLAYED_DAY) {
+            	//NOTE that the date does not increment!
+                weekString.append(EMPTY_DAY);
+            //if it should be displayed
+            } else {
+                /*
+                 * If the next month has just been entered, we must break to the next row and
+                 * add the header for the next month. Note: This only fires if the day isn't
+                 * Sunday since it would conflict with the check outside of this loop.
+                 */
+                if (checkEnteredNextMonth(iterationDate) && daysSinceSunday(iterationDate) > 0) {
+                    //fill in the remaining days in the row as empty
+                    weekString.append(enterNextMonth(col, iterationDate.getMonth()));
+                }
+                weekString.append(createDaySlot(theWeekArray[col], iterationDate));
+                //END IF-ELSE
+            }
+            //END FOR COLUMN
+        }
+        return weekString.toString();
+    }
+    
+    /**
+     * Checks if the iteration has entered the next month.
+     * Specifically, this checks if the day of month is 1 and if the month isn't the
+     * same as the current date's.
+     * @param theDate The date to check
+     * @return If the date has entered the next month
+     */
+    private boolean checkEnteredNextMonth(final LocalDateTime theDate) {
+    	return theDate.getDayOfMonth() == 1
+                && !theDate.getMonth().equals(currentDate.getMonth());
+    }
+    
+    /**
+     * Creates the string representing a day on the calendar.
+     * @param theNumOfJobs The number of jobs for the day
+     * @param theDate The date of the day
+     * @return The string representation of the calendar day
+     */
+    private String createDaySlot(final int theNumOfJobs, final LocalDateTime theDate) {
+    	final StringBuilder dayString = new StringBuilder(8);
+    	//insert " dd:j |" where 'dd' is the day of month and 'j' is jobs for the day
+        dayString.append(String.format("%1$3d", theDate.getDayOfMonth())
+            + ":" + theNumOfJobs + " |");
+        return dayString.toString();
+    }
+    
+    /**
+     * Creates the string representing the end of a month going into the beginning of the next.
+     * DO NOT USE THIS IF THE DAY OF WEEK OF THE FIRST DAY OF NEXT MONTH IS A SUNDAY.
+     * Another instruction flow is supposed to handle that case.
+     * @param dayOfWeek The day of the week, where Sunday = 0 and Saturday = 6
+     * @param nextMonth The next month. Used for the month's header
+     * @return
+     */
+    public String enterNextMonth(final int dayOfWeek, final Month nextMonth) {
+    	final StringBuilder nextMonthString = new StringBuilder(64);
+    	for (int col2 = dayOfWeek; col2 < DAYS_IN_WEEK; col2++) {
+            nextMonthString.append(EMPTY_DAY);
+        }
+        nextMonthString.append("\n");
+        //insert header for next month. iterationDate currently is in next month
+        nextMonthString.append(createMonthHeader(nextMonth));
+        nextMonthString.append("|");
+        //fill in enough days to align with the correct day of week
+        for (int col2 = 0; col2 < dayOfWeek; col2++) {
+            nextMonthString.append(EMPTY_DAY);
+        }
+        return nextMonthString.toString();
     }
 }
