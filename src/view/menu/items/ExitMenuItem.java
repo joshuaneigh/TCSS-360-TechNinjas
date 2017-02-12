@@ -1,6 +1,7 @@
 package view.menu.items;
 
 import model.Controller;
+import model.UserType;
 import model.exception.NoSuchUserException;
 
 /**
@@ -19,6 +20,16 @@ public class ExitMenuItem implements MenuItem {
 		} catch (final NoSuchUserException e) {
 			System.out.println("Could not log off successfully.");
 		}
+	}
+
+	@Override
+	public boolean isAllowed(final UserType userType) {
+		return true;
+	}
+
+	@Override
+	public String getLabel() {
+		return null;
 	}
 	
 }

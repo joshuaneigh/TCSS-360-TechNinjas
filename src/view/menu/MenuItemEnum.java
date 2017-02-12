@@ -5,6 +5,14 @@ import java.util.List;
 
 import model.UserType;
 
+/**
+ * An enumeration of all menu items. This enum is deprecated and is not to be
+ * replaced.
+ *
+ * @author Joshua Neighbarger | jneigh@uw.edu
+ * @version 12 Feb 2017
+ */
+@Deprecated
 public enum MenuItemEnum {
 	
 	CREATE_NEW_JOB("Create New Job", 
