@@ -181,6 +181,10 @@ public final class Controller implements Serializable {
 		}
 	}
 
+	public static boolean disconnect() throws NoSuchUserException {
+		return disconnect(CURRENT_USER.getUserName());
+	}
+	
 	/**
 	 * Tries to disconnect the passed User from this {@link Controller}. The
 	 * state of this {@link Controller} will be saved into a serialized
@@ -279,6 +283,23 @@ public final class Controller implements Serializable {
 			INSTANCE.parkMap.put(user, new ArrayList<>());
 			return true;
 		}
+	}
+	
+	protected static User getUser(final String username) {
+		return INSTANCE.userMap.get(username);
+	}
+	
+	protected static boolean associateUser(final String username, final Park park) {
+		if (!INSTANCE.parkList.contains(park)) throw new IllegalStateException("Park not added to system.");
+		if (!INSTANCE.parkMap.containsKey(INSTANCE.userMap.get(username))) INSTANCE.parkMap.put(INSTANCE.userMap.get(username), new ArrayList<>());
+		INSTANCE.parkMap.get(INSTANCE.userMap.get(username)).add(park);
+		return true;
+	}
+	
+	protected static List<Job> getAllJobs() {
+		final List<Job> jobs = new ArrayList<>();
+		for (final Park p : INSTANCE.parkList) jobs.addAll(p.getJobs());
+		return jobs;
 	}
 
 	/**

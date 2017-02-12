@@ -29,7 +29,7 @@ public enum MenuEnum {
 			MenuItemEnum.EXIT
 		}),
 	
-	MANAGE_PARKS_PARK_SELECTED("Create New Job", new MenuItemEnum[] {
+	MANAGE_PARKS_PARK_SELECTED("Create New Job | Park %s | %s, %s", new MenuItemEnum[] {
 			MenuItemEnum.VIEW_JOBS,
 			MenuItemEnum.BACK,
 			MenuItemEnum.EXIT

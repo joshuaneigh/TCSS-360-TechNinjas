@@ -6,15 +6,17 @@ import java.util.Stack;
 import model.Controller;
 import model.UserType;
 import model.exception.NoSuchUserException;
+import view.menu.Menu;
 import view.menu.MenuEnum;
 import view.menu.MenuItemEnum;
+import view.menu.WelcomeMenu;
 
 public class TextUI {
 	
 	private static final String PROGRAM_NAME;
 	private static final String SEPARATOR;
 	
-	private final Stack<MenuEnum> menus;
+	private final Stack<Menu> menus;
 	private final Scanner scanner;
 	private UserType userType;
 	private String username;
@@ -48,7 +50,7 @@ public class TextUI {
 		return input;
 	}
 	
-	private void menu(final MenuEnum menu) {
+	private MenuItemEnum menu(final MenuEnum menu) {
 		
 		int numMenuItems = 0;
 		switch (menu) {
@@ -61,7 +63,6 @@ public class TextUI {
 			break;
 		}
 
-		MenuItemEnum selection;
 		switch (menu) {
 		default:
 			do {
@@ -69,59 +70,18 @@ public class TextUI {
 					System.out.print("\nPlease make a selection: ");
 					final String input = input();
 					final int result = Integer.parseInt(input);
-					if (0 < result && result <= numMenuItems) {
-						selection = menu.getItems()[result];
-						break;
-					} else {
-						System.out.println("Selection is out of range.");
-					}
+					if (0 < result && result <= numMenuItems) return menu.getItems()[result];
+					else System.out.println("Selection is out of range.");
 				} catch (final NumberFormatException e) {
 					System.out.println("The input you specified is invalid.");
 				}
 			} while (true);
 		}
-		
-		switch (selection) {
-		case CREATE_NEW_JOB:
-			break;
-		case MANAGE_PARKS:
-			break;
-		case JOB_TITLE:
-			break;
-		case JOB_DATE:
-			break;
-		case PARK_NUMBER:
-			break;
-		case JOB_DESCRIPTION:
-			break;
-		case NUM_VOL_ACCEPTED:
-			break;
-		case SUBMIT_JOB:
-			break;
-		case VIEW_JOBS:
-			break;
-		case VIEW_VOLUNTEERS:
-			break;
-		case VIEW_UPCOMING_JOBS:
-			break;
-		case SEARCH_FOR_JOBS:
-			break;
-		case VIEW_MY_JOBS:
-			break;
-		case MAKE_ANOTHER_SEARCH:
-			break;
-		case SIGN_UP_FOR_JOB:
-			break;
-		case BACK:
-			break;
-		case EXIT:
-			exit();
-			break;
-		default:
-			System.out.println("Selection not yet implemented.");
-			break;
-		}
 
+	}
+	
+	Scanner getScannerInstance() {
+		return scanner;
 	}
 	
 	private void login() {
@@ -142,7 +102,7 @@ public class TextUI {
 		userType = Controller.getUserType(username);
 		if (userType == null) throw new IllegalStateException("User does not have a type.");
 		System.out.println("Successfully authenticated!\n");
-		menus.add(MenuEnum.WELCOME);
+		menus.add(new WelcomeMenu());
 	}
 	
 	private void welcome() {
@@ -152,15 +112,6 @@ public class TextUI {
 		} else {
 			printHeader("Welcome, " + username + '.');
 			menu(MenuEnum.WELCOME);
-		}
-	}
-	
-	private void exit() {
-		try {
-			Controller.disconnect(username);
-			System.exit(0);
-		} catch (final NoSuchUserException e) {
-			System.out.println("Could not log off successfully.");
 		}
 	}
 	
