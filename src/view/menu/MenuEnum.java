@@ -38,7 +38,7 @@ public enum MenuEnum {
 		}),
 	
 	MANAGE_PARKS_PARK_SELECTED("Create New Job | Park %s | %s, %s", new MenuItem[] {
-			new ViewJobs(),
+			new ViewJobsMenuItem(),
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),
@@ -49,7 +49,7 @@ public enum MenuEnum {
 		}),
 	
 	VIEW_JOBS_JOB_SELECTED("View Jobs | Park %d | Job %s - %s", new MenuItem[] {
-			new ViewVolunteers(),
+			new ViewVolunteersMenuItem(),
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),
@@ -57,8 +57,8 @@ public enum MenuEnum {
 	LIST_OF_VOLUNTEERS("List of Volunteers | Park %d | Job %s - %s", null),
 	
 	UPCOMING_JOBS("Upcoming Jobs", new MenuItem[] {
-			new MakeAnotherSearch(),
-			new SignUpForJob(),
+			new MakeAnotherSearchMenuItem(),
+			new SignUpForJobMenuItem(),
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),
@@ -70,8 +70,8 @@ public enum MenuEnum {
 	private final String title;
 	private final MenuItem[] items;
 	
-	MenuEnum(final String text, final MenuItem[] items) {
-		this.title = text;
+	MenuEnum(final String title, final MenuItem[] items) {
+		this.title = title;
 		this.items = items;
 	}
 	

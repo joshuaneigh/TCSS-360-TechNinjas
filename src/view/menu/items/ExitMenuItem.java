@@ -29,7 +29,7 @@ public class ExitMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {
-		return null;
+		return "Exit";
 	}
 	
 }

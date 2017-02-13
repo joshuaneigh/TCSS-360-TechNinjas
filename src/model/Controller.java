@@ -340,5 +340,14 @@ public final class Controller implements Serializable {
 	public static String getLoggedInUserName() {
 		return CURRENT_USER.getUserName();
 	}
+	
+	public static List<Job> getUserJobs(final String username) {
+		final List<Job> jobs = new ArrayList<>();
+		final User user = INSTANCE.userMap.get(username);
+		for (final Park park : INSTANCE.parkMap.get(INSTANCE.userMap.get(username))) {
+			for (final Job job : park.getJobs()) if (job.hasVolunteer(user)) jobs.add(job);
+		}
+		return jobs;
+	}
 
 }

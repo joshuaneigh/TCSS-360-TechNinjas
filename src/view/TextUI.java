@@ -2,6 +2,8 @@ package view;
 
 import java.util.Stack;
 
+import model.Job;
+import model.Park;
 import view.menu.LoginMenu;
 import view.menu.Menu;
 import view.menu.WelcomeMenu;
@@ -9,6 +11,8 @@ import view.menu.WelcomeMenu;
 public final class TextUI {
 	
 	private static final Stack<Menu> MENUS;
+	private static Job SELECTED_JOB;
+	private static Park SELECTED_PARK;
 	
 	static {
 		MENUS = new Stack<>();
@@ -22,13 +26,29 @@ public final class TextUI {
 		MENUS.peek().activate();
 	}
 	
+	public static void back() {
+		MENUS.pop();
+		MENUS.peek().activate();
+	}
+	
 	public static void register(final Menu menu) {
 		MENUS.push(menu);
 	}
 	
-	public static void back() {
-		MENUS.pop();
-		MENUS.peek().activate();
+	public static void selectJob(final Job job) {
+		SELECTED_JOB = job;
+	}
+	
+	public static void selectPark(final Park park) {
+		SELECTED_PARK = park;
+	}
+	
+	public static Job getSelectedJob() {
+		return SELECTED_JOB;
+	}
+	
+	public static Park getSelectedPark() {
+		return SELECTED_PARK;
 	}
 	
 }
