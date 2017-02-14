@@ -3,8 +3,6 @@ package model;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import model.exception.JobAlreadyAddedException;
 import model.exception.MaximumJobsException;
 
@@ -25,17 +23,17 @@ public class Park implements Serializable {
     /**
      * The location of this park.
      */
-    private final Location parkLocation;
+    private Location parkLocation;
 
     /**
      * The name of this park.
      */
-    private final String parkName;
+    private String parkName;
 
     /**
      * The pending and past jobs for this park.
      */
-    private final List<Job> jobs;
+    private final ArrayList<Job> jobs;
     
     /**
      * Creates a park with the given location and name.
@@ -46,7 +44,7 @@ public class Park implements Serializable {
     public Park(final Location theParkLocation, final String theParkName) {
         parkLocation = theParkLocation;
         parkName = theParkName;
-        jobs = new ArrayList<>();
+        jobs = new ArrayList<Job>();
         
         if (MAX_JOBS == 0) {
         	MAX_JOBS = 30;
@@ -77,6 +75,30 @@ public class Park implements Serializable {
     public int getNumOfJobs() {
         return jobs.size();
     }
+    
+    /**
+     * Gets the list of jobs.
+     * @return the jobs.
+     */
+    protected ArrayList<Job> getJobs() {
+		return jobs;	
+    }
+    
+    /**
+     * Setter for the number of jobs.
+     * @param num The number of jobs.
+     */
+	public void setNumOfJobs(final int num) {
+		NUM_JOBS = num;		
+	}
+	
+	/**
+     * Setter for the max number of jobs.
+     * @param max The number of jobs.
+     */
+	public void setMaxJobs(final int max) {
+		MAX_JOBS = max;		
+	}
 
     /**
      * Adds a job to this park's list if the maximum number of pending jobs

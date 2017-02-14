@@ -28,8 +28,8 @@ public class TestJob {
 
 	@BeforeClass
 	public static void setUp() {
-		jobOne = new Job("Rake the leaves.", PD_PARK);	
-		jobTwo = new Job("Rake the leaves.", EMPTY_PARK);
+		jobOne = new Job("General Labor", "Rake the leaves", PD_PARK);	
+		jobTwo = new Job("General Labor","Rake the leaves", EMPTY_PARK);
 		volunteerOne = UserType.Volunteer;	
 		volunteerTwo = UserType.Volunteer;	
 		jobOne.addVolunteer(volunteerOne);

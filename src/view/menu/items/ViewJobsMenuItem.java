@@ -3,6 +3,7 @@ package view.menu.items;
 import model.Controller;
 import model.UserType;
 import view.TextUI;
+import view.menu.ViewJobsMenu;
 
 /**
  * Launch view of pending jobs for a Park Manager
