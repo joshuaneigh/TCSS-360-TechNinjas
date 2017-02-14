@@ -1,13 +1,15 @@
 package view.menu.items;
 
 import model.UserType;
+import view.menu.CreateNewJobMenu;
+import view.menu.MenuUtils;
 
 public class NumVolAcceptedMenuItem implements MenuItem {
 
 	@Override
 	public void activate() {
-		// TODO Auto-generated method stub
-
+		System.out.println("Please enter the new value: ");
+		final String input = MenuUtils.input();
 	}
 
 	@Override
@@ -17,7 +19,7 @@ public class NumVolAcceptedMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {
-		return "Number of volunteers accepted: ";
+		return "Number of volunteers accepted: " + CreateNewJobMenu.getNumVolAccepted();
 	}
 
 }

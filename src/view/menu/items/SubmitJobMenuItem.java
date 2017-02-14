@@ -8,6 +8,7 @@ import model.UserType;
 import model.exception.JobAlreadyAddedException;
 import model.exception.MaximumJobsException;
 import view.TextUI;
+import view.menu.CreateNewJobMenu;
 import view.menu.MenuUtils;
 
 public class SubmitJobMenuItem implements MenuItem {
@@ -40,8 +41,4 @@ public class SubmitJobMenuItem implements MenuItem {
 		return "Submit Job";
 	}
 	
-	public static void main(String[] args) {
-		SubmitJobMenuItem menu = new SubmitJobMenuItem();
-		menu.activate();
-	}
 }

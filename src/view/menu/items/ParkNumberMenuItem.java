@@ -1,13 +1,16 @@
 package view.menu.items;
 
 import model.UserType;
+import view.menu.CreateNewJobMenu;
+import view.menu.MenuUtils;
 
 public class ParkNumberMenuItem implements MenuItem {
 
 	@Override
 	public void activate() {
-		// TODO Auto-generated method stub
-
+		System.out.println("Please enter the new value: ");
+		final String input = MenuUtils.input();
+		CreateNewJobMenu.setParkNumber(Integer.parseInt(input));
 	}
 
 	@Override
@@ -17,7 +20,6 @@ public class ParkNumberMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {
-		return "Park Number: ";
+		return "Park Number: " + CreateNewJobMenu.getParkNumber();
 	}
-
 }

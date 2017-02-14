@@ -1,4 +1,4 @@
-package view.menu.items;
+package view.menu;
 
 import java.time.LocalDateTime;
 
@@ -7,6 +7,15 @@ import view.TextUI;
 import view.menu.Menu;
 import view.menu.MenuEnum;
 import view.menu.MenuUtils;
+import view.menu.items.BackMenuItem;
+import view.menu.items.ExitMenuItem;
+import view.menu.items.JobDateMenuItem;
+import view.menu.items.JobDescriptionMenuItem;
+import view.menu.items.JobTitleMenuItem;
+import view.menu.items.MenuItem;
+import view.menu.items.NumVolAcceptedMenuItem;
+import view.menu.items.ParkNumberMenuItem;
+import view.menu.items.SubmitJobMenuItem;
 
 public class CreateNewJobMenu implements Menu {
 	
@@ -21,23 +30,26 @@ public class CreateNewJobMenu implements Menu {
 	@Override
 	public void activate() {
 		INSTANCE = this;
-		MenuUtils.printHeader("Create New Job");
-		System.out.format("Make a selection to edit the field or navigate:\n");
-		final MenuItem item = MenuUtils.menu(MenuEnum.CREATE_NEW_JOB);
-		item.activate();	
-		
-		int selection = Integer.parseInt(MenuUtils.input());
-		
-		if (selection == 1) {
-			new JobTitleMenuItem().activate();	
-		} else if () {
-
-		}
-		
+		do {
+			MenuUtils.printHeader("Create New Job");
+			System.out.format("Make a selection to edit the field or navigate:\n");
+			final MenuItem item = MenuUtils.menu(MenuEnum.CREATE_NEW_JOB);
+			item.activate();
+		} while (true);
+	}
+	
+	
+	public static String getJobTitle() {
+		return jobTitle;	
 	}
 	
 	public static void setJobTitle(final String theJobTitle) {
 		jobTitle = theJobTitle;
+	}
+	
+	
+	public static LocalDateTime getJobDate() {
+		return jobDate;	
 	}
 	
 	
@@ -46,18 +58,33 @@ public class CreateNewJobMenu implements Menu {
 	}
 	
 	
+	public static String getJobDescription() {
+		return jobTitle;
+	}
+	
 	public static void setJobDescription(final String theJobDescription) {
 		jobDescription = theJobDescription;
 	}
 	
 	
+	public static int getParkNumber() {
+		return parkNumber;
+	}
+	
 	public static void setParkNumber(final int theParkNumber) {
 		parkNumber = theParkNumber;
 	}
 	
+	
 	public static Job getJob() {
 		return new Job(jobTitle, jobDescription, TextUI.getSelectedPark());
 	}
+	
+	
+	public static int getNumVolAccepted() {
+		return numVol;
+	}
+	
 	
 	public static void setNumVolAccepted(final int theNumVol) {
 		numVol = theNumVol;
