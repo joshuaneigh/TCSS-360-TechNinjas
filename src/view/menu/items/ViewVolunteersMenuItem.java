@@ -1,6 +1,3 @@
-/**
- * 
- */
 package view.menu.items;
 
 import model.Controller;
@@ -10,7 +7,6 @@ import view.TextUI;
 /**
  * Menu item for displaying volunteers for a job.
  * @author Michael Loundagin
- *
  */
 public class ViewVolunteersMenuItem implements MenuItem {
 
