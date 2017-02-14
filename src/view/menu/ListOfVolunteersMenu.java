@@ -1,14 +1,20 @@
 package view.menu;
 
-import view.menu.items.MenuItem;
+import java.util.List;
 
-public class ListOfVolunteersMenu implements Menu {
+import view.TextUI;
+import model.Job;
+import model.UserType;
+
+public class ListOfVolunteersMenu implements Menu{
 
 	@Override
 	public void activate() {
 		MenuUtils.printHeader("List of Volunteers | Park %d | Job %s - %s");
-		final MenuItem item = MenuUtils.menu(MenuEnum.LIST_OF_VOLUNTEERS);
-		item.activate();		
+		final Job job = TextUI.getSelectedJob();
+		List<UserType> volunteers = job.getVolunteers();
+		for(UserType volunteer : volunteers){
+			System.out.println(volunteer);
+		}
 	}
-
-}
+} 
