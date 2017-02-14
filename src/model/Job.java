@@ -21,7 +21,7 @@ public class Job implements Serializable {
 	private String jobTitle;
 	private String jobDescription;
 	private Park park;
-	private List<UserType> volunteersList;
+	private List<User> volunteersList;
 	private LocalDateTime start;
 	private LocalDateTime end;
 	
@@ -35,7 +35,7 @@ public class Job implements Serializable {
 		jobTitle = theJobTitle;
 		jobDescription = theJobDescription;
 		park = thePark;
-		volunteersList = new ArrayList<UserType>();
+		volunteersList = new ArrayList<User>();
 	}
 	
 	/**
@@ -44,7 +44,7 @@ public class Job implements Serializable {
 	 * @param volunteer a worker for the job
 	 * @param volunteer worker for a job
 	 */
-	public void addVolunteer(UserType volunteer) {
+	public void addVolunteer(User volunteer) {
 		volunteersList.add(volunteer);	
 	}
 	
