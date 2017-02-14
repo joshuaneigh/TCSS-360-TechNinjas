@@ -3,6 +3,7 @@
  */
 package view.menu.items;
 
+import model.Controller;
 import model.UserType;
 import view.TextUI;
 
@@ -21,12 +22,12 @@ public class ViewVolunteersMenuItem implements MenuItem {
 
 	@Override
 	public boolean isAllowed(UserType userType) {
-		return false;
+		return (Controller.getLoggedInUserName() == "administrator") || userType == UserType.ParkManager;
 	}
 
 	@Override
 	public String getLabel() {
-		return null;
+		return "List the volunteers";
 	}
 
 }
