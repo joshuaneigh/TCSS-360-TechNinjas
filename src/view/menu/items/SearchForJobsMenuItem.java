@@ -24,7 +24,7 @@ public class SearchForJobsMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {
-		return "Jobs";
+		return "Search for Jobs";
 	}
 
 }

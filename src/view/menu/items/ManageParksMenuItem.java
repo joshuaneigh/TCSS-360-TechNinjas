@@ -23,6 +23,6 @@ public class ManageParksMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {
-		return "Parks";
+		return "Manage Parks";
 	}	
 }
