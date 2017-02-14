@@ -38,7 +38,7 @@ public enum MenuEnum {
 			new ExitMenuItem()
 		}),
 	
-	MANAGE_PARKS_PARK_SELECTED("Manage Parks | Park %s | %s, %s\n", new MenuItem[] {
+	MANAGE_PARKS_PARK_SELECTED("Manage Parks | Park %d | %s, %s\n", new MenuItem[] {
 			new ViewJobsMenuItem(),
 			new BackMenuItem(),
 			new ExitMenuItem()
