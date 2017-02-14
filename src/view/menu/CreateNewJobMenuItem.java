@@ -1,6 +1,10 @@
-package view.menu;
+package view.menu.items;
 
-public class CreateNewJobMenuItem implements Menu {
+import model.UserType;
+import view.menu.MenuEnum;
+import view.menu.MenuUtils;
+
+public class CreateNewJobMenuItem implements MenuItem {
 
 	@Override
 	public void activate() {
@@ -12,5 +16,15 @@ public class CreateNewJobMenuItem implements Menu {
 	public static void main(String[] args) {
 		CreateNewJobMenuItem menu = new CreateNewJobMenuItem();
 	    menu.activate();
+	}
+
+	@Override
+	public boolean isAllowed(UserType userType) {
+		return true;
+	}
+
+	@Override
+	public String getLabel() {
+		return "Create New Job";
 	}
 }
