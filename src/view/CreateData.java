@@ -77,6 +77,8 @@ public class CreateData {
 		Controller.addUser("rYule", UserType.Volunteer);
 		Controller.addUser("yBaron", UserType.Volunteer);
 		Controller.addUser("sLauden", UserType.Volunteer);
+		
+		Controller.setBlackballed("mUnderhill", true);
 	}
 
 }
