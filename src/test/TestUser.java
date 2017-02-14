@@ -32,19 +32,19 @@ public class TestUser {
 	
 	@Test
 	public void testToStringWithAllInformation(){
-		assertEquals("Name : Youcef Bennour\nType : Volunteer\nBlackballed : false\nFlagged : false", userOne.toString());
-		assertEquals("Name : Ezra Miller\nType : UrbanPark\nBlackballed : false\nFlagged : false", userTwo.toString());
-		assertEquals("Name : Melissa\nType : ParkManager\nBlackballed : false\nFlagged : false", userThree.toString());
+		assertEquals("Youcef Bennour, Volunteer, false, false", userOne.toString());
+		assertEquals("Ezra Miller, UrbanPark, false, false", userTwo.toString());
+		assertEquals("Melissa, ParkManager, false, false", userThree.toString());
 	}
 	
 	@Test
 	public void testToStringWithNoName(){
-		assertEquals("Name : \nType : Volunteer\nBlackballed : false\nFlagged : false", userFour.toString());
+		assertEquals(", Volunteer, false, false", userFour.toString());
 	}
 
 	@Test
 	public void testToStringWithNoType(){
-		assertEquals("Name : Youcef\nType : null\nBlackballed : false\nFlagged : false", userFive.toString());
+		assertEquals("Youcef, null, false, false", userFive.toString());
 	}
 
 	@Test

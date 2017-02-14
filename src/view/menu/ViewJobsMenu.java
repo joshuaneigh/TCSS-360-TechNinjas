@@ -20,7 +20,7 @@ public class ViewJobsMenu implements Menu {
 		final List<Job> jobs = Controller.getUserJobs(Controller.getLoggedInUserName());
 		for (final Job job : jobs) {
 			menuIndex++;
-			System.out.printf("%d) Park %s\n", menuIndex, job.getJobTitle());
+			System.out.printf("%d) Job: %s\n", menuIndex, job.getJobTitle());
 		}
 		for (final MenuItem item : MenuEnum.VIEW_JOBS.getItems()) {
 			menuIndex++;
