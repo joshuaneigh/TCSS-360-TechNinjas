@@ -10,6 +10,7 @@ public class ViewMyJobsMenu implements Menu {
 
 	@Override
 	public void activate() {
+		MenuUtils.printHeader("View my Jobs");
 		final List<Job> jobs = Controller.getUserJobs(Controller.getLoggedInUserName());
 		if (jobs == null || jobs.isEmpty())
 			System.out.println("There are no jobs to display.");

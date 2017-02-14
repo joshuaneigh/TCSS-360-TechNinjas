@@ -40,10 +40,6 @@ public class ManageParksMenu implements Menu {
 				MenuEnum.MANAGE_PARKS.getItems()[result].activate();
 			}
 		}
-		if (input.equals(parks.size())) {
-			
-		}
-		
 		
 	}
 	

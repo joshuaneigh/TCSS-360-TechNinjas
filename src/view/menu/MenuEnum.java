@@ -10,9 +10,9 @@ import view.menu.items.*;
  */
 public enum MenuEnum {
 	
-	LOGIN("Please Login", null),
+	LOGIN("Please Login\n", null),
 	
-	WELCOME("Welcome!", new MenuItem[] {
+	WELCOME("Welcome!\n", new MenuItem[] {
 			new CreateNewJobMenuItem(),
 			new ManageParksMenuItem(),
 			new ViewUpcomingJobsMenuItem(),
@@ -21,7 +21,7 @@ public enum MenuEnum {
 			new ExitMenuItem()
 		}),
 	
-	CREATE_NEW_JOB("Create New Job", new MenuItem[] {
+	CREATE_NEW_JOB("Create New Job\n", new MenuItem[] {
 			new JobTitleMenuItem(),
 			new JobDateMenuItem(),
 			new ParkNumberMenuItem(),
@@ -32,40 +32,40 @@ public enum MenuEnum {
 			new ExitMenuItem()
 		}),
 	
-	MANAGE_PARKS("Manage Parks", new MenuItem[] {
+	MANAGE_PARKS("Manage Parks\n", new MenuItem[] {
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),
 	
-	MANAGE_PARKS_PARK_SELECTED("Manage Parks | Park %s | %s, %s", new MenuItem[] {
+	MANAGE_PARKS_PARK_SELECTED("Manage Parks | Park %s | %s, %s\n", new MenuItem[] {
 			new ViewJobsMenuItem(),
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),
 	
-	VIEW_JOBS("View Jobs | Park %d | %s - %s", new MenuItem[] {
+	VIEW_JOBS("View Jobs | Park %d | %s - %s\n", new MenuItem[] {
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),
 	
-	VIEW_JOBS_JOB_SELECTED("View Jobs | Park %d | Job %s - %s", new MenuItem[] {
+	VIEW_JOBS_JOB_SELECTED("View Jobs | Park %d | Job %s - %s\n", new MenuItem[] {
 			new ViewVolunteersMenuItem(),
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),
 	
-	LIST_OF_VOLUNTEERS("List of Volunteers | Park %d | Job %s - %s", null),
+	LIST_OF_VOLUNTEERS("List of Volunteers | Park %d | Job %s - %s\n", null),
 	
-	UPCOMING_JOBS("Upcoming Jobs", new MenuItem[] {
+	UPCOMING_JOBS("Upcoming Jobs\n", new MenuItem[] {
 			new MakeAnotherSearchMenuItem(),
 			new SignUpForJobMenuItem(),
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),
 	
-	SEARCH_FOR_JOBS("Search for Jobs", null),
+	SEARCH_FOR_JOBS("Search for Jobs\n", null),
 	
-	MY_JOBS("My Jobs", null);
+	MY_JOBS("My Jobs\n", null);
 	
 	private final String title;
 	private final MenuItem[] items;

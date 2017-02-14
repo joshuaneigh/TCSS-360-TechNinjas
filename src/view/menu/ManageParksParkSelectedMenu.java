@@ -10,7 +10,7 @@ public class ManageParksParkSelectedMenu implements Menu {
 
 	@Override
 	public void activate() {
-		MenuUtils.printHeader("Manage Parks | Park %s | %s, %s:");
+		MenuUtils.printHeader(MenuEnum.MANAGE_PARKS_PARK_SELECTED.getTitle());
 		final MenuItem item = MenuUtils.menu(MenuEnum.MANAGE_PARKS_PARK_SELECTED);
 		item.activate();
 	}

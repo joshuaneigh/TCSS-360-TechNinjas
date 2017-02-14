@@ -7,6 +7,7 @@ import model.exception.JobAlreadyAddedException;
 import model.exception.MaximumJobsException;
 import view.TextUI;
 import view.menu.CreateNewJobMenu;
+import view.menu.MenuEnum;
 import view.menu.MenuUtils;
 
 public class SubmitJobMenuItem implements MenuItem {
@@ -17,7 +18,6 @@ public class SubmitJobMenuItem implements MenuItem {
 	public void activate() {
 		System.out.print("Are you sure you would like to submit this job (y/n)? ");
 		if (scanner.next().equals("y")) {
-			System.out.println();
 			System.out.println("The job has been successfully submitted.");
 			try {
 				TextUI.getSelectedPark().addJob(CreateNewJobMenu.getJob());
@@ -26,8 +26,9 @@ public class SubmitJobMenuItem implements MenuItem {
 			} catch (JobAlreadyAddedException e) {
 				System.out.println("Cannot add job. Job has been previously added.");
 			}
-		}
+		} 
 	}
+	
 
 	@Override
 	public boolean isAllowed(UserType userType) {

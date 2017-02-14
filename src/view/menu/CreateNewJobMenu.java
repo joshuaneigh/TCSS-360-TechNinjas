@@ -24,7 +24,7 @@ public class CreateNewJobMenu implements Menu {
 	public void activate() {
 		INSTANCE = this;
 		do {
-			MenuUtils.printHeader("Create New Job");
+			MenuUtils.printHeader(MenuEnum.CREATE_NEW_JOB.getTitle());
 			System.out.format("Make a selection to edit the field or navigate:\n");
 			final MenuItem item = MenuUtils.menu(MenuEnum.CREATE_NEW_JOB);
 			item.activate();
