@@ -32,9 +32,13 @@ public class JobDateMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {
-		return "Dates: " + CreateNewJobMenu.getJobStartDate() == null ? ""
-				: (CreateNewJobMenu.getJobStartDate().format(FORMATTER) + CreateNewJobMenu.getJobEndDate() == null ? ""
-						: ("to" + CreateNewJobMenu.getJobEndDate().format(FORMATTER)));
+		if (CreateNewJobMenu.getJobStartDate() == null)
+			return "Dates: ";
+		else if (CreateNewJobMenu.getJobEndDate() == null)
+			return "Dates: ";
+		else
+			return "Dates: " + CreateNewJobMenu.getJobStartDate().format(FORMATTER) + " to "
+					+ CreateNewJobMenu.getJobEndDate().format(FORMATTER);
 	}
 
 }
