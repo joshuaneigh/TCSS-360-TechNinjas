@@ -44,7 +44,7 @@ public enum MenuEnum {
 			new ExitMenuItem()
 		}),
 	
-	VIEW_JOBS("View Jobs | Park %d | %s - %s\n", new MenuItem[] {
+	VIEW_JOBS("View Jobs | Park %d\n", new MenuItem[] {
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),

@@ -347,19 +347,16 @@ public final class Controller implements Serializable {
 		final User user = INSTANCE.userMap.get(username);
 		if (INSTANCE.parkMap.get(INSTANCE.userMap.get(username)) == null) return null;
 		for (final Park park : INSTANCE.parkMap.get(INSTANCE.userMap.get(username))) {
-			for (final Job job : park.getJobs()) if (job.hasVolunteer(user)) jobs.add(job);
+			if (INSTANCE.userMap.get(username).getType().equals(UserType.ParkManager))
+				for (final Job job : park.getJobs()) jobs.add(job);
+			else 
+				for (final Job job : park.getJobs()) if (job.hasVolunteer(user)) jobs.add(job);
 		}
 		return jobs;
 	}
 	
 	public static List<Park> getUserParks(final String username) {
-		final List<Park> parks = new ArrayList<>();
-		final User user = INSTANCE.userMap.get(username);
-		if (INSTANCE.parkMap.get(INSTANCE.userMap.get(username)) == null) return null;
-		for (final Park park : INSTANCE.parkMap.get(INSTANCE.userMap.get(username))) {
-			for (final Job job : park.getJobs()) if (job.hasVolunteer(user)) parks.add(park);
-		}
-		return parks;
+		return INSTANCE.parkMap.get(INSTANCE.userMap.get(username));
 	}
 	
 	public static boolean isBlackballed(final String username) {

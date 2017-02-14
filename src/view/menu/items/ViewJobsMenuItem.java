@@ -13,8 +13,7 @@ public class ViewJobsMenuItem implements MenuItem {
 
 	@Override
 	public void activate() {
-		final ViewJobsMenu viewJobsMenu = new ViewJobsMenu();
-		TextUI.navigate(viewJobsMenu);
+		TextUI.navigate(new ViewJobsMenu());
 	}
 
 	@Override
@@ -24,7 +23,7 @@ public class ViewJobsMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {
-		return "View jobs for this park.";
+		return "View Jobs";
 	}
 
 }

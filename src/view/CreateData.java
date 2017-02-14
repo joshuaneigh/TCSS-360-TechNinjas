@@ -1,22 +1,27 @@
 package view;
 
 import model.Controller;
+import model.Job;
 import model.Location;
 import model.Park;
 import model.UserType;
+import model.exception.JobAlreadyAddedException;
+import model.exception.MaximumJobsException;
 import model.exception.NoSuchUserException;
 
 public class CreateData {
 
-	public static void main(final String[] args) throws NoSuchUserException {
+	public static void main(final String[] args) throws NoSuchUserException, MaximumJobsException, JobAlreadyAddedException {
 		addUsers();
 		createParks();
 		createJobs();
 		Controller.disconnect();
 	}
 
-	private static void createJobs() {
-		Controller.getPark(233).addJob(new Job());
+	private static void createJobs() throws MaximumJobsException, JobAlreadyAddedException {
+		Controller.getPark(223).addJob(new Job("Screaming", "The park need more crazy people to scream in the park.", Controller.getPark(223)));
+		Controller.getPark(223).addJob(new Job("Burning Trees", "There are limbs in the park. We need more firewood to cook them.", Controller.getPark(223)));
+		Controller.getPark(223).addJob(new Job("Decapitating Dandelions", "The dandelions are too long.", Controller.getPark(223)));
 	}
 
 	private static void createParks() throws IllegalStateException, NoSuchUserException {

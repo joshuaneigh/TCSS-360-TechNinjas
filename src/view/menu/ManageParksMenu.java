@@ -16,8 +16,8 @@ public class ManageParksMenu implements Menu {
 	@Override
 	public void activate() {
 		MenuUtils.printHeader(MenuEnum.MANAGE_PARKS.getTitle());
-		String parkName = Controller.getLoggedInUserName();
-		List<Park> parks = Controller.getUserParks(parkName);
+		String userName = Controller.getLoggedInUserName();
+		List<Park> parks = Controller.getUserParks(userName);
 		
 		int menuIndex = 0;
 		for (final Park park : parks) {
@@ -35,11 +35,11 @@ public class ManageParksMenu implements Menu {
 				int result = Integer.parseInt(input);
 				if (0 < result && result <= menuIndex + 1) {
 					if (result - 1 < parks.size()) {
-						TextUI.selectPark(parks.get(result));
+						TextUI.selectPark(parks.get(result - 1));
 						TextUI.navigate(new ManageParksParkSelectedMenu());
 					} else {
 						result -= parks.size();
-						MenuEnum.MANAGE_PARKS.getItems()[result].activate();
+						MenuEnum.MANAGE_PARKS.getItems()[result - 1].activate();
 					}
 				} else {
 					System.out.println("Selection is out of range.");
