@@ -11,7 +11,12 @@ public class CreateData {
 	public static void main(final String[] args) throws NoSuchUserException {
 		addUsers();
 		createParks();
+		createJobs();
 		Controller.disconnect();
+	}
+
+	private static void createJobs() {
+		Controller.getPark(233).addJob(new Job());
 	}
 
 	private static void createParks() throws IllegalStateException, NoSuchUserException {

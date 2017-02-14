@@ -30,7 +30,7 @@ public class ManageParksMenu implements Menu {
 		}
 		do {
 			try {
-				System.out.print("Please make your selection: ");
+				System.out.print("\nPlease make your selection: ");
 				final String input = MenuUtils.input();
 				int result = Integer.parseInt(input);
 				if (0 < result && result <= menuIndex + 1) {
