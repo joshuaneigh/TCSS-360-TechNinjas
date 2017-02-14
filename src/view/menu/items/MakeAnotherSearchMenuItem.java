@@ -18,7 +18,7 @@ public class MakeAnotherSearchMenuItem implements MenuItem {
 
 	@Override
 	public boolean isAllowed(UserType userType) {
-		return (Controller.getLoggedInUserName() == "administrator") || userType == UserType.Volunteer;
+		return Controller.getLoggedInUserName().equals("administrator") || userType == UserType.Volunteer;
 	}
 
 	@Override

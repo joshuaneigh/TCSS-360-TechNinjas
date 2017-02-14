@@ -10,6 +10,8 @@ public class NumVolAcceptedMenuItem implements MenuItem {
 	public void activate() {
 		System.out.println("Please enter the new value: ");
 		final String input = MenuUtils.input();
+		CreateNewJobMenu.setNumVolAccepted(Integer.parseInt(input));
+
 	}
 
 	@Override

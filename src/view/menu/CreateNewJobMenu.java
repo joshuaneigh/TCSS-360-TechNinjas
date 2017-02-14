@@ -59,7 +59,7 @@ public class CreateNewJobMenu implements Menu {
 	
 	
 	public static String getJobDescription() {
-		return INSTANCE.jobTitle;
+		return INSTANCE.jobDescription;
 	}
 	
 	public static void setJobDescription(final String theJobDescription) {

@@ -15,7 +15,7 @@ public enum MenuEnum {
 	WELCOME("Welcome!", new MenuItem[] {
 			new CreateNewJobMenuItem(),
 			new ManageParksMenuItem(),
-//			new ViewUpcomingJobsMenuItem(),
+			new ViewUpcomingJobsMenuItem(),
 			new SearchForJobsMenuItem(),
 			new ViewMyJobsMenuItem(),
 			new ExitMenuItem()
