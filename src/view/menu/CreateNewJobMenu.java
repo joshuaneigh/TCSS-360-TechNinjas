@@ -7,6 +7,15 @@ import view.TextUI;
 import view.menu.Menu;
 import view.menu.MenuEnum;
 import view.menu.MenuUtils;
+import view.menu.items.BackMenuItem;
+import view.menu.items.ExitMenuItem;
+import view.menu.items.JobDateMenuItem;
+import view.menu.items.JobDescriptionMenuItem;
+import view.menu.items.JobTitleMenuItem;
+import view.menu.items.MenuItem;
+import view.menu.items.NumVolAcceptedMenuItem;
+import view.menu.items.ParkNumberMenuItem;
+import view.menu.items.SubmitJobMenuItem;
 
 public class CreateNewJobMenu implements Menu {
 	
@@ -21,31 +30,12 @@ public class CreateNewJobMenu implements Menu {
 	@Override
 	public void activate() {
 		INSTANCE = this;
-		MenuUtils.printHeader("Create New Job");
-		System.out.format("Make a selection to edit the field or navigate:\n");
-		final MenuItem item = MenuUtils.menu(MenuEnum.CREATE_NEW_JOB);
-		item.activate();	
-		
-		int selection = Integer.parseInt(MenuUtils.input());
-		
-		if (selection == 1) {
-			new JobTitleMenuItem().activate();	
-		} else if (selection == 2) {
-			new JobDateMenuItem().activate();
-		} else if (selection == 3) {
-			new ParkNumberMenuItem().activate();
-		} else if (selection == 4) {
-			new JobDescriptionMenuItem().activate();
-		} else if (selection == 5) {
-			new NumVolAcceptedMenuItem().activate();
-		} else if (selection == 6) {
-			new SubmitJobMenuItem().activate();
-		} else if (selection == 7) {
-			new BackMenuItem().activate();
-		} else if (selection == 8) {
-			new ExitMenuItem().activate();
-		}
-		
+		do {
+			MenuUtils.printHeader("Create New Job");
+			System.out.format("Make a selection to edit the field or navigate:\n");
+			final MenuItem item = MenuUtils.menu(MenuEnum.CREATE_NEW_JOB);
+			item.activate();
+		} while (true);
 	}
 	
 	public static void setJobTitle(final String theJobTitle) {
