@@ -297,7 +297,7 @@ public final class Controller implements Serializable {
 		return true;
 	}
 	
-	protected static List<Job> getAllJobs() {
+	public static List<Job> getAllJobs() {
 		final List<Job> jobs = new ArrayList<>();
 		for (final Park p : INSTANCE.parkList) jobs.addAll(p.getJobs());
 		return jobs;
@@ -376,6 +376,7 @@ public final class Controller implements Serializable {
 	
 	public static boolean volunteerForJob(final String username, final Job job) {
 		job.addVolunteer(INSTANCE.userMap.get(username));
+		return true;
 	}
 
 }

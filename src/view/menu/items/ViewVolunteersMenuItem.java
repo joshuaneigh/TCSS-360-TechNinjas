@@ -3,6 +3,7 @@ package view.menu.items;
 import model.Controller;
 import model.UserType;
 import view.TextUI;
+import view.menu.ListOfVolunteersMenu;
 
 /**
  * Menu item for displaying volunteers for a job.
@@ -18,7 +19,7 @@ public class ViewVolunteersMenuItem implements MenuItem {
 
 	@Override
 	public boolean isAllowed(UserType userType) {
-		return (Controller.getLoggedInUserName() == "administrator") || userType == UserType.ParkManager;
+		return Controller.getLoggedInUserName().equals("administrator") || userType == UserType.ParkManager;
 	}
 
 	@Override

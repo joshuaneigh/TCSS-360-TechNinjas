@@ -2,8 +2,6 @@ package view.menu.items;
 
 import java.util.Scanner;
 
-import model.Controller;
-import model.Park;
 import model.UserType;
 import model.exception.JobAlreadyAddedException;
 import model.exception.MaximumJobsException;
