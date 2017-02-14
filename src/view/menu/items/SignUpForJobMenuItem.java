@@ -8,6 +8,8 @@ import model.Job;
 import model.UserType;
 import model.exception.NoSuchUserException;
 import view.TextUI;
+import view.menu.MenuEnum;
+import view.menu.MenuUtils;
 
 /**
  * Menu item to sign up for a job.
@@ -42,6 +44,10 @@ public class SignUpForJobMenuItem implements MenuItem {
 			} catch (final NoSuchUserException e) {
 				System.err.println("FATAL ERROR: User does not exist in the persistent storage!");
 			}
+			System.out.println("Job successfully added!");
+			System.out.println("Press [Enter] to return...");
+			MenuUtils.input();
+			MenuUtils.menu(MenuEnum.WELCOME);
 		}
 	}
 
