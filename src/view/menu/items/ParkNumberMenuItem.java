@@ -1,6 +1,7 @@
 package view.menu.items;
 
 import model.UserType;
+import view.menu.CreateNewJobMenu;
 import view.menu.MenuUtils;
 
 public class ParkNumberMenuItem implements MenuItem {

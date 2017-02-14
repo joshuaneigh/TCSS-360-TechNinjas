@@ -2,6 +2,7 @@ package view.menu.items;
 
 import model.UserType;
 import view.TextUI;
+import view.menu.CreateNewJobMenu;
 
 public class CreateNewJobMenuItem implements MenuItem {
 
@@ -18,10 +19,5 @@ public class CreateNewJobMenuItem implements MenuItem {
 	@Override
 	public String getLabel() {
 		return "Create New Job";
-	}
-	
-	public static void main(String[] args) {
-		CreateNewJobMenuItem menu = new CreateNewJobMenuItem();
-	    menu.activate();
 	}
 }
