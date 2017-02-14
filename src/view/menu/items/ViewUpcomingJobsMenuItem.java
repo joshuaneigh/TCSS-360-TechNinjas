@@ -24,12 +24,12 @@ public class ViewUpcomingJobsMenuItem implements MenuItem {
 
 	@Override
 	public boolean isAllowed(UserType userType) {
-		return (Controller.getLoggedInUserName() == "administrator") || userType == UserType.UrbanPark;
+		return Controller.getLoggedInUserName().equals("administrator") || userType == UserType.UrbanPark;
 	}
 
 	@Override
 	public String getLabel() {
-		return "Calendar of Upcoming Jobs";
+		return "View upcoming jobs";
 	}
 
 }
