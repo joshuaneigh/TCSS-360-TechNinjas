@@ -1,4 +1,4 @@
-package view.menu.items;
+package view.menu;
 
 import java.time.LocalDateTime;
 

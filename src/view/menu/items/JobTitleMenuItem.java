@@ -1,13 +1,16 @@
 package view.menu.items;
 
+
 import model.UserType;
+import view.menu.MenuUtils;
 
 public class JobTitleMenuItem implements MenuItem {
 	
 	@Override
 	public void activate() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Please enter the new value: ");
+		final String input = MenuUtils.input();
+		CreateNewJobMenu.setJobTitle(input);
 	}
 	
 	@Override
@@ -20,6 +23,8 @@ public class JobTitleMenuItem implements MenuItem {
 		return "Job Title: ";
 	}
 
-
-
+	public static void main(String[] args) {
+		JobTitleMenuItem menu = new JobTitleMenuItem();
+		menu.activate();
+	}
 }
