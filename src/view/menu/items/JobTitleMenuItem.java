@@ -24,8 +24,4 @@ public class JobTitleMenuItem implements MenuItem {
 		return "Job Title: ";
 	}
 
-	public static void main(String[] args) {
-		JobTitleMenuItem menu = new JobTitleMenuItem();
-		menu.activate();
-	}
 }

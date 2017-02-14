@@ -41,8 +41,4 @@ public class SubmitJobMenuItem implements MenuItem {
 		return "Submit Job";
 	}
 	
-	public static void main(String[] args) {
-		SubmitJobMenuItem menu = new SubmitJobMenuItem();
-		menu.activate();
-	}
 }
