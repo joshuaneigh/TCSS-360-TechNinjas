@@ -22,6 +22,5 @@ public class ListOfVolunteersMenu implements Menu{
 		System.out.println("\nPress [Enter] to return... ");
 		MenuUtils.input();
 		TextUI.back();
-		System.out.println("SHOULD NEVER GET HERE");
 	}
 }

@@ -83,7 +83,7 @@ public final class MenuUtils {
 		String input = null;
 		do {
 			if (SCANNER.hasNextLine()) input = SCANNER.nextLine();
-		} while (input == null || input.equals("\n"));
+		} while (input == null);
 		return input;
 	}
 
