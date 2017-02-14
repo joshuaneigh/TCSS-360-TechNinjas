@@ -1,13 +1,33 @@
 package view.menu.items;
 
+import java.util.Scanner;
+
+import model.Controller;
+import model.Park;
 import model.UserType;
+import model.exception.JobAlreadyAddedException;
+import model.exception.MaximumJobsException;
+import view.TextUI;
+import view.menu.MenuUtils;
 
 public class SubmitJobMenuItem implements MenuItem {
+	
+	Scanner scanner = MenuUtils.getScannerInstance();
 
 	@Override
 	public void activate() {
-		// TODO Auto-generated method stub
-
+		System.out.print("Are you sure you would like to submit this job (y/n)? ");
+		if (scanner.next("y").equals("y")) {
+			System.out.println();
+			System.out.println("The job has been successfully submitted.");
+			try {
+				TextUI.getSelectedPark().addJob(CreateNewJobMenu.getJob());
+			} catch (MaximumJobsException e) {
+				System.out.println("Cannot add job. Mamimum number of pending jobs reached.");
+			} catch (JobAlreadyAddedException e) {
+				System.out.println("Cannot add job. Job has been previously added.");
+			}
+		}
 	}
 
 	@Override
@@ -19,5 +39,9 @@ public class SubmitJobMenuItem implements MenuItem {
 	public String getLabel() {
 		return "Submit Job";
 	}
-
+	
+	public static void main(String[] args) {
+		SubmitJobMenuItem menu = new SubmitJobMenuItem();
+		menu.activate();
+	}
 }
