@@ -77,6 +77,14 @@ public class Park implements Serializable {
     }
     
     /**
+     * Gets the list of jobs.
+     * @return the jobs.
+     */
+    public ArrayList<Job> getJobs() {
+		return jobs;	
+    }
+    
+    /**
      * Setter for the number of jobs.
      * @param num The number of jobs.
      */
