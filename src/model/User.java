@@ -54,6 +54,15 @@ public class User implements Serializable {
 	public boolean isBlackballed() {
 		return blackballed;
 	}
+	
+	/**
+	 * @author Michael Loundagin
+	 * Sets the blackball status.
+	 * @param theStatus The status to enact.
+	 */
+	public void setBlackballed(final boolean theStatus) {
+		blackballed = theStatus;
+	}
 
 	/*
 	 * @author Youcef Bennour
