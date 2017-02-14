@@ -116,6 +116,41 @@ public class Location implements Serializable {
 	}
 	
 	/**
+	 * @param ads The address to set.
+	 */
+	public void setAddress(final String ads) {
+		address = ads;
+	}
+	
+	/**
+	 * @param loc The location to set.
+	 */
+	public void setLocation(final String loc) {
+		locName = loc;
+	}
+	
+	/**
+	 * @param theCity The city to set.
+	 */
+	public void setCity(final String theCity) {
+		city = theCity;
+	}
+	
+	/**
+	 * @param theState The state to set.
+	 */
+	public void setState(final String theState) {
+		state = theState;
+	}
+	
+	/**
+	 * @param zip The zipcode to set.
+	 */
+	public void setZipcode(final int zip) {
+		zipcode = zip;
+	}
+	
+	/**
 	 * Method that overrides to string.
 	 * @return a string representation of a location.
 	 */
