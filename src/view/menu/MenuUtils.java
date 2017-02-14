@@ -1,5 +1,6 @@
 package view.menu;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import model.Controller;
@@ -34,6 +35,15 @@ public final class MenuUtils {
 		System.out.println(PROGRAM_NAME);
 		System.out.println(title);
 		System.out.println(SEPARATOR);
+	}
+	
+	public static void clear() {
+		try {
+			if (System.getProperty("os.name").contains("Windows")) Runtime.getRuntime().exec("cls");
+			else Runtime.getRuntime().exec("clear");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

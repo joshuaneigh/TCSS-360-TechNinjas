@@ -33,7 +33,6 @@ public enum MenuEnum {
 		}),
 	
 	MANAGE_PARKS("Manage Parks", new MenuItem[] {
-			// Show jobs and ask for input
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),
