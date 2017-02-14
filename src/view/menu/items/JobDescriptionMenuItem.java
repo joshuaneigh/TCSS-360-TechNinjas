@@ -20,7 +20,8 @@ public class JobDescriptionMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {
-		return "Job Description: " + CreateNewJobMenu.getJobDescription();
+		return "Job Description: " + CreateNewJobMenu.getJobDescription() == null ? "" : "Job Description: ";
+
 	}
 
 }
