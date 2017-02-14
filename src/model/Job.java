@@ -122,6 +122,10 @@ public class Job implements Serializable {
 		this.end = end;
 	}
 	
+	public boolean hasVolunteer(User user) {
+		return volunteersList.contains(user);
+	}
+	
 	/**
 	 * Returns a string of all information regarding a job.
 	 * 
