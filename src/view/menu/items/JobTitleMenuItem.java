@@ -21,7 +21,7 @@ public class JobTitleMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {
-		return "Job Title: " + CreateNewJobMenu.getJobTitle() == null ? "" : "Job Title: ";
+		return "Job Title: " + (CreateNewJobMenu.getJobTitle() == null ? "" : CreateNewJobMenu.getJobTitle());
 	}
 
 }

@@ -1,5 +1,7 @@
 package view;
 
+import java.time.LocalDateTime;
+
 import model.Controller;
 import model.Job;
 import model.Location;
@@ -19,9 +21,20 @@ public class CreateData {
 	}
 
 	private static void createJobs() throws MaximumJobsException, JobAlreadyAddedException {
-		Controller.getPark(223).addJob(new Job("Screaming", "The park need more crazy people to scream in the park.", Controller.getPark(223)));
-		Controller.getPark(223).addJob(new Job("Burning Trees", "There are limbs in the park. We need more firewood to cook them.", Controller.getPark(223)));
-		Controller.getPark(223).addJob(new Job("Decapitating Dandelions", "The dandelions are too long.", Controller.getPark(223)));
+		Job job = new Job("Birthday Party Technician", "Please help us throw a birthday party for a local hero. There will be free pizza.", Controller.getPark(223));
+		job.setStartTime(LocalDateTime.of(2017, 3, 7, 8, 0));
+		job.setEndTime(LocalDateTime.of(2017, 3, 7, 20, 0));
+		Controller.getPark(223).addJob(job);
+		
+		job = new Job("Tree Removal", "There are limbs in the park which pose a safety hazard. The trees are to be removed.", Controller.getPark(223));
+		job.setStartTime(LocalDateTime.of(2017, 3, 10, 17, 0));
+		job.setEndTime(LocalDateTime.of(2017, 3, 10, 20, 0));
+		Controller.getPark(223).addJob(job);
+		
+		job = new Job("Mow Lawn", "The grass in the baseball field needs mowed to 2.5 inches.", Controller.getPark(223));
+		job.setStartTime(LocalDateTime.of(2017, 3, 21, 15, 0));
+		job.setEndTime(LocalDateTime.of(2017, 3, 21, 17, 30));
+		Controller.getPark(223).addJob(job);
 	}
 
 	private static void createParks() throws IllegalStateException, NoSuchUserException {
