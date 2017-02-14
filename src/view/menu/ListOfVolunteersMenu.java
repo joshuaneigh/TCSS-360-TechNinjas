@@ -11,7 +11,7 @@ public class ListOfVolunteersMenu implements Menu{
 
 	@Override
 	public void activate() {
-		MenuUtils.printHeader("List of Volunteers | Park %d | Job %s - %s");
+		MenuUtils.printHeader(MenuEnum.LIST_OF_VOLUNTEERS.getTitle());
 		final Job job = TextUI.getSelectedJob();
 		List<User> volunteers = job.getVolunteers();
 		for (User volunteer : volunteers) {

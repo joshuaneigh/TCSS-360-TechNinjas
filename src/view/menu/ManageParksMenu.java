@@ -16,8 +16,7 @@ public class ManageParksMenu implements Menu {
 		if (type == null) {
 			throw new IllegalStateException("Logged in but UserType is null.");	
 		} else {
-			MenuUtils.printHeader("Manage Parks");
-			System.out.printf("Search for a park to manage\n");
+			MenuUtils.printHeader(MenuEnum.MANAGE_PARKS.getTitle());
 			final MenuItem item = MenuUtils.menu(MenuEnum.MANAGE_PARKS);
 			item.activate();
 		}
