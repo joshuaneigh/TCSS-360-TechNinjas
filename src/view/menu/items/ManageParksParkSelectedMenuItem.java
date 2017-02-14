@@ -4,6 +4,7 @@ import model.Controller;
 import model.UserType;
 import view.TextUI;
 import view.menu.ManageParksParkSelectedMenu;
+import view.menu.MenuEnum;
 
 /**
  * A park manager manages a job selected menu item.
@@ -23,7 +24,7 @@ public class ManageParksParkSelectedMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {	
-		return "Parks";
+		return "Parks " + MenuEnum.MANAGE_PARKS.getItems();
 	}
 
 }
