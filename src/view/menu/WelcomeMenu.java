@@ -19,8 +19,7 @@ public class WelcomeMenu implements Menu {
 			throw new IllegalStateException("Logged in but UserType is null.");
 		} else {
 			MenuUtils.printHeader("Welcome, " + Controller.getLoggedInUserName() + '.');
-			final MenuItem item = MenuUtils.menu(MenuEnum.WELCOME);
-			item.activate();
+			MenuUtils.menu(MenuEnum.WELCOME).activate();
 		}
 	}
 

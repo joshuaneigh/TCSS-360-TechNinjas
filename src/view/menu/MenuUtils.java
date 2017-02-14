@@ -67,7 +67,7 @@ public final class MenuUtils {
 				System.out.print("\nPlease make a selection: ");
 				final String input = input();
 				final int result = Integer.parseInt(input);
-				if (0 < result && result <= items.size()) return menu.getItems()[result];
+				if (0 < result && result <= items.size()) return items.get(result - 1);
 				else System.out.println("Selection is out of range.");
 			} catch (final NumberFormatException e) {
 				System.out.println("The input you specified is invalid.");
