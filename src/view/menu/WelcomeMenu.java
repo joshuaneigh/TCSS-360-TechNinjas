@@ -2,6 +2,7 @@ package view.menu;
 
 import model.Controller;
 import model.UserType;
+import view.menu.items.MenuItem;
 
 /**
  * The first menu within the UI; launches all other menus.
@@ -18,7 +19,8 @@ public class WelcomeMenu implements Menu {
 			throw new IllegalStateException("Logged in but UserType is null.");
 		} else {
 			MenuUtils.printHeader("Welcome, " + Controller.getLoggedInUserName() + '.');
-			MenuUtils.menu(MenuEnum.WELCOME);
+			final MenuItem item = MenuUtils.menu(MenuEnum.WELCOME);
+			item.activate();
 		}
 	}
 

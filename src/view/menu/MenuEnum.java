@@ -14,9 +14,9 @@ public enum MenuEnum {
 	
 	WELCOME("Welcome!", new MenuItem[] {
 			new CreateNewJobMenuItem(),
-			new ManageParksMenuItem(),
-			new ViewUpcomingJobsMenuItem(),
-			new SearchForJobsMenuItem(),
+//			new ManageParksMenuItem(),
+//			new ViewUpcomingJobsMenuItem(),
+//			new SearchForJobsMenuItem(),
 			new ViewMyJobsMenuItem(),
 			new ExitMenuItem()
 		}),
@@ -32,13 +32,14 @@ public enum MenuEnum {
 			new ExitMenuItem()
 		}),
 	
-	MANAGE_PARKS("Create New Job", new MenuItem[] {
+	MANAGE_PARKS("Manage Parks", new MenuItem[] {
+			// Show jobs and ask for input
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),
 	
-	MANAGE_PARKS_PARK_SELECTED("Create New Job | Park %s | %s, %s", new MenuItem[] {
-			new ViewJobsMenuItem(),
+	MANAGE_PARKS_PARK_SELECTED("Manage Parks | Park %s | %s, %s", new MenuItem[] {
+//			new ViewJobsMenuItem(),
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),
@@ -49,7 +50,7 @@ public enum MenuEnum {
 		}),
 	
 	VIEW_JOBS_JOB_SELECTED("View Jobs | Park %d | Job %s - %s", new MenuItem[] {
-			new ViewVolunteersMenuItem(),
+//			new ViewVolunteersMenuItem(),
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),
@@ -57,8 +58,8 @@ public enum MenuEnum {
 	LIST_OF_VOLUNTEERS("List of Volunteers | Park %d | Job %s - %s", null),
 	
 	UPCOMING_JOBS("Upcoming Jobs", new MenuItem[] {
-			new MakeAnotherSearchMenuItem(),
-			new SignUpForJobMenuItem(),
+//			new MakeAnotherSearchMenuItem(),
+//			new SignUpForJobMenuItem(),
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),

@@ -26,6 +26,11 @@ public final class TextUI {
 		MENUS.peek().activate();
 	}
 	
+	public static void navigate(final Menu menu) {
+		MENUS.add(menu);
+		menu.activate();
+	}
+	
 	public static void back() {
 		MENUS.pop();
 		MENUS.peek().activate();
