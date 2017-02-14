@@ -28,20 +28,20 @@ public class CalendarTest {
     
     @BeforeClass
     public static void init() {
-        final Job januaryJob = new Job("", null);
-        januaryJob.setStartTime("2017-01-13 13:00");
+        final Job januaryJob = new Job("", "", null);
+        januaryJob.setStartTime(LocalDateTime.of(2017, 1, 13, 13, 00));
         listOfJobs.add(januaryJob);
         
-        final Job februaryJob = new Job("", null);
-        februaryJob.setStartTime("2017-02-01 08:00");
+        final Job februaryJob = new Job("", "", null);
+        februaryJob.setStartTime(LocalDateTime.of(2017, 2, 1, 8, 00));
         listOfJobs.add(februaryJob);
         
-        final Job februaryJobSameDay = new Job("", null);
-        februaryJobSameDay.setStartTime("2017-02-01 06:00");
+        final Job februaryJobSameDay = new Job("", "", null);
+        februaryJobSameDay.setStartTime(LocalDateTime.of(2017,  2, 1, 6, 00));
         listOfJobs.add(februaryJobSameDay);
         
-        final Job januaryJob2 = new Job("", null);
-        januaryJob2.setStartTime("2017-01-22 06:00");
+        final Job januaryJob2 = new Job("", "", null);
+        februaryJobSameDay.setStartTime(LocalDateTime.of(2017,  1, 22, 6, 00));
         listOfJobs.add(januaryJob2);
     }
     

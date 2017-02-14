@@ -4,12 +4,20 @@ import static org.junit.Assert.*;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-/*
- * @author Youcef Bennour
+
+import model.User;
+import model.UserType;
+
+/**
+ * Tests the User class.
+ *
+ * @author Youcef Bennour | ybennour@uw.edu
+ * @version 12 Feb 2017
  */
 public class TestUser {
 	private static User userOne, userTwo, userThree, userFour, userFive;
-	private static UserType typeOne = UserType.Volunteer, typeTwo = UserType.UrbanPark, typeThree = UserType.ParkManager;
+	private static UserType typeOne = UserType.Volunteer, typeTwo = UserType.UrbanPark, 
+			typeThree = UserType.ParkManager;
 	private static boolean blackballed = false;
 	private static boolean flagged = false;
 	

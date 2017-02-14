@@ -18,6 +18,7 @@ public class Job implements Serializable {
 	int MAX_VOLUME = 30;
 	int MAX_LENGTH = 2;
 		
+	private String jobTitle;
 	private String jobDescription;
 	private Park park;
 	private List<UserType> volunteersList;
@@ -30,7 +31,8 @@ public class Job implements Serializable {
 	 * @param theStart when the job will start
 	 * @param theEnd when the job will end
 	 */	
-	public Job(String theJobDescription, Park thePark) {
+	public Job(String theJobTitle, String theJobDescription, Park thePark) {
+		jobTitle = theJobTitle;
 		jobDescription = theJobDescription;
 		park = thePark;
 		volunteersList = new ArrayList<UserType>();
@@ -51,6 +53,16 @@ public class Job implements Serializable {
 	 */
 	public List<UserType> getVolunteers() {
 		return volunteersList;
+	}
+	
+	
+	/**
+	 * Gets the title of the job.
+	 *
+	 * @return the title of the job
+	 */
+	public String getJobTitle() {
+		return jobTitle;
 	}
 
 	/**
