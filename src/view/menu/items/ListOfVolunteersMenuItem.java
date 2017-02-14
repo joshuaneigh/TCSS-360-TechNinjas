@@ -5,7 +5,7 @@ import model.UserType;
 import view.TextUI;
 import view.menu.ListOfVolunteersMenu;
 
-public class ListOfVolunteersMenuItems implements MenuItem {
+public class ListOfVolunteersMenuItem implements MenuItem {
 
 	@Override
 	public void activate() {
