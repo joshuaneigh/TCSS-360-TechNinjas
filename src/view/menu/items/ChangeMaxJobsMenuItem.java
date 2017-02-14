@@ -15,7 +15,7 @@ public class ChangeMaxJobsMenuItem implements MenuItem {
 
 	@Override
 	public void activate() {
-		MenuUtils.printHeader("Change Maximum Pending Jobs");
+		MenuUtils.printHeader("Change Maximum Pending Jobs\n");
 		System.out.print("Enter the new maximum number of allowed pending jobs (currently " + Park.getMaxJobs() + "): ");
 		final String newMax = MenuUtils.input();
 		Park.setMaxJobs(Integer.parseInt(newMax));
