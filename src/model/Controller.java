@@ -382,5 +382,13 @@ public final class Controller implements Serializable {
 	public static Park getPark(final Integer number) {
 		return INSTANCE.parkNumberMap.get(number);
 	}
+	
+	public static boolean isBlackballed(final String username) {
+		return INSTANCE.userMap.get(username).isBlackballed();
+	}
+	
+	public static void setBlackballed(final String username, final boolean blackballed) {
+		INSTANCE.userMap.get(username).setBlackballed();
+	}
 
 }

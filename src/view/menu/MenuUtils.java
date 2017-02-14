@@ -21,7 +21,7 @@ public final class MenuUtils {
 	private static final Scanner SCANNER;
 	
 	static {
-		PROGRAM_NAME = "ParkUtilities | TechNinjas";
+		PROGRAM_NAME = "\nParkUtilities | TechNinjas";
 		SEPARATOR = "-------------------------------------";
 		SCANNER = new Scanner(System.in);
 	}

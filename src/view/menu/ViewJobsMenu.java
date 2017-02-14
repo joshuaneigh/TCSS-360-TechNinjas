@@ -11,6 +11,7 @@ public class ViewJobsMenu implements Menu {
 	@Override
 	public void activate() {
 		MenuUtils.printHeader(MenuEnum.VIEW_JOBS.getTitle());
-		
+		final MenuItem item = MenuUtils.menu(MenuEnum.VIEW_JOBS);
+		item.activate();
 	}
 }

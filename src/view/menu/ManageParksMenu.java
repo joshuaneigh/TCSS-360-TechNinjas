@@ -15,31 +15,39 @@ public class ManageParksMenu implements Menu {
 
 	@Override
 	public void activate() {
-		MenuUtils.printHeader("Manage Parks");
+		MenuUtils.printHeader(MenuEnum.MANAGE_PARKS.getTitle());
 		String parkName = Controller.getLoggedInUserName();
 		List<Park> parks = Controller.getUserParks(parkName);
 		
 		int menuIndex = 0;
 		for (final Park park : parks) {
 			menuIndex++;
-			System.out.printf("%d) Park %s", menuIndex, park.getNumber());
+			System.out.printf("%d) Park %s\n", menuIndex, park.getNumber());
 		}
 		for (final MenuItem item : MenuEnum.MANAGE_PARKS.getItems()) {
 			menuIndex++;
-			System.out.printf("%d) %s", menuIndex, item.getLabel());
+			System.out.printf("%d) %s\n", menuIndex, item.getLabel());
 		}
-		System.out.print("Please make your selection: ");
-		final String input = MenuUtils.input();
-		int result = Integer.parseInt(input);
-		if (0 < result && result <= menuIndex + 1) {
-			if (result - 1 < parks.size()) {
-				TextUI.selectPark(parks.get(result));
-				TextUI.navigate(new ManageParksParkSelectedMenu());
-			} else {
-				result -= parks.size();
-				MenuEnum.MANAGE_PARKS.getItems()[result].activate();
+		do {
+			try {
+				System.out.print("Please make your selection: ");
+				final String input = MenuUtils.input();
+				int result = Integer.parseInt(input);
+				if (0 < result && result <= menuIndex + 1) {
+					if (result - 1 < parks.size()) {
+						TextUI.selectPark(parks.get(result));
+						TextUI.navigate(new ManageParksParkSelectedMenu());
+					} else {
+						result -= parks.size();
+						MenuEnum.MANAGE_PARKS.getItems()[result].activate();
+					}
+				} else {
+					System.out.println("Selection is out of range.");
+				}
+			} catch (final NumberFormatException e) {
+				System.out.println("The input you specified is invalid.");
 			}
-		}
+		} while (true);
 		
 	}
 	
