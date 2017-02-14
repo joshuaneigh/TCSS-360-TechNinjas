@@ -30,8 +30,20 @@ public class CreateNewJobMenu implements Menu {
 		
 		if (selection == 1) {
 			new JobTitleMenuItem().activate();	
-		} else if () {
-
+		} else if (selection == 2) {
+			new JobDateMenuItem().activate();
+		} else if (selection == 3) {
+			new ParkNumberMenuItem().activate();
+		} else if (selection == 4) {
+			new JobDescriptionMenuItem().activate();
+		} else if (selection == 5) {
+			new NumVolAcceptedMenuItem().activate();
+		} else if (selection == 6) {
+			new SubmitJobMenuItem().activate();
+		} else if (selection == 7) {
+			new BackMenuItem().activate();
+		} else if (selection == 8) {
+			new ExitMenuItem().activate();
 		}
 		
 	}
