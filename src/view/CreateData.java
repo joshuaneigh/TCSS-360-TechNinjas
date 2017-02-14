@@ -83,7 +83,7 @@ public class CreateData {
 		Controller.addUser("yBaron", UserType.Volunteer);
 		Controller.addUser("sLauden", UserType.Volunteer);
 		
-		Controller.setBlackballed("mUnderhill", true);
+		Controller.setBlackballed("munderhill", true);
 	}
 
 }

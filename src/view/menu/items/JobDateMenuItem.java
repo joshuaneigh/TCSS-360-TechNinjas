@@ -24,7 +24,7 @@ public class JobDateMenuItem implements MenuItem {
 		final LocalDateTime end = LocalDateTime.parse(MenuUtils.input(), FORMATTER);
 		if (start.until(end, ChronoUnit.DAYS) > 2) {
 			System.out.println("Job cannot last longer than two days.");
-		} else if (LocalDateTime.now().until(start, ChronoUnit.MONTHS) < 1) {
+		} else if (LocalDateTime.now().until(start, ChronoUnit.MONTHS) >= 1) {
 			System.out.println("Job cannot be scheduled a month or farther in the future.");
 		} else {
 			CreateNewJobMenu.setJobStartDate(start);
