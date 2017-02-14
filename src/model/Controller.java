@@ -350,5 +350,15 @@ public final class Controller implements Serializable {
 		}
 		return jobs;
 	}
+	
+	public static List<Park> getUserParks(final String username) {
+		final List<Park> parks = new ArrayList<>();
+		final User user = INSTANCE.userMap.get(username);
+		if (INSTANCE.parkMap.get(INSTANCE.userMap.get(username)) == null) return null;
+		for (final Park park : INSTANCE.parkMap.get(INSTANCE.userMap.get(username))) {
+			for (final Job job : park.getJobs()) if (job.hasVolunteer(user)) parks.add(park);
+		}
+		return parks;
+	}
 
 }

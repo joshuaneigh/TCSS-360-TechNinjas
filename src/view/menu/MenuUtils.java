@@ -1,6 +1,7 @@
 package view.menu;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import model.Controller;
@@ -37,14 +38,14 @@ public final class MenuUtils {
 		System.out.println(SEPARATOR);
 	}
 	
-	public static void clear() {
-		try {
-			if (System.getProperty("os.name").contains("Windows")) Runtime.getRuntime().exec("cls");
-			else Runtime.getRuntime().exec("clear");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void clear() {
+//		try {
+//			if (System.getProperty("os.name").contains("Windows")) Runtime.getRuntime().exec("cls");
+//			else Runtime.getRuntime().exec("clear");
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	/**
 	 * Prints a standard menu to the console and handles the input.
@@ -52,11 +53,13 @@ public final class MenuUtils {
 	 * @return the selected MenuItem
 	 */
 	public static MenuItem menu(final MenuEnum menu) {
-		int numMenuItems = 0;
+//		clear();
 		final UserType userType = Controller.getUserType(Controller.getLoggedInUserName());
-		for (int i = 0; i < menu.getItems().length; i++)
+		final List<MenuItem> items = new ArrayList<>();
+		for (int i = 0, numMenuItems = 0; i < menu.getItems().length; i++)
 			if (menu.getItems()[i].isAllowed(userType)) {
 				numMenuItems++;
+				items.add(menu.getItems()[i]);
 				System.out.printf("%d)  %s\n", numMenuItems, menu.getItems()[i].getLabel());
 			}
 		do {
@@ -64,7 +67,7 @@ public final class MenuUtils {
 				System.out.print("\nPlease make a selection: ");
 				final String input = input();
 				final int result = Integer.parseInt(input);
-				if (0 < result && result <= numMenuItems) return menu.getItems()[result];
+				if (0 < result && result <= items.size()) return menu.getItems()[result];
 				else System.out.println("Selection is out of range.");
 			} catch (final NumberFormatException e) {
 				System.out.println("The input you specified is invalid.");

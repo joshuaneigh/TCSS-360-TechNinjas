@@ -14,7 +14,7 @@ public class ViewMyJobsMenuItem implements MenuItem {
 
 	@Override
 	public boolean isAllowed(UserType userType) {
-		return (Controller.getLoggedInUserName() == "administrator") || userType.equals(UserType.Volunteer);
+		return (Controller.getLoggedInUserName().equals("administrator")) || userType.equals(UserType.Volunteer);
 	}
 
 	@Override
