@@ -2,7 +2,6 @@ package view.menu;
 
 import model.Controller;
 import model.UserType;
-import view.menu.items.MenuItem;
 
 /**
  * The first menu within the UI; launches all other menus.

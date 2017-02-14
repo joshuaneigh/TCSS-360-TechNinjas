@@ -29,6 +29,11 @@ public class Park implements Serializable {
      * The name of this park.
      */
     private String parkName;
+    
+    /**
+     * The park number of this park.
+     */
+    private int parkNumber;
 
     /**
      * The pending and past jobs for this park.
@@ -41,9 +46,10 @@ public class Park implements Serializable {
      * @param theParkLocation The location to give this park
      * @param theParkName The name to give this park
      */
-    public Park(final Location theParkLocation, final String theParkName) {
+    public Park(final Location theParkLocation, final String theParkName, final int theParkNumber) {
         parkLocation = theParkLocation;
         parkName = theParkName;
+        parkNumber = theParkNumber;
         jobs = new ArrayList<Job>();
         
         if (MAX_JOBS == 0) {
@@ -52,6 +58,10 @@ public class Park implements Serializable {
         }
     }
 
+    public int getNumber() {
+    	return parkNumber;
+    }
+    
     /**
      * Gets the location of this park.
      * @return The location of this park

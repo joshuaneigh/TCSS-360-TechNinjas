@@ -15,11 +15,11 @@ public class CreateData {
 	}
 
 	private static void createParks() throws IllegalStateException, NoSuchUserException {
-		Controller.addPark("jToledo", new Park(new Location(97221), "Washington Park"));
-		Controller.addPark("nCarta", new Park(new Location(66606), "Ward-Meade Park"));
-		Controller.addPark("mDrew", new Park(new Location(23225), "Forest Hill Park"));
-		Controller.addPark("tDuane", new Park(new Location(02116), "Boston Public Garden"));
-		Controller.addPark("tDuane", new Park(new Location(87501), "Santa Fe River Park"));
+		Controller.addPark("jToledo", new Park(new Location(97221), "Washington Park", 223));
+		Controller.addPark("nCarta", new Park(new Location(66606), "Ward-Meade Park", 556));
+		Controller.addPark("mDrew", new Park(new Location(23225), "Forest Hill Park", 762));
+		Controller.addPark("tDuane", new Park(new Location(02116), "Boston Public Garden", 308));
+		Controller.addPark("tDuane", new Park(new Location(87501), "Santa Fe River Park", 458));
 	}
 
 	private static void addUsers() {

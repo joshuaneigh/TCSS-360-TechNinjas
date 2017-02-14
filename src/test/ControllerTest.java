@@ -26,7 +26,7 @@ import model.exception.NoSuchUserException;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ControllerTest {
 
-	private static final Park WRIGHT_PARK = new Park(new Location(98445), "Wright Park");
+	private static final Park WRIGHT_PARK = new Park(new Location(98445), "Wright Park", 3);
 	private static final String ADMIN_USERNAME = "Administrator";
 	private static final String TEMP_USERNAME = "tempUser";
 	private static final String NONUSER_USERNAME = "i'm not logged in";

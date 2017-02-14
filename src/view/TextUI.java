@@ -3,7 +3,6 @@ package view;
 import java.util.Stack;
 
 import model.Job;
-import model.Location;
 import model.Park;
 import view.menu.LoginMenu;
 import view.menu.Menu;
