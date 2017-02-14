@@ -7,25 +7,18 @@ import view.TextUI;
 import view.menu.Menu;
 import view.menu.MenuEnum;
 import view.menu.MenuUtils;
-import view.menu.items.BackMenuItem;
-import view.menu.items.ExitMenuItem;
-import view.menu.items.JobDateMenuItem;
-import view.menu.items.JobDescriptionMenuItem;
-import view.menu.items.JobTitleMenuItem;
 import view.menu.items.MenuItem;
-import view.menu.items.NumVolAcceptedMenuItem;
-import view.menu.items.ParkNumberMenuItem;
-import view.menu.items.SubmitJobMenuItem;
 
 public class CreateNewJobMenu implements Menu {
 	
 	private static CreateNewJobMenu INSTANCE;
 	
-	private static String jobTitle;
-	private static LocalDateTime jobDate;
-	private static String jobDescription;
-	private static int parkNumber;
-	private static int numVol;
+	private String jobTitle;
+	private LocalDateTime jobStartDate;
+	private LocalDateTime jobEndDate;
+	private String jobDescription;
+	private int parkNumber;
+	private int numVol;
 
 	@Override
 	public void activate() {
@@ -40,53 +33,60 @@ public class CreateNewJobMenu implements Menu {
 	
 	
 	public static String getJobTitle() {
-		return jobTitle;	
+		return INSTANCE.jobTitle;	
 	}
 	
 	public static void setJobTitle(final String theJobTitle) {
-		jobTitle = theJobTitle;
+		INSTANCE.jobTitle = theJobTitle;
 	}
 	
 	
-	public static LocalDateTime getJobDate() {
-		return jobDate;	
+	public static LocalDateTime getJobStartDate() {
+		return INSTANCE.jobStartDate;	
 	}
 	
+	public static LocalDateTime getJobEndDate() {
+		return INSTANCE.jobEndDate;	
+	}
 	
-	public static void setJobDate(final LocalDateTime theJobDate) {
-		jobDate = theJobDate;
+	public static void setJobStartDate(final LocalDateTime theJobDate) {
+		INSTANCE.jobStartDate = theJobDate;
+	}
+	
+	public static void setJobEndDate(final LocalDateTime theJobDate) {
+		INSTANCE.jobEndDate = theJobDate;
 	}
 	
 	
 	public static String getJobDescription() {
-		return jobTitle;
+		return INSTANCE.jobTitle;
 	}
 	
 	public static void setJobDescription(final String theJobDescription) {
-		jobDescription = theJobDescription;
+		INSTANCE.jobDescription = theJobDescription;
 	}
 	
 	
 	public static int getParkNumber() {
-		return parkNumber;
+		return INSTANCE.parkNumber;
 	}
 	
 	public static void setParkNumber(final int theParkNumber) {
-		parkNumber = theParkNumber;
+		INSTANCE.parkNumber = theParkNumber;
 	}
 	
 	
 	public static Job getJob() {
-		return new Job(jobTitle, jobDescription, TextUI.getSelectedPark());
+		return new Job(INSTANCE.jobTitle, INSTANCE.jobDescription, TextUI.getSelectedPark());
 	}
 	
 	
 	public static int getNumVolAccepted() {
-		return numVol;
+		return INSTANCE.numVol;
 	}
 	
 	
 	public static void setNumVolAccepted(final int theNumVol) {
-		numVol = theNumVol;
+		INSTANCE.numVol = theNumVol;
 	}
 }
