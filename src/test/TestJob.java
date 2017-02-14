@@ -30,8 +30,8 @@ public class TestJob {
 
 	@BeforeClass
 	public static void setUp() {
-		jobOne = new Job("General Labor", "Rake the leaves", PD_PARK);	
-		jobTwo = new Job("General Labor","Rake the leaves", EMPTY_PARK);
+		jobOne = new Job("General Labor", "Rake the leaves.", PD_PARK);	
+		jobTwo = new Job("General Labor","Rake the leaves.", EMPTY_PARK);
 		volunteerOne = new User("Bob", UserType.Volunteer);	
 		volunteerTwo = new User("Susan", UserType.Volunteer);
 		jobOne.addVolunteer(volunteerOne);
@@ -40,13 +40,13 @@ public class TestJob {
 	
 	@Test
 	public void testAddVolunteer_OneVolunteer() {
-		assertEquals(UserType.Volunteer, jobOne.getVolunteers().get(0));
+		assertEquals(volunteerOne, jobOne.getVolunteers().get(0));
 	}
 	
 	@Test
 	public void testAddVolunteer_MultipleVolunteers() {
-		assertEquals(UserType.Volunteer, jobOne.getVolunteers().get(0));
-		assertEquals(UserType.Volunteer, jobOne.getVolunteers().get(1));
+		assertEquals(volunteerOne, jobOne.getVolunteers().get(0));
+		assertEquals(volunteerTwo, jobOne.getVolunteers().get(1));
 	}
 	
 	@Test
