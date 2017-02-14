@@ -373,5 +373,9 @@ public final class Controller implements Serializable {
 				return true;
 		return false;
 	}
+	
+	public static boolean volunteerForJob(final String username, final Job job) {
+		job.addVolunteer(INSTANCE.userMap.get(username));
+	}
 
 }
