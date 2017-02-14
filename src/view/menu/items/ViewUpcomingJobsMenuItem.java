@@ -15,6 +15,7 @@ public class ViewUpcomingJobsMenuItem implements MenuItem {
 	@Override
 	public void activate() {
 		final Calendar calendar = new Calendar(Controller.getAllJobs());
+		System.out.println();
 		System.out.println(calendar.toString());
 		System.out.println();
 		System.out.println("Press [Enter] to return...");

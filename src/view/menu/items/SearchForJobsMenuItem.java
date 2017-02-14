@@ -18,7 +18,7 @@ public class SearchForJobsMenuItem implements MenuItem {
 
 	@Override
 	public boolean isAllowed(UserType userType) {
-		return (Controller.getLoggedInUserName() == "administrator") || userType.equals(UserType.ParkManager) 
+		return Controller.getLoggedInUserName().equals("administrator") || userType.equals(UserType.ParkManager) 
 				|| userType.equals(UserType.Volunteer) || userType.equals(UserType.UrbanPark);
 	}
 
