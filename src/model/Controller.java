@@ -13,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
@@ -359,6 +360,18 @@ public final class Controller implements Serializable {
 			for (final Job job : park.getJobs()) if (job.hasVolunteer(user)) parks.add(park);
 		}
 		return parks;
+	}
+	
+	public static boolean isBlackballed(final String username) {
+		return INSTANCE.userMap.get(username).isBlackballed();
+	}
+	
+	public static boolean isUserSignedUpForJobOnDate(final String username, final LocalDateTime date) {
+		List<Job> jobs = getUserJobs(username);
+		for (final Job job : jobs)
+			if (job.getStartTime().compareTo(date) <= 0 || job.getEndTime().compareTo(date) >= 0)
+				return true;
+		return false;
 	}
 
 }
