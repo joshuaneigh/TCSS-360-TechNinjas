@@ -1,5 +1,6 @@
 package view.menu.items;
 
+import model.Controller;
 import model.UserType;
 import view.TextUI;
 import view.menu.CreateNewJobMenu;
@@ -13,7 +14,7 @@ public class CreateNewJobMenuItem implements MenuItem {
 
 	@Override
 	public boolean isAllowed(UserType userType) {
-		return true;
+		return Controller.getLoggedInUserName().equals("administrator") || userType == UserType.ParkManager;
 	}
 
 	@Override

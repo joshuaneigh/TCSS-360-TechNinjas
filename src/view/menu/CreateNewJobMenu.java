@@ -2,6 +2,7 @@ package view.menu;
 
 import java.time.LocalDateTime;
 
+import model.Controller;
 import model.Job;
 import view.TextUI;
 import view.menu.Menu;
@@ -19,18 +20,25 @@ public class CreateNewJobMenu implements Menu {
 	private String jobDescription;
 	private int parkNumber;
 	private int numVol;
+	private boolean flag;
 
 	@Override
 	public void activate() {
 		INSTANCE = this;
+		flag = true;
 		do {
 			MenuUtils.printHeader(MenuEnum.CREATE_NEW_JOB.getTitle());
 			System.out.format("Make a selection to edit the field or navigate:\n");
 			final MenuItem item = MenuUtils.menu(MenuEnum.CREATE_NEW_JOB);
 			item.activate();
-		} while (true);
+		} while (flag);
+		TextUI.back();
 	}
 	
+	public static void clear() {
+		
+		INSTANCE.flag = false;
+	}
 	
 	public static String getJobTitle() {
 		return INSTANCE.jobTitle;	
@@ -77,7 +85,10 @@ public class CreateNewJobMenu implements Menu {
 	
 	
 	public static Job getJob() {
-		return new Job(INSTANCE.jobTitle, INSTANCE.jobDescription, TextUI.getSelectedPark());
+		final Job job = new Job(INSTANCE.jobTitle, INSTANCE.jobDescription, Controller.getPark(INSTANCE.parkNumber));
+		job.setStartTime(CreateNewJobMenu.getJobStartDate());
+		job.setEndTime(CreateNewJobMenu.getJobEndDate());
+		return job;
 	}
 	
 	

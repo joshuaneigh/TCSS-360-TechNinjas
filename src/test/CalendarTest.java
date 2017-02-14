@@ -41,7 +41,7 @@ public class CalendarTest {
         listOfJobs.add(februaryJobSameDay);
         
         final Job januaryJob2 = new Job("", "", null);
-        februaryJobSameDay.setStartTime(LocalDateTime.of(2017,  1, 22, 6, 00));
+        januaryJob2.setStartTime(LocalDateTime.of(2017,  1, 22, 6, 00));
         listOfJobs.add(januaryJob2);
     }
     

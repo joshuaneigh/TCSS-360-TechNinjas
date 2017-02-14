@@ -51,7 +51,6 @@ public class CreateData {
 		Controller.addUser("pBrett", UserType.Volunteer);
 		Controller.addUser("rCruise", UserType.Volunteer);
 		Controller.addUser("hDale", UserType.Volunteer);
-		Controller.addUser("jJones", UserType.Volunteer);
 		Controller.addUser("rYule", UserType.Volunteer);
 		Controller.addUser("yBaron", UserType.Volunteer);
 		Controller.addUser("sLauden", UserType.Volunteer);
