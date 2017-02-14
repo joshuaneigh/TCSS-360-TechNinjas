@@ -71,20 +71,20 @@ public final class Controller implements Serializable {
 	 * A {@link Map} of {@link String} usernames to their associated
 	 * {@link User} {@link Object}s.
 	 */
-	private final HashMap<String, User> userMap;
+	private final Map<String, User> userMap;
 
 	/**
 	 * A {@link Map} of {@link User}s to a {@link Collection} containing their
 	 * associated {@link Park}s.
 	 */
-	private final HashMap<User, ArrayList<Park>> parkMap;
+	private final Map<User, ArrayList<Park>> parkMap;
 
 	/**
-	 * A List of {@link Park} {@link Object}s, intended for persistence. If a
+	 * A {@link Map} of {@link Park} {@link Object}s, intended for persistence. If a
 	 * {@link Park} is disassociated with a {@link User}, it is imperative that
 	 * the {@link Park} is not destroyed by the GarbageCollector.
 	 */
-	private final List<Park> parkList;
+	private final Map<Integer, Park> parkNumberMap;
 
 	static {
 		SAVE_PATH = "./data/data.ser";
@@ -114,7 +114,7 @@ public final class Controller implements Serializable {
 	private Controller() {
 		parkMap = new HashMap<>();
 		userMap = new HashMap<>();
-		parkList = new ArrayList<>();
+		parkNumberMap = new HashMap<>();
 		// There must be at least one user that is logged in.
 		final String admin = "administrator";
 		userMap.put(admin, new User(admin, UserType.ParkManager));
@@ -251,10 +251,10 @@ public final class Controller implements Serializable {
 			throw new IllegalStateException("You are not logged in.");
 		} else if (INSTANCE.userMap.get(username.toLowerCase()) == null) {
 			throw new NoSuchUserException(NO_SUCH_USER);
-		} else if (INSTANCE.parkList.contains(park)) {
+		} else if (INSTANCE.parkNumberMap.containsValue(park)) {
 			throw new IllegalStateException("The specified Park has already been added.");
 		} else {
-			INSTANCE.parkList.add(park);
+			INSTANCE.parkNumberMap.put(park.getNumber(), park);
 			INSTANCE.parkMap.get(INSTANCE.userMap.get(username.toLowerCase())).add(park);
 			return true;
 		}
@@ -291,7 +291,7 @@ public final class Controller implements Serializable {
 	}
 	
 	protected static boolean associateUser(final String username, final Park park) {
-		if (!INSTANCE.parkList.contains(park)) throw new IllegalStateException("Park not added to system.");
+		if (!INSTANCE.parkNumberMap.containsValue(park)) throw new IllegalStateException("Park not added to system.");
 		if (!INSTANCE.parkMap.containsKey(INSTANCE.userMap.get(username))) INSTANCE.parkMap.put(INSTANCE.userMap.get(username), new ArrayList<>());
 		INSTANCE.parkMap.get(INSTANCE.userMap.get(username)).add(park);
 		return true;
@@ -299,7 +299,7 @@ public final class Controller implements Serializable {
 	
 	public static List<Job> getAllJobs() {
 		final List<Job> jobs = new ArrayList<>();
-		for (final Park p : INSTANCE.parkList) jobs.addAll(p.getJobs());
+		for (final Park p : INSTANCE.parkNumberMap.values()) jobs.addAll(p.getJobs());
 		return jobs;
 	}
 
@@ -377,6 +377,10 @@ public final class Controller implements Serializable {
 	public static boolean volunteerForJob(final String username, final Job job) {
 		job.addVolunteer(INSTANCE.userMap.get(username));
 		return true;
+	}
+	
+	public static Park getPark(final Integer number) {
+		return INSTANCE.parkNumberMap.get(number);
 	}
 
 }
