@@ -49,13 +49,13 @@ public enum MenuEnum {
 			new ExitMenuItem()
 		}),
 	
-	VIEW_JOBS_JOB_SELECTED("View Jobs | Park %d | Job %s - %s\n", new MenuItem[] {
+	VIEW_JOBS_JOB_SELECTED("View Jobs | Park %d | Job %s\n", new MenuItem[] {
 			new ViewVolunteersMenuItem(),
 			new BackMenuItem(),
 			new ExitMenuItem()
 		}),
 	
-	LIST_OF_VOLUNTEERS("List of Volunteers | Park %d | Job %s - %s\n", null),
+	LIST_OF_VOLUNTEERS("List of Volunteers | Park %d | %s\n", null),
 	
 	UPCOMING_JOBS("Upcoming Jobs\n", new MenuItem[] {
 			new MakeAnotherSearchMenuItem(),
