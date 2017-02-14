@@ -2,6 +2,7 @@ package view.menu.items;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import model.UserType;
 import view.menu.CreateNewJobMenu;
@@ -21,8 +22,14 @@ public class JobDateMenuItem implements MenuItem {
 		final LocalDateTime start = LocalDateTime.parse(MenuUtils.input(), FORMATTER);
 		System.out.println("Please enter the ending date and time (yyyy-MM-dd HH:mm): ");
 		final LocalDateTime end = LocalDateTime.parse(MenuUtils.input(), FORMATTER);
-		CreateNewJobMenu.setJobStartDate(start);
-		CreateNewJobMenu.setJobEndDate(end);
+		if (start.until(end, ChronoUnit.DAYS) > 2) {
+			System.out.println("Job cannot last longer than two days.");
+		} else if (LocalDateTime.now().until(start, ChronoUnit.MONTHS) < 1) {
+			System.out.println("Job cannot be scheduled a month or farther in the future.");
+		} else {
+			CreateNewJobMenu.setJobStartDate(start);
+			CreateNewJobMenu.setJobEndDate(end);
+		}
 	}
 
 	@Override

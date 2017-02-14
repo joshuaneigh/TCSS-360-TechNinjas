@@ -21,8 +21,8 @@ public class NumVolAcceptedMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {
-		return "Number of volunteers accepted: " + CreateNewJobMenu.getNumVolAccepted() == null ? "" : 
-			"Number of volunteers accepted: ";
+		return "Number of volunteers accepted: " + (CreateNewJobMenu.getNumVolAccepted() == 0 ? "" : 
+			CreateNewJobMenu.getNumVolAccepted());
 
 	}
 

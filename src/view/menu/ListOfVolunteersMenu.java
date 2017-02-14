@@ -2,10 +2,9 @@ package view.menu;
 
 import java.util.List;
 
-import view.TextUI;
 import model.Job;
 import model.User;
-import model.UserType;
+import view.TextUI;
 
 public class ListOfVolunteersMenu implements Menu{
 

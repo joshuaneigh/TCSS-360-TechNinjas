@@ -18,6 +18,7 @@ public enum MenuEnum {
 			new ViewUpcomingJobsMenuItem(),
 			new SearchForJobsMenuItem(),
 			new ViewMyJobsMenuItem(),
+			new ChangeMaxJobsMenuItem(),
 			new ExitMenuItem()
 		}),
 	

@@ -40,6 +40,13 @@ public class Park implements Serializable {
      */
     private final ArrayList<Job> jobs;
     
+    static {
+    	if (MAX_JOBS == 0) {
+        	MAX_JOBS = 30;
+        	NUM_JOBS = 0;
+        }
+    }
+    
     /**
      * Creates a park with the given location and name.
      * The list of jobs is empty.
@@ -51,11 +58,6 @@ public class Park implements Serializable {
         parkName = theParkName;
         parkNumber = theParkNumber;
         jobs = new ArrayList<Job>();
-        
-        if (MAX_JOBS == 0) {
-        	MAX_JOBS = 30;
-        	NUM_JOBS = 0;
-        }
     }
 
     public int getNumber() {
@@ -94,11 +96,15 @@ public class Park implements Serializable {
 		return jobs;	
     }
     
+    public static int getMaxJobs() {
+    	return MAX_JOBS;
+    }
+    
     /**
      * Setter for the number of jobs.
      * @param num The number of jobs.
      */
-	public void setNumOfJobs(final int num) {
+	public static void setNumOfJobs(final int num) {
 		NUM_JOBS = num;		
 	}
 	
@@ -106,7 +112,7 @@ public class Park implements Serializable {
      * Setter for the max number of jobs.
      * @param max The number of jobs.
      */
-	public void setMaxJobs(final int max) {
+	public static void setMaxJobs(final int max) {
 		MAX_JOBS = max;		
 	}
 

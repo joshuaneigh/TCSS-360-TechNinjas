@@ -22,6 +22,6 @@ public class ParkNumberMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {
-		return "Park Number: " + CreateNewJobMenu.getParkNumber() == null ? "" : "Park Number: ";
+		return "Park Number: " + (CreateNewJobMenu.getParkNumber() == 0 ? "" : CreateNewJobMenu.getParkNumber());
 	}
 }
