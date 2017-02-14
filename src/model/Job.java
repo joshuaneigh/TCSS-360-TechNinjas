@@ -51,7 +51,7 @@ public class Job implements Serializable {
 	/**
 	 * Returns a list of volunteers for a job.
 	 */
-	public List<UserType> getVolunteers() {
+	public List<User> getVolunteers() {
 		return volunteersList;
 	}
 	
