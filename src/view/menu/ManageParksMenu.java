@@ -22,7 +22,7 @@ public class ManageParksMenu implements Menu {
 		int menuIndex = 0;
 		for (final Park park : parks) {
 			menuIndex++;
-			System.out.printf("%d) Park %s", menuIndex, 7); // park.getNumber());
+			System.out.printf("%d) Park %s", menuIndex, park.getNumber());
 		}
 		for (final MenuItem item : MenuEnum.MANAGE_PARKS.getItems()) {
 			menuIndex++;
