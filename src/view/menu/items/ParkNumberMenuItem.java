@@ -20,6 +20,6 @@ public class ParkNumberMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {
-		return "Park Number: ";
+		return "Park Number: " + CreateNewJobMenu.getParkNumber();
 	}
 }

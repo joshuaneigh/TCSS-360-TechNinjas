@@ -38,8 +38,18 @@ public class CreateNewJobMenu implements Menu {
 		} while (true);
 	}
 	
+	
+	public static String getJobTitle() {
+		return jobTitle;	
+	}
+	
 	public static void setJobTitle(final String theJobTitle) {
 		jobTitle = theJobTitle;
+	}
+	
+	
+	public static LocalDateTime getJobDate() {
+		return jobDate;	
 	}
 	
 	
@@ -48,18 +58,33 @@ public class CreateNewJobMenu implements Menu {
 	}
 	
 	
+	public static String getJobDescription() {
+		return jobTitle;
+	}
+	
 	public static void setJobDescription(final String theJobDescription) {
 		jobDescription = theJobDescription;
 	}
 	
 	
+	public static int getParkNumber() {
+		return parkNumber;
+	}
+	
 	public static void setParkNumber(final int theParkNumber) {
 		parkNumber = theParkNumber;
 	}
 	
+	
 	public static Job getJob() {
 		return new Job(jobTitle, jobDescription, TextUI.getSelectedPark());
 	}
+	
+	
+	public static int getNumVolAccepted() {
+		return numVol;
+	}
+	
 	
 	public static void setNumVolAccepted(final int theNumVol) {
 		numVol = theNumVol;

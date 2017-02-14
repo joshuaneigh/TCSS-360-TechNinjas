@@ -20,7 +20,7 @@ public class JobDateMenuItem implements MenuItem {
 
 	@Override
 	public String getLabel() {
-		return "Date: ";
+		return "Date: " + CreateNewJobMenu.getJobDate();
 	}
 
 }
