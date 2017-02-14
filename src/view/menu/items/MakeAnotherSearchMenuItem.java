@@ -1,6 +1,3 @@
-/**
- * 
- */
 package view.menu.items;
 
 import model.Controller;
