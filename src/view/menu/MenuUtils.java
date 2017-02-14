@@ -32,9 +32,9 @@ public final class MenuUtils {
 		return SCANNER;
 	}
 	
-	public static void printHeader(final String title) {
+	public static void printHeader(final String title, final Object... e) {
 		System.out.println(PROGRAM_NAME);
-		System.out.println(title);
+		System.out.printf(title, e);
 		System.out.println(SEPARATOR);
 	}
 	
