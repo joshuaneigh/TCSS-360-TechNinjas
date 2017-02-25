@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--AgileJ Ltd. (http://www.agilej.com)--><ajsv>
+    <diagram creationDate="2017-Feb-24 05:48" licenseGrade="evaluation" licenseeName="anon" licenseeOrganization="unknown" populationMethod="manual" version="1.9.0.v20160922-0809">
+        <filterScript>
+
+// no filter script yet defined for this class diagram
+// use CTRL+SPACE for completion suggestions
+hide method lines 
+hide field lines 
+hide private fields 
+hide private methods 
+hide private types 
+hide call lines
+
+</filterScript>
+        <class className="com.theTechNinjas.urbanParks.model.DataStore" modelMemberId="com.theTechNinjas.urbanParks.model.DataStore" project="Refactored" xLocation="1657" yLocation="942"/>
+        <class className="com.theTechNinjas.urbanParks.model.Controller" modelMemberId="com.theTechNinjas.urbanParks.model.Controller" project="Refactored" xLocation="1561" yLocation="519"/>
+        <class className="com.theTechNinjas.urbanParks.model.Job" modelMemberId="com.theTechNinjas.urbanParks.model.Job" project="Refactored" xLocation="964" yLocation="762"/>
+        <class className="com.theTechNinjas.urbanParks.model.User" modelMemberId="com.theTechNinjas.urbanParks.model.User" project="Refactored" xLocation="1143" yLocation="1011"/>
+        <class className="com.theTechNinjas.urbanParks.model.Park" modelMemberId="com.theTechNinjas.urbanParks.model.Park" project="Refactored" xLocation="1231" yLocation="1291"/>
+        <class className="com.theTechNinjas.urbanParks.Main" modelMemberId="com.theTechNinjas.urbanParks.Main" project="Refactored" xLocation="1992" yLocation="-11"/>
+        <class className="com.theTechNinjas.urbanParks.view.MenuItem" modelMemberId="com.theTechNinjas.urbanParks.view.MenuItem" project="Refactored" xLocation="1781" yLocation="286"/>
+        <class className="com.theTechNinjas.urbanParks.view.Menu" modelMemberId="com.theTechNinjas.urbanParks.view.Menu" project="Refactored" xLocation="1794" yLocation="144"/>
+        <class className="com.theTechNinjas.urbanParks.view.TextUI" modelMemberId="com.theTechNinjas.urbanParks.view.TextUI" project="Refactored" xLocation="2029" yLocation="224"/>
+    </diagram>
+</ajsv>
