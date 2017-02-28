@@ -107,6 +107,23 @@ final class DataStore implements Serializable {
 		return INSTANCE;
 	}
 	
+	public void reset() {
+		userTypeMap = new HashMap<>();
+		parkList = new ArrayList<>();
+		jobList = new ArrayList<>();
+		userParkMap = new HashMap<>();
+		parkJobMap = new HashMap<>();
+		jobUserMap = new HashMap<>();
+		maxPendingJobs = 20;
+		maxVolunteersPerJob = 10;
+		maxJobLengthDays = 3;
+		maxJobsPerDay = 4;
+		maxDaysFromNowAllowedInSchedule = 75;
+		minDaysFromNowToVolunteer = 2;
+		
+		addUser("admin", User.ADMINISTRATOR);
+	}
+	
 	public void exit() {
 		try {
 			final Path path = Paths.get(SAVE_PATH);
@@ -123,6 +140,7 @@ final class DataStore implements Serializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	/**

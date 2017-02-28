@@ -29,7 +29,6 @@ public class TestBR1a {
 	private static final String jobTwo = "Gardening Day\tPlant new flowers and trees in the new garden\t2017-03-27 12:00\t2017-03-27 13:00";
 	private static final String jobThree = "Trash Day\tPick up trash\t2017-03-25 05:00\t2017-03-25 06:00";
 
-
     private static final Path DATA_PATH = Paths.get("./data/data.ser");
     private static final Path BACKUP_PATH = Paths.get("./data/backup.ser");
 	
@@ -40,18 +39,22 @@ public class TestBR1a {
             Files.copy(DATA_PATH, BACKUP_PATH);
         }
         
+        Controller.login("admin");
 		Controller.addUser(VOLUNTEER_ONE, "Volunteer");
 		Controller.addPark(parkOne);
 		Controller.addPark(parkTwo);
 		Controller.addJob(parkOne, jobOne);
 		Controller.addJob(parkTwo, jobTwo);
 		Controller.addJob(parkTwo, jobThree);
+		Controller.logout();
     }
 
     @AfterClass
     public static void tearDownAfterClass() throws IOException {       
-        // if backup file was created, overwrite data file to its original state.
-        if (BACKUP_PATH.toFile().isFile()) {
+        
+    	Controller.reset();
+    	// if backup file was created, overwrite data file to its original state.
+    	if (BACKUP_PATH.toFile().isFile()) {
             Files.copy(BACKUP_PATH, DATA_PATH);
             Files.delete(BACKUP_PATH);
         } // if it wasn't, delete new data file if it exists.

@@ -45,6 +45,7 @@ public class TestBR3c {
 	
 	@AfterClass
 	public static void post() {
+		Controller.reset();
 		new File(SERIALIZED_PATH).delete();
 		new File(SERIALIZED_PATH + ".bak").renameTo(new File(SERIALIZED_PATH));
 	}

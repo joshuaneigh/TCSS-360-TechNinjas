@@ -55,6 +55,7 @@ public class TestBR2d {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {       
+		Controller.reset();
 		//if backup file was created, overwrite data file to its original state.
 		if (BACKUP_PATH.toFile().isFile()) {
 			Files.copy(BACKUP_PATH, DATA_PATH);

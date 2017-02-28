@@ -90,6 +90,10 @@ public final class Controller {
 		DataStore.getInstance().addPark(parkName);
 	}
 	
+	public static void reset() {
+		DataStore.getInstance().reset();
+	}
+	
 	/*====================== Getters ======================*/
 	
 	public static boolean isUser(final String userName) {
