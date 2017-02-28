@@ -38,7 +38,7 @@ import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
  * @author Joshua Neighbarger | jneigh@uw.edu
  * @version 21 Feb 2017
  */
-final class DataStore implements Serializable {
+public final class DataStore implements Serializable {
 	
 	/** Automatically generated serial version unique ID. */
 	private static final long serialVersionUID = -6890714915299935815L;
