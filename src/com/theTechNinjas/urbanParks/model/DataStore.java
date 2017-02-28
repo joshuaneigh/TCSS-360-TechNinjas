@@ -13,7 +13,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -284,12 +283,10 @@ final class DataStore implements Serializable {
 		return jobs;
 	}
 	
-	public List<String> getVolunteers(final String parkName, final String jobName) {
-		Objects.requireNonNull(parkName);
+	public List<String> getVolunteers(final String jobName) {
 		Objects.requireNonNull(jobName);
-		if (!parkList.contains(parkName)) throw new NoSuchParkException(parkName);
-		if (!parkJobMap.get(parkName).contains(jobName)) throw new NoSuchJobException(jobName);
-		return parkJobMap.get(parkName);
+		if (!jobList.contains(jobName)) throw new NoSuchJobException(jobName);
+		return jobUserMap.get(jobName);
 	}
 	
 	public List<String> getParks() {
@@ -297,10 +294,14 @@ final class DataStore implements Serializable {
 	}
 	
 	public List<String> getUserParks(final String userName) {
+		Objects.requireNonNull(userName);
+		if (!userTypeMap.containsKey(userName)) throw new NoSuchUserException(userName);
 		return new ArrayList<>(userParkMap.get(userName));
 	}
 	
 	public List<String> getParkJobs(final String parkName) {
+		Objects.requireNonNull(parkName);
+		if (!parkList.contains(parkName)) throw new NoSuchParkException(parkName);
 		return parkJobMap.get(parkName);
 	}
 	

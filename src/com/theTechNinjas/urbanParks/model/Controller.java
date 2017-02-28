@@ -74,7 +74,7 @@ public final class Controller {
 				&& DataStore.getInstance().getUserType(userName) != User.ADMINISTRATOR) throw new InvalidUserTypeException("User must be of type " + User.VOLUNTEER + " but was of type " + DataStore.getInstance().getUserType(userName) + ".");
 		else if (userAlreadySignedUpForJobOnDay(userName, jobName)) throw new ScheduleConflictException("Specified user is already signed up for a job on that date");
 		else if (minimumNumberOfDaysFromNowToVolunteerViolated(jobName)) throw new ScheduleConflictException("Specified job must be greater than " + DataStore.getInstance().getMinDaysFromNowToVolunteer() + " days from now.");
-		else if (maxVolunteersPerJobExceeded(parkName, jobName)) throw new ScheduleConflictException("The maximum number of volunteers has been reached for the job " + jobName + ".");
+		else if (maxVolunteersPerJobExceeded(jobName)) throw new ScheduleConflictException("The maximum number of volunteers has been reached for the job " + jobName + ".");
 		else DataStore.getInstance().assignVolunteer(userName, parkName, jobName);
 	}
 	
@@ -123,6 +123,10 @@ public final class Controller {
 		return DataStore.getInstance().getUserParks(userName);
 	}
 	
+	public static List<String> getJobVolunteers(final String jobName) {
+		return DataStore.getInstance().getVolunteers(jobName);
+	}
+	
 	/*====================== Business Rules ======================*/
 	
 	private static boolean maxNumberPendingJobsExceeded(final String jobName) {
@@ -163,8 +167,9 @@ public final class Controller {
 		return ChronoUnit.DAYS.between(LocalDateTime.now(), Job.getStart(jobName)) < DataStore.getInstance().getMinDaysFromNowToVolunteer();
 	}
 	
-	private static boolean maxVolunteersPerJobExceeded(final String parkName, final String jobName) {
-		return DataStore.getInstance().getVolunteers(parkName, jobName).size() + 1 >= DataStore.getInstance().getMaxVolunteersPerJob();
+	private static boolean maxVolunteersPerJobExceeded(final String jobName) {
+		System.out.println(DataStore.getInstance().getVolunteers(jobName).size());
+		return DataStore.getInstance().getVolunteers(jobName).size() + 1 > DataStore.getInstance().getMaxVolunteersPerJob();
 	}
 	
 }
