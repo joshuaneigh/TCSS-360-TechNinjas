@@ -7,7 +7,7 @@ import com.theTechNinjas.urbanParks.model.Controller;
 import com.theTechNinjas.urbanParks.model.User;
 import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
 
-public class MaximumNumberOfVolunteers {
+public class TestBR2b {
   //BR: Not more than the maximum number of volunteers for any job, default of 10.
 
 	String jobOne;

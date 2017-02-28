@@ -157,7 +157,7 @@ final class DataStore implements Serializable {
 		return type.cast(ois.readObject());
 	}
 	
-	public void addUser(final String userName, final String userType) throws IllegalFormatException {
+	public void addUser(final String userName, final String userType) {
 		Objects.requireNonNull(userName);
 		userTypeMap.put(userName, userType);
 		userParkMap.put(userName, new ArrayList<>());

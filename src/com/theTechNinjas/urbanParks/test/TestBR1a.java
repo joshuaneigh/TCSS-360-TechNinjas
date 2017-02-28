@@ -1,8 +1,6 @@
 package com.theTechNinjas.urbanParks.test;
 
-import static org.junit.Assert.*;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,14 +10,18 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.theTechNinjas.urbanParks.model.Controller;
-import com.theTechNinjas.urbanParks.model.DataStore;
-import com.theTechNinjas.urbanParks.model.exception.IllegalFormatException;
 import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
 
+/**
+ * Tests Business Rule a of User Story #1
+ * @rule A volunteer cannot sign up for more than one job on any given day. 
+ *
+ * @author Jasmine Dacones | jazzyd25@uw.edu
+ * @version 27 Feb 2017
+ */
 public class TestBR1a {
 
 	private static final String VOLUNTEER_ONE = "jocelynRider";
-	private static final String SERIALIZED_PATH = "./data/data2.ser";
 	private static final String parkOne = "Wright Park";
 	private static final String parkTwo = "Point Defiance Park";
 	private static final String jobOne = "Clean Up the Park\tRake the leaves.\t2017-03-25 05:00\t2017-03-25 06:00";
@@ -36,6 +38,13 @@ public class TestBR1a {
         if (DATA_PATH.toFile().isFile()) {
             Files.copy(DATA_PATH, BACKUP_PATH);
         }
+        
+		Controller.addUser(VOLUNTEER_ONE, "Volunteer");
+		Controller.addPark(parkOne);
+		Controller.addPark(parkTwo);
+		Controller.addJob(parkOne, jobOne);
+		Controller.addJob(parkTwo, jobTwo);
+		Controller.addJob(parkTwo, jobThree);
     }
 
     @AfterClass
@@ -48,19 +57,14 @@ public class TestBR1a {
         else {
             Files.deleteIfExists(DATA_PATH);
         }            
-		Controller.addUser("jocelynRider", "Volunteer");
-		Controller.addPark(parkOne);
-		Controller.addPark(parkTwo);
-		Controller.addJob(parkOne, jobOne);
-		Controller.addJob(parkTwo, jobTwo);
-		Controller.addJob(parkTwo, jobThree);
+
     }
     
-
 	@Test(expected = ScheduleConflictException.class)
-	public void testVolunteerSignUpForMoreThanOneJobOnSameDay() {
-		DataStore.getInstance().assignVolunteer(VOLUNTEER_ONE, parkOne, jobOne);
-		DataStore.getInstance().assignVolunteer(VOLUNTEER_ONE, parkTwo, jobThree);
+	public void testVolunteerSignUpForMoreThanOneJobOnSameDay_ScheduleConflictException() 
+			throws ScheduleConflictException {
+		Controller.volunteerJob(VOLUNTEER_ONE, parkOne, jobOne);
+		Controller.volunteerJob(VOLUNTEER_ONE, parkOne, jobThree);
 	}
 }
 

@@ -3,7 +3,6 @@ package com.theTechNinjas.urbanParks.test;
 import com.theTechNinjas.urbanParks.model.exception.NoSuchParkException;
 import com.theTechNinjas.urbanParks.model.exception.NoSuchUserException;
 import com.theTechNinjas.urbanParks.model.Controller;
-import com.theTechNinjas.urbanParks.model.DataStore;
 
 import static org.junit.Assert.*;
 
