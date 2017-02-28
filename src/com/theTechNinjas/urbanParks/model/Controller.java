@@ -81,6 +81,14 @@ public final class Controller {
 		else DataStore.getInstance().assignVolunteer(userName, parkName, jobName);
 	}
 	
+	public static void addUser(final String userName, final String userType) {
+		DataStore.getInstance().addUser(userName, userType);
+	}
+	
+	public static void addPark(final String parkName) {
+		DataStore.getInstance().addPark(parkName);
+	}
+	
 	public static List<String> getParkJobs(final String parkName) {
 		Objects.requireNonNull(parkName);
 		return DataStore.getInstance().getParkJobs(parkName);

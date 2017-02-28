@@ -4,7 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(TestRunner.class)
-@Suite.SuiteClasses({ BusinessRulesTest.class })
+@Suite.SuiteClasses({ UserStoriesTest.class })
 
 /**
  * This class is used to declare the JUnit Test Suite. The SuiteClasses must be
@@ -21,5 +21,4 @@ import org.junit.runners.Suite;
  * 
  * @version 23 Feb 2017
  */
-public class TestSuite {
-}
+public class TestSuite {}
