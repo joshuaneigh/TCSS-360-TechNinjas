@@ -4,15 +4,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.theTechNinjas.urbanParks.model.Controller;
-import com.theTechNinjas.urbanParks.model.User;
 import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
 
-public class TestBR2b {
 /**
  * @author Youcef Bennour | ybennour@uw.edu
  * @version 26 Feb 2017
  */
-public class MaximumNumberOfVolunteers {
+public class TestBR2b {
   //BR: Not more than the maximum number of volunteers for any job, default of 10.
 
 	String jobOne;
@@ -31,14 +29,14 @@ public class MaximumNumberOfVolunteers {
 		
 		Controller.addPark("Jarrell Cove State Park");
 		Controller.addJob("Jarrell Cove State Park", jobOne);
-		Controller.addUser(volunteerOne, User.VOLUNTEER);
-		Controller.addUser(volunteerTwo, User.VOLUNTEER);
-		Controller.addUser(volunteerThree, User.VOLUNTEER);
-		Controller.addUser(volunteerFour, User.VOLUNTEER);
-		Controller.addUser(volunteerFive, User.VOLUNTEER);
-		Controller.addUser(volunteerSix, User.VOLUNTEER);
-		Controller.addUser(volunteerSeven, User.VOLUNTEER);
-		Controller.addUser(volunteerEight, User.VOLUNTEER);
+		Controller.addUser(volunteerOne, "Volunteer");
+		Controller.addUser(volunteerTwo, "Volunteer");
+		Controller.addUser(volunteerThree, "Volunteer");
+		Controller.addUser(volunteerFour, "Volunteer");
+		Controller.addUser(volunteerFive, "Volunteer");
+		Controller.addUser(volunteerSix, "Volunteer");
+		Controller.addUser(volunteerSeven, "Volunteer");
+		Controller.addUser(volunteerEight, "Volunteer");
 
 		
 		Controller.volunteerJob(volunteerOne,"Jarrell Cove State Park", jobOne);
@@ -56,14 +54,14 @@ public class MaximumNumberOfVolunteers {
 	@Test (expected = NullPointerException.class)
 	public void checkIfTheVolunteerExist() throws ScheduleConflictException{
 		String volunteerOne = null;
-		Controller.addUser(volunteerOne, User.VOLUNTEER);
+		Controller.addUser(volunteerOne, "Volunteer");
 		Controller.volunteerJob(volunteerOne,"Jarrell Cove State Park", jobOne);
 	}
 	
 	@Test
 	public void checkIfVolunteerLessThanMaximum() throws ScheduleConflictException{
 		String volunteerNine = "Alvaro Garcia";
-		Controller.addUser(volunteerNine, User.VOLUNTEER);
+		Controller.addUser(volunteerNine, "Volunteer");
 		Controller.volunteerJob(volunteerNine,"Jarrell Cove State Park", jobOne);
 	}
 	
@@ -72,8 +70,8 @@ public class MaximumNumberOfVolunteers {
 		String volunteerNine = "Melania Trump";
 		String volunteerTen = "Donald Trump";
 		
-		Controller.addUser(volunteerNine, User.VOLUNTEER);
-		Controller.addUser(volunteerTen, User.VOLUNTEER);
+		Controller.addUser(volunteerNine, "Volunteer");
+		Controller.addUser(volunteerTen,"Volunteer");
 		
 		Controller.volunteerJob(volunteerNine,"Jarrell Cove State Park", jobOne);
 		Controller.volunteerJob(volunteerTen,"Jarrell Cove State Park", jobOne);
@@ -86,9 +84,9 @@ public class MaximumNumberOfVolunteers {
 		String volunteerEleven = "Joy Liz";
 		
 		
-		Controller.addUser(volunteerNine, User.VOLUNTEER);
-		Controller.addUser(volunteerTen, User.VOLUNTEER);
-		Controller.addUser(volunteerEleven, User.VOLUNTEER);
+		Controller.addUser(volunteerNine, "Volunteer");
+		Controller.addUser(volunteerTen, "Volunteer");
+		Controller.addUser(volunteerEleven, "Volunteer");
 		
 		Controller.volunteerJob(volunteerNine,"Jarrell Cove State Park", jobOne);
 		Controller.volunteerJob(volunteerTen,"Jarrell Cove State Park", jobOne);

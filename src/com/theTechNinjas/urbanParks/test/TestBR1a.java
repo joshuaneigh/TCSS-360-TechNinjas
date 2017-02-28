@@ -1,6 +1,7 @@
 package com.theTechNinjas.urbanParks.test;
 
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -48,7 +49,7 @@ public class TestBR1a {
     }
 
     @AfterClass
-    public static void tearDownAfterClass() throws Exception {       
+    public static void tearDownAfterClass() throws IOException {       
         // if backup file was created, overwrite data file to its original state.
         if (BACKUP_PATH.toFile().isFile()) {
             Files.copy(BACKUP_PATH, DATA_PATH);

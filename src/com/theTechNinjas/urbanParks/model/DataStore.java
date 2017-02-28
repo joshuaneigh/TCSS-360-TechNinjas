@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -256,7 +257,7 @@ final class DataStore implements Serializable {
 		LocalDateTime day = start;
 		do {
 			for (final String job : jobList) {
-				if (day.isAfter(Job.getStart(job)) || day.isBefore(Job.getEnd(job))) {
+				if (!(end.isBefore(Job.getStart(job)) || start.isAfter(Job.getEnd(job)))) {
 					if (!jobs.containsKey(day)) {
 						jobs.put(day, new ArrayList<>());
 					}

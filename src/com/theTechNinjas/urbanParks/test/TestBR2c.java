@@ -10,7 +10,7 @@ import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
  * @author Youcef Bennour | ybennour@uw.edu
  * @version 26 Feb 2017
  */
-public class MaximumNumberOfDays {
+public class TestBR2c {
 	//BR: A job cannot be longer than the maximum number of days, default of 3.
 
 	
