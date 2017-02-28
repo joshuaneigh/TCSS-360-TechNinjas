@@ -1,5 +1,11 @@
 package com.theTechNinjas.urbanParks.test;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,8 +21,15 @@ import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
  */
 public class PendingJobTest {
 
+	private static final Path DATA_PATH = Paths.get("./data/data.ser");
+	private static final Path BACKUP_PATH = Paths.get("./data/backup.ser");
+	
 	@Before
 	public void setUp() throws Exception {
+
+		if (DATA_PATH.toFile().isFile()) {
+			Files.copy(DATA_PATH, BACKUP_PATH);
+		}
 		String jobOne = "Visitor Center Volunteers\tSign Up the volunteers at the visitor Center\t2017-03-25 12:00\t2017-03-25 13:00";
 		Controller.addPark("Jarrell Cove State Park");
 		Controller.addJob("Jarrell Cove State Park", jobOne);
@@ -94,6 +107,20 @@ public class PendingJobTest {
 		Controller.addJob("Spanaway Park", jobNinteen);
 		
 		
+	}
+	
+	@After
+	public void tearDown() throws IOException {
+		Controller.reset();
+		// if backup file was created, overwrite data file to its original
+		// state.
+		if (BACKUP_PATH.toFile().isFile()) {
+			Files.copy(BACKUP_PATH, DATA_PATH);
+			Files.delete(BACKUP_PATH);
+		} // if it wasn't, delete new data file if it exists.
+		else {
+			Files.deleteIfExists(DATA_PATH);
+		}
 	}
 
 	@Test (expected = ScheduleConflictException.class) 
