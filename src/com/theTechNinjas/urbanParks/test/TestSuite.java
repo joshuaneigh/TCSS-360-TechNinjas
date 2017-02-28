@@ -4,7 +4,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(TestRunner.class)
-@Suite.SuiteClasses({ UserStoriesTest.class, TestBR1a.class, TestBR1b.class, TestBR2d.class, TestBR3c.class })
+@Suite.SuiteClasses({ UserStoriesTest.class, TestBR1a.class, TestBR1b.class, TestBR2d.class, TestBR3c.class,
+    ControllerGettersTest.class})
 
 /**
  * This class is used to declare the JUnit Test Suite. The SuiteClasses must be
