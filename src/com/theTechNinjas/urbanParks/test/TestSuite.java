@@ -8,9 +8,9 @@ import org.junit.runners.Suite;
 	UserStoriesTest.class, 
 	TestBR1a.class, 
 	TestBR1b.class, 
-	TestBR2a.class, 
-	TestBR2b.class, 
-	TestBR2c.class, 
+	MaximumNumberOfDaysTest.class, 
+	MaximumNumberOfVolunteersTest.class, 
+	PendingJobTest.class, 
 	TestBR2d.class, 
 	TestBR3c.class, 
 	ControllerGettersTest.class 

@@ -20,7 +20,7 @@ import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
  * @author Youcef Bennour | ybennour@uw.edu
  * @version 26 Feb 2017
  */
-public class TestBR2c {
+public class MaximumNumberOfDaysTest {
 	
 	private static final Path DATA_PATH = Paths.get("./data/data.ser");
     private static final Path BACKUP_PATH = Paths.get("./data/backup.ser");
