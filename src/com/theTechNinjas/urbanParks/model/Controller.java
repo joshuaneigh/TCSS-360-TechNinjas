@@ -119,6 +119,10 @@ public final class Controller {
 		return DataStore.getInstance().getParks();
 	}
 	
+	public static List<String> getUserParks(final String userName) {
+		return DataStore.getInstance().getUserParks(userName);
+	}
+	
 	/*====================== Business Rules ======================*/
 	
 	private static boolean maxNumberPendingJobsExceeded(final String jobName) {

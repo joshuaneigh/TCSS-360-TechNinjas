@@ -80,7 +80,7 @@ public final class TextUI {
 		};
 		
 		ADD_JOB = () -> {
-			selectPark();
+			selectUserPark();
 			printHeader("Add a new Job, %s", Controller.getLoggedInUser(), SELECTED_PARK);
 			System.out.print("Please enter the Job name: ");
 			final String name = inputString();
@@ -205,6 +205,27 @@ public final class TextUI {
 			if (SCANNER.hasNextLine()) input = SCANNER.nextLine();
 		} while (input == null);
 		return input;
+	}
+	
+	private static void selectUserPark() {
+		printHeader("Please select a Park", Controller.getLoggedInUser());
+		final List<String> parks = Controller.getUserParks(Controller.getLoggedInUser());
+		if (parks.isEmpty()) {
+			System.out.println("\nYou are not assigned to any Parks.");
+			System.out.print("Press [Enter] to return.");
+			pause();
+			back();
+			return;
+		}
+		
+		final Map<String, MenuItem> parkMap = new HashMap<>();
+		for (final String park : parks) {
+			parkMap.put(park, () -> {
+				SELECTED_PARK = park;
+				System.out.println(park);
+			});
+		}
+		showMenu(parkMap);
 	}
 	
 	private static void selectPark() {
