@@ -8,6 +8,11 @@ import com.theTechNinjas.urbanParks.model.User;
 import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
 
 public class TestBR2b {
+/**
+ * @author Youcef Bennour | ybennour@uw.edu
+ * @version 26 Feb 2017
+ */
+public class MaximumNumberOfVolunteers {
   //BR: Not more than the maximum number of volunteers for any job, default of 10.
 
 	String jobOne;

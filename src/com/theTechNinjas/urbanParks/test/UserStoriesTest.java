@@ -46,10 +46,11 @@ public class UserStoriesTest {
 	
 	@Test
 	public void testAsAVolunteerIWantToSignUpForAJob() throws NoSuchUserException, InvalidUserTypeException, ScheduleConflictException {
+		final String job = "Trim Hedges\tThe hedges near the fountain need trimmed.\t2017-03-20 08:00\t2017-03-20 12:00";
 		Controller.login("jneigh");
-		assertFalse(Controller.getVolunteerJobs("jneigh").contains("Trim Hedges\tThe hedges near the fountain need trimmed.\t2017-03-20 08:00\t2017-03-20 12:00"));
-		Controller.volunteerJob("jneigh", "Wright Park", "Trim Hedges\tThe hedges near the fountain need trimmed.\t2017-03-20 08:00\t2017-03-20 12:00");
-		assertTrue(Controller.getVolunteerJobs("jneigh").contains("Trim Hedges\tThe hedges near the fountain need trimmed.\t2017-03-20 08:00\t2017-03-20 12:00"));
+		assertFalse(Controller.getVolunteerJobs("jneigh").contains(job));
+		Controller.volunteerJob("jneigh", "Wright Park", job);
+		assertTrue(Controller.getVolunteerJobs("jneigh").contains(job));
 		Controller.logout();
 	}
 	

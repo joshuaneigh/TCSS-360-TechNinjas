@@ -95,7 +95,7 @@ final class DataStore implements Serializable {
 		maxDaysFromNowAllowedInSchedule = 75;
 		minDaysFromNowToVolunteer = 2;
 		
-		Controller.addUser("admin", User.ADMINISTRATOR);
+		addUser("admin", User.ADMINISTRATOR);
 	}
 	
 	/**
@@ -167,10 +167,9 @@ final class DataStore implements Serializable {
 	 * Adds the specified {@link Park} to the system.
 	 * 
 	 * @throws {@link NullPointerException} if any of the passed arguments are null
-	 * @throws {@link IllegalFormatException} if the passed {@link Park} is not in the specified format
 	 * @throws {@link DuplicateParkException} if the passed {@link Park} is already added
 	 */
-	public void addPark(final String parkName) throws IllegalFormatException {
+	public void addPark(final String parkName) {
 		Objects.requireNonNull(parkName);
 		if (parkList.contains(parkName)) throw new DuplicateParkException(parkName);
 		parkList.add(parkName);
@@ -294,6 +293,10 @@ final class DataStore implements Serializable {
 	
 	public List<String> getParks() {
 		return new ArrayList<>(parkList);
+	}
+	
+	public List<String> getUserParks(final String userName) {
+		return new ArrayList<>(userParkMap.get(userName));
 	}
 	
 	public List<String> getParkJobs(final String parkName) {

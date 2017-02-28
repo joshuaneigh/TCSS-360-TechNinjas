@@ -6,7 +6,10 @@ import org.junit.Test;
 import com.theTechNinjas.urbanParks.model.Controller;
 import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
 
-
+/**
+ * @author Youcef Bennour | ybennour@uw.edu
+ * @version 26 Feb 2017
+ */
 public class PendingJobTest {
   //BR: Not more than the maximum number of pending jobs at a time, default of 20.
 

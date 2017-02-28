@@ -16,7 +16,7 @@ import org.junit.runners.model.InitializationError;
  * @author Joshua Neighbarger | jneigh@uw.edu
  * @version 10 Feb 2017
  */
-class TestRunner extends Suite {
+public class TestRunner extends Suite {
 
 	public TestRunner(final Class<?> klass, final Class<?>[] suiteClasses) throws InitializationError {
 		super(klass, suiteClasses);
