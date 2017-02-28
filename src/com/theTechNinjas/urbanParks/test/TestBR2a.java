@@ -106,8 +106,8 @@ public class PendingJobTest {
 		Controller.addPark("Lower Granite Lock & Dam-Park Host Swallow Park");
 		Controller.addJob("Lower Granite Lock & Dam-Park Host Swallow Park", jobTwentyOne);
 		
-		Controller.addPark("Lower");
-		Controller.addJob("Lower", jobTwentyOne);
+		Controller.addPark("Lower Park");
+		Controller.addJob("Lower Park", jobTwentyOne);
 	}
 	
 	@Test 
