@@ -7,12 +7,13 @@ import com.theTechNinjas.urbanParks.model.Controller;
 import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
 
 /**
+ * Tests Business Rule a of User Story #2
+ * @rule Not more than the maximum number of volunteers for any job, default of 10.
+ *
  * @author Youcef Bennour | ybennour@uw.edu
  * @version 26 Feb 2017
  */
 public class TestBR2b {
-  //BR: Not more than the maximum number of volunteers for any job, default of 10.
-
 	String jobOne;
 	
 	@Before
@@ -28,7 +29,9 @@ public class TestBR2b {
 		jobOne = "Visitor Center Volunteer \tSign Up the volunteers at the visitor Center\t2017-03-25 12:00\t2017-03-25 13:00";
 		
 		Controller.addPark("Jarrell Cove State Park");
+		
 		Controller.addJob("Jarrell Cove State Park", jobOne);
+		
 		Controller.addUser(volunteerOne, "Volunteer");
 		Controller.addUser(volunteerTwo, "Volunteer");
 		Controller.addUser(volunteerThree, "Volunteer");
@@ -52,21 +55,21 @@ public class TestBR2b {
 	}
 		
 	@Test (expected = NullPointerException.class)
-	public void checkIfTheVolunteerExist() throws ScheduleConflictException{
+	public void volunteerJob_checkIfTheVolunteerExist() throws ScheduleConflictException{
 		String volunteerOne = null;
 		Controller.addUser(volunteerOne, "Volunteer");
 		Controller.volunteerJob(volunteerOne,"Jarrell Cove State Park", jobOne);
 	}
 	
 	@Test
-	public void checkIfVolunteerLessThanMaximum() throws ScheduleConflictException{
+	public void volunteerJob_checkIfNumberOfVolunteersLessThanMaximum() throws ScheduleConflictException{
 		String volunteerNine = "Alvaro Garcia";
 		Controller.addUser(volunteerNine, "Volunteer");
 		Controller.volunteerJob(volunteerNine,"Jarrell Cove State Park", jobOne);
 	}
 	
 	@Test
-	public void checkIfVolunteerEqualMaximum() throws ScheduleConflictException{
+	public void volunteerJob_checkIfNumberOfVolunteersEqualMaximum() throws ScheduleConflictException{
 		String volunteerNine = "Melania Trump";
 		String volunteerTen = "Donald Trump";
 		
