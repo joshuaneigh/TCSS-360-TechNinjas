@@ -17,7 +17,7 @@ public final class Controller {
 	
 	public static void login(final String userName) throws NoSuchUserException {
 		Objects.requireNonNull(userName);
-		DataStore data = DataStore.getInstance();
+		final DataStore data = DataStore.getInstance();
 		// Every User has exactly one User role from among Park Manager and Volunteer
 		if (data.isUser(userName)) {
 			loggedInUser = userName;
@@ -72,8 +72,8 @@ public final class Controller {
 		if (!DataStore.getInstance().isUser(userName)) throw new NoSuchUserException(userName);
 		else if (DataStore.getInstance().getUserType(userName) != User.VOLUNTEER
 				&& DataStore.getInstance().getUserType(userName) != User.ADMINISTRATOR) throw new InvalidUserTypeException("User must be of type " + User.VOLUNTEER + " but was of type " + DataStore.getInstance().getUserType(userName) + ".");
-		else if (userAlreadySignedUpForJobOnDay(userName, jobName)) ;
-		else if (minimumNumberOfDaysFromNowToVolunteerViolated(jobName)) ;
+		else if (userAlreadySignedUpForJobOnDay(userName, jobName)) throw new ScheduleConflictException("Specified user is already signed up for a job on that date");
+		else if (minimumNumberOfDaysFromNowToVolunteerViolated(jobName)) throw new ScheduleConflictException("Specified job must be greater than " + DataStore.getInstance().getMinDaysFromNowToVolunteer() + " days from now.");
 		else if (maxVolunteersPerJobExceeded(parkName, jobName)) throw new ScheduleConflictException("The maximum number of volunteers has been reached for the job " + jobName + ".");
 		else DataStore.getInstance().assignVolunteer(userName, parkName, jobName);
 	}
@@ -144,7 +144,15 @@ public final class Controller {
 	}
 	
 	private static boolean userAlreadySignedUpForJobOnDay(final String userName, final String jobName) {
-		return true;
+		final DataStore data = DataStore.getInstance();
+		final List<String> jobs = data.getVolunteerJobs(userName);
+		for (final String job : jobs) {
+			if (! (Job.getEnd(job).isBefore(Job.getStart(jobName)) 
+					|| Job.getStart(job).isAfter(Job.getEnd(jobName)))) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private static boolean minimumNumberOfDaysFromNowToVolunteerViolated(final String jobName) {

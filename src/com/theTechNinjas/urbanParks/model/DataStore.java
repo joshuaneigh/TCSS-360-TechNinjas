@@ -95,7 +95,7 @@ final class DataStore implements Serializable {
 		maxDaysFromNowAllowedInSchedule = 75;
 		minDaysFromNowToVolunteer = 2;
 		
-		Controller.addUser("admin", User.ADMINISTRATOR);
+		addUser("admin", User.ADMINISTRATOR);
 	}
 	
 	/**
