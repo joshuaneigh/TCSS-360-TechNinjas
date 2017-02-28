@@ -13,6 +13,12 @@ import com.theTechNinjas.urbanParks.model.exception.IllegalFormatException;
 import com.theTechNinjas.urbanParks.model.exception.NoSuchUserException;
 import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
 
+/**
+ * Responsible for showing and driving all UI components.
+ *
+ * @author Joshua Neighbarger | jneigh@uw.edu
+ * @version 27 Feb 2017
+ */
 public final class TextUI {
 	
 	private static final String PROGRAM_NAME;
@@ -103,9 +109,10 @@ public final class TextUI {
 		WELCOME = () -> {
 			printHeader("Welcome, %s", Controller.getLoggedInUser());
 			final Map<String, MenuItem> map = new HashMap<>();
-			map.put("Volunteer for a Job", () -> navigate(VOLUNTEER_JOB));
-			map.put("View my Jobs", () -> navigate(VIEW_MY_JOBS));
-			map.put("Add a new Job", () -> navigate(ADD_JOB));
+			final String userName = Controller.getLoggedInUser();
+			if (Controller.getUserType(userName).equals("Administrator") || Controller.getUserType(userName).equals("Volunteer")) map.put("Volunteer for a Job", () -> navigate(VOLUNTEER_JOB));
+			if (Controller.getUserType(userName).equals("Administrator") || Controller.getUserType(userName).equals("Volunteer")) map.put("View my Jobs", () -> navigate(VIEW_MY_JOBS));
+			if (Controller.getUserType(userName).equals("Administrator") || Controller.getUserType(userName).equals("Park Manager")) map.put("Add a new Job", () -> navigate(ADD_JOB));
 			map.put("Exit", () -> exit());
 			showMenu(map);
 		};
