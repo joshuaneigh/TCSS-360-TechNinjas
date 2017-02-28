@@ -57,6 +57,7 @@ public final class DataStore implements Serializable {
 	private int maxJobLengthDays;
 	private int maxJobsPerDay;
 	private int maxDaysFromNowAllowedInSchedule;
+	private int minDaysFromNowToVolunteer;
 
 	/*
 	 * This static block's sole responsibility is to deserialize the DataStore if it exists.
@@ -92,14 +93,9 @@ public final class DataStore implements Serializable {
 		maxJobLengthDays = 3;
 		maxJobsPerDay = 4;
 		maxDaysFromNowAllowedInSchedule = 75;
+		minDaysFromNowToVolunteer = 2;
 		
-		try {
-			addUser("admin", "Administrator");
-			addPark("theTestPark");
-			assignPark("admin", "theTestPark");
-		} catch (IllegalFormatException e) {
-			e.printStackTrace();
-		}
+		Controller.addUser("admin", User.ADMINISTRATOR);
 	}
 	
 	/**
@@ -234,9 +230,9 @@ public final class DataStore implements Serializable {
 		Objects.requireNonNull(parkName);
 		Objects.requireNonNull(jobName);
 		if (!userTypeMap.containsKey(userName)) throw new NoSuchUserException(userName);
-		if (!parkList.contains(parkName)) throw new NoSuchParkException(parkName);
-		if (!jobList.contains(jobName)) throw new NoSuchJobException(jobName);
-		if (userParkMap.containsKey(userName) && !userParkMap.get(userName).contains(parkName)) { // User not already associated with park but is added to map
+		else if (!parkList.contains(parkName)) throw new NoSuchParkException(parkName);
+		else if (!jobList.contains(jobName)) throw new NoSuchJobException(jobName);
+		else if (userParkMap.containsKey(userName) && !userParkMap.get(userName).contains(parkName)) { // User not already associated with park but is added to map
 			userParkMap.get(userName).add(parkName);
 		} else {
 			userParkMap.put(userName, Arrays.asList(parkName));
@@ -327,8 +323,16 @@ public final class DataStore implements Serializable {
 		return maxJobsPerDay;
 	}
 	
+	public int getMaxVolunteersPerJob() {
+		return maxVolunteersPerJob;
+	}
+	
 	public int getMaxDaysFromNowAllowedInSchedule() {
 		return maxDaysFromNowAllowedInSchedule;
+	}
+	
+	public int getMinDaysFromNowToVolunteer() {
+		return minDaysFromNowToVolunteer;
 	}
 	
 }
