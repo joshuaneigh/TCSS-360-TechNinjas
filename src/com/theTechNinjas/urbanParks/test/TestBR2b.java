@@ -7,6 +7,10 @@ import com.theTechNinjas.urbanParks.model.Controller;
 import com.theTechNinjas.urbanParks.model.User;
 import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
 
+/**
+ * @author Youcef Bennour | ybennour@uw.edu
+ * @version 26 Feb 2017
+ */
 public class MaximumNumberOfVolunteers {
   //BR: Not more than the maximum number of volunteers for any job, default of 10.
 
