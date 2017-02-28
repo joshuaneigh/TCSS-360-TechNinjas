@@ -7,12 +7,13 @@ import com.theTechNinjas.urbanParks.model.exception.IllegalFormatException;
 import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
 
 /**
+ * Tests Business Rule a of User Story #2
+ * @rule A job cannot be longer than the maximum number of days, default of 3.
+ *
  * @author Youcef Bennour | ybennour@uw.edu
  * @version 26 Feb 2017
  */
 public class TestBR2c {
-	//BR: A job cannot be longer than the maximum number of days, default of 3.
-
 	
 	@Test (expected = ScheduleConflictException.class) 
 	public void checkWhetherTheNumberOfDaysExceedsMaximum() throws ScheduleConflictException{
