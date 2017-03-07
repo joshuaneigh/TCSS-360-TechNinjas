@@ -142,8 +142,8 @@ public final class Controller {
 	}
 	
 	private static boolean maxJobLengthExceeded(final String jobName) {
-		return ChronoUnit.DAYS.between(Job.getStart(jobName).toLocalDate(), Job.getEnd(jobName).toLocalDate())
-		        >= DataStore.getInstance().getMaxJobLengthDays();
+		return ChronoUnit.DAYS.between(Job.getStart(jobName).toLocalDate(), Job.getEnd(jobName).toLocalDate()) + 1
+		        > DataStore.getInstance().getMaxJobLengthDays();
 	}
 	
 	private static boolean maxJobsPerDayExceeded(final String jobName) {
@@ -157,7 +157,9 @@ public final class Controller {
 	}
 	
 	private static boolean maxDaysFromNowExceeded(final String jobName) {
-		return Job.getEnd(jobName).toLocalDate().isAfter(LocalDate.now().plusDays(DataStore.getInstance().getMaxDaysFromNowAllowedInSchedule()));
+	    final LocalDate jobEndDate = Job.getEnd(jobName).toLocalDate();
+        final LocalDate todayDate = LocalDate.now();
+        return jobEndDate.isAfter(todayDate.plusDays(DataStore.getInstance().getMaxDaysFromNowAllowedInSchedule()));
 	}
 	
 	private static boolean userAlreadySignedUpForJobOnDay(final String userName, final String jobName) {
@@ -168,8 +170,8 @@ public final class Controller {
 		for (final String job : jobs) {
 		    final LocalDate iteratedJobStartDate = Job.getStart(job).toLocalDate();
 		    final LocalDate iteratedJobEndDate = Job.getEnd(jobName).toLocalDate();
-			if (!(iteratedJobEndDate.isBefore(givenJobStartDate) 
-					&& iteratedJobStartDate.isAfter(givenJobEndDate))) {
+			if (!(iteratedJobStartDate.isBefore(givenJobStartDate) && iteratedJobEndDate.isBefore(givenJobStartDate)
+                    || iteratedJobEndDate.isAfter(givenJobEndDate) && iteratedJobStartDate.isAfter(givenJobEndDate))) {
 				return true;
 			}
 		}

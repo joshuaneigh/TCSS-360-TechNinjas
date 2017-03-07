@@ -32,10 +32,10 @@ public class ControllerGettersTest {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
     	Controller.reset();
-    	
-        //create backup file if data exists
+    	//create backup file if data exists
         if (DATA_PATH.toFile().isFile()) {
             Files.copy(DATA_PATH, BACKUP_PATH, StandardCopyOption.REPLACE_EXISTING);
+            Files.delete(DATA_PATH);
         }
         
         Controller.login("admin");

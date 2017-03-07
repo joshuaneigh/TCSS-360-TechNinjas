@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import org.junit.After;
 import org.junit.Before;
@@ -28,8 +29,10 @@ public class PendingJobTest {
 	public void setUp() throws Exception {
 
 		if (DATA_PATH.toFile().isFile()) {
-			Files.copy(DATA_PATH, BACKUP_PATH);
+			Files.copy(DATA_PATH, BACKUP_PATH, StandardCopyOption.REPLACE_EXISTING);
+			Files.delete(DATA_PATH);
 		}
+		Controller.reset();
 		
 		String jobOne = "Visitor Center Volunteers\tSign Up the volunteers at the visitor Center\t2017-03-25 12:00\t2017-03-25 13:00";
 		Controller.addPark("Jarrell Cove State Park");
@@ -111,11 +114,10 @@ public class PendingJobTest {
 	
 	@After
 	public void tearDown() throws IOException {
-		Controller.reset();
 		// if backup file was created, overwrite data file to its original
 		// state.
 		if (BACKUP_PATH.toFile().isFile()) {
-			Files.copy(BACKUP_PATH, DATA_PATH);
+			Files.copy(BACKUP_PATH, DATA_PATH, StandardCopyOption.REPLACE_EXISTING);
 			Files.delete(BACKUP_PATH);
 		} // if it wasn't, delete new data file if it exists.
 		else {
@@ -132,16 +134,10 @@ public class PendingJobTest {
 		String jobTwentyOne = "Park Host \tHost the visitors of the park\t2017-03-25 12:00\t2017-03-25 13:00";
 		Controller.addPark("Lower Granite Lock & Dam-Park Host Swallow Park");
 		Controller.addJob("Lower Granite Lock & Dam-Park Host Swallow Park", jobTwentyOne);
-		
-		Controller.addPark("Lower Park");
-		Controller.addJob("Lower Park", jobTwentyOne);
 	}
 	
 	@Test 
 	public void addJob_checkWhetherTheNumberOfJobsEqualMaximum() throws ScheduleConflictException{
-		String jobNinteen = "HISTORIC GARDEN VOLUNTEER\tHelp maintain the history of the park\t2017-03-25 12:00\t2017-03-25 13:00";
-		Controller.addPark("Bellevue Park");
-		Controller.addJob("Bellevue Park", jobNinteen);
 		
 		String jobTwenty = "Maintenance Volunteer\tMaintain the park\t2017-03-25 12:00\t2017-03-25 13:00";
 		Controller.addPark("Kent Trail");

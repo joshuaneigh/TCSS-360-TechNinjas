@@ -1,5 +1,12 @@
 package com.theTechNinjas.urbanParks.test;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +20,7 @@ import com.theTechNinjas.urbanParks.model.exception.ScheduleConflictException;
  * @author Youcef Bennour | ybennour@uw.edu
  * @version 26 Feb 2017
  */
-public class MaximumNumberOfVolunteers {
+public class MaximumNumberOfVolunteersTest {
     String jobOne;
     
     private static final Path DATA_PATH = Paths.get("./data/data.ser");
@@ -22,8 +29,10 @@ public class MaximumNumberOfVolunteers {
     @Before
     public void setUp() throws ScheduleConflictException, IOException  {
         if (DATA_PATH.toFile().isFile()) {
-            Files.copy(DATA_PATH, BACKUP_PATH);
+            Files.copy(DATA_PATH, BACKUP_PATH, StandardCopyOption.REPLACE_EXISTING);
+            Files.delete(BACKUP_PATH);
         }
+        Controller.reset();
 		
         String volunteerOne = "Youcef Bennour";
 	String volunteerTwo = "Joshua Neigh";
@@ -60,12 +69,12 @@ public class MaximumNumberOfVolunteers {
 		
 		
      }
-    @After
+    
+    @AfterClass
     public static void tearDown() throws IOException {
-        Controller.reset();
         // if backup file was created, overwrite data file to its original state.
         if (BACKUP_PATH.toFile().isFile()) {
-            Files.copy(BACKUP_PATH, DATA_PATH);
+            Files.copy(BACKUP_PATH, DATA_PATH, StandardCopyOption.REPLACE_EXISTING);
             Files.delete(BACKUP_PATH);
         } // if it wasn't, delete new data file if it exists.
         else {

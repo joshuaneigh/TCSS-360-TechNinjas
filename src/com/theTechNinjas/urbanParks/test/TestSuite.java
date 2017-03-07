@@ -10,7 +10,10 @@ import org.junit.runners.Suite;
 	TestBR1b.class,
 	TestBR2d.class, 
 	TestBR3c.class, 
-	ControllerGettersTest.class 
+	ControllerGettersTest.class,
+	MaximumNumberOfDaysTest.class,
+	MaximumNumberOfVolunteersTest.class,
+	PendingJobTest.class
 })
 
 /**

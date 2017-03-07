@@ -131,6 +131,7 @@ public class UserStoriesTest {
 	
 	@Test (expected=ScheduleConflictException.class)
 	public void testAsAVolunteerIWantToSignUpForAJob_userSignedForJobOnSameDay_expectScheduleConflictException() throws ScheduleConflictException {
+	    Controller.volunteerJob(VOLUNTEER, TEST_PARK, JOB_1);
 		Controller.volunteerJob(VOLUNTEER, TEST_PARK, JOB_2);
 	}
 	
