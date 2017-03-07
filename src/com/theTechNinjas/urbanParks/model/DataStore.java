@@ -12,6 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -268,13 +269,13 @@ final class DataStore implements Serializable {
 	}
 	
 	// inclusive
-	public Map<LocalDateTime, List<String>> getJobsOnDates(final LocalDateTime start, final LocalDateTime end) {
-		final Map<LocalDateTime, List<String>> jobs = new HashMap<>();
+	public Map<LocalDate, List<String>> getJobsOnDates(final LocalDate start, final LocalDate end) {
+		final Map<LocalDate, List<String>> jobs = new HashMap<>();
 		long numDays = ChronoUnit.DAYS.between(start, end);
-		LocalDateTime day = start;
+		LocalDate day = start;
 		do {
 			for (final String job : jobList) {
-				if (!(end.isBefore(Job.getStart(job)) || start.isAfter(Job.getEnd(job)))) {
+				if (!(end.isBefore(Job.getStart(job).toLocalDate()) && start.isAfter(Job.getEnd(job).toLocalDate()))) {
 					if (!jobs.containsKey(day)) {
 						jobs.put(day, new ArrayList<>());
 					}
@@ -283,7 +284,7 @@ final class DataStore implements Serializable {
 			}
 			day.plusDays(1);
 			numDays--;
-		} while (numDays > 0);
+		} while (numDays >= 0);
 		return jobs;
 	}
 	

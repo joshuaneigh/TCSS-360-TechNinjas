@@ -7,10 +7,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({ 
 	UserStoriesTest.class, 
 	TestBR1a.class, 
-	TestBR1b.class, 
-	MaximumNumberOfDaysTest.class, 
-	MaximumNumberOfVolunteersTest.class, 
-	PendingJobTest.class, 
+	TestBR1b.class,
 	TestBR2d.class, 
 	TestBR3c.class, 
 	ControllerGettersTest.class 

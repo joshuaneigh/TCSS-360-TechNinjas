@@ -36,6 +36,7 @@ public class TestBR3c {
 	@BeforeClass
 	public static void init() {
 		new File(SERIALIZED_PATH).renameTo(new File(SERIALIZED_PATH + ".bak"));
+		Controller.reset();
 		Controller.login("admin");
 		Controller.addUser(USER_NAME_1, USER_NAME_1);
 		Controller.addUser(USER_NAME_2, USER_NAME_2);
@@ -45,7 +46,6 @@ public class TestBR3c {
 	
 	@AfterClass
 	public static void post() {
-		Controller.reset();
 		new File(SERIALIZED_PATH).delete();
 		new File(SERIALIZED_PATH + ".bak").renameTo(new File(SERIALIZED_PATH));
 	}

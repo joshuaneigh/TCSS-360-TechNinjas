@@ -3,6 +3,9 @@ package com.theTechNinjas.urbanParks.test;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -42,9 +45,10 @@ public class TestBR2d {
 	public static void setUpBeforeClass() throws Exception {    
 		//create backup file if data exists
 		if (DATA_PATH.toFile().isFile()) {
-			Files.copy(DATA_PATH, BACKUP_PATH);
+			Files.copy(DATA_PATH, BACKUP_PATH, StandardCopyOption.REPLACE_EXISTING);
 		}
 		
+		Controller.reset();
 		Controller.addUser(VOLUNTEER_ONE, "Volunteer");
 		Controller.addPark(parkOne);
 		Controller.addPark(parkTwo);
@@ -55,10 +59,9 @@ public class TestBR2d {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {       
-		Controller.reset();
 		//if backup file was created, overwrite data file to its original state.
 		if (BACKUP_PATH.toFile().isFile()) {
-			Files.copy(BACKUP_PATH, DATA_PATH);
+			Files.copy(BACKUP_PATH, DATA_PATH, StandardCopyOption.REPLACE_EXISTING);
 			Files.delete(BACKUP_PATH);
 		} // if it wasn't, delete new data file if it exists.
 		else {
@@ -67,10 +70,12 @@ public class TestBR2d {
 	}
 
 	
-	@Test(expected = ScheduleConflictException.class)
-	public void testMaximumJobsInOneDay_MaxNotReached_ScheduleConflictException()
-			throws ScheduleConflictException {
-		Controller.addJob(parkTwo, jobSix);
+	public void testMaximumJobsInOneDay_MaxNotReached_ScheduleConflictException() {
+		try {
+		    Controller.addJob(parkTwo, jobSix);
+		} catch (ScheduleConflictException e) {
+		    fail();
+		} 
 	}
 	
 
