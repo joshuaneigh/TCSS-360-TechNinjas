@@ -1,11 +1,12 @@
 package com.theTechNinjas.urbanParks.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import com.theTechNinjas.urbanParks.model.exception.DuplicateAuthenticationException;
 import com.theTechNinjas.urbanParks.model.exception.IllegalFormatException;
 import com.theTechNinjas.urbanParks.model.exception.InvalidUserTypeException;
 import com.theTechNinjas.urbanParks.model.exception.NoSuchUserException;
@@ -15,10 +16,11 @@ public final class Controller {
 
 	private static String loggedInUser;
 	
-	public static void login(final String userName) throws NoSuchUserException {
+	public static void login(final String userName) {
 		Objects.requireNonNull(userName);
 		final DataStore data = DataStore.getInstance();
 		// Every User has exactly one User role from among Park Manager and Volunteer
+		if (loggedInUser != null) throw new DuplicateAuthenticationException();
 		if (data.isUser(userName)) {
 			loggedInUser = userName;
 		} else {
@@ -29,6 +31,7 @@ public final class Controller {
 	
 	public static void logout() {
 		DataStore.getInstance().exit();
+		loggedInUser = null;
 	}
 	
 	/**
@@ -42,7 +45,7 @@ public final class Controller {
 	 * @throws {@link IllegalFormatException} if the Job's end date is before the start date
 	 * @throws {@link ScheduleConflictException}
 	 */
-	public static void addJob(final String parkName, final String jobName) throws ScheduleConflictException, IllegalFormatException {
+	public static void addJob(final String parkName, final String jobName) throws ScheduleConflictException {
 		Objects.requireNonNull(parkName);
 		Objects.requireNonNull(jobName);
 		final DataStore data = DataStore.getInstance();
@@ -65,7 +68,7 @@ public final class Controller {
 	 * @throws {@link InvalidUserTypeException} if the user is not of type Volunteer
 	 * @throws {@link ScheduleConflictException} if the maximum number of volunteers has been reached
 	 */
-	public static void volunteerJob(final String userName, final String parkName, final String jobName) throws NoSuchUserException, InvalidUserTypeException, ScheduleConflictException {
+	public static void volunteerJob(final String userName, final String parkName, final String jobName) throws ScheduleConflictException {
 		Objects.requireNonNull(userName);
 		Objects.requireNonNull(parkName);
 		Objects.requireNonNull(jobName);
@@ -144,15 +147,15 @@ public final class Controller {
 	private static boolean maxJobsPerDayExceeded(final String jobName) {
 		Objects.requireNonNull(jobName);
 		final DataStore data = DataStore.getInstance();
-		final Map<LocalDateTime, List<String>> jobs = data.getJobsOnDates(Job.getStart(jobName), Job.getEnd(jobName));
-		for (final LocalDateTime date : jobs.keySet()) {
+		final Map<LocalDate, List<String>> jobs = data.getJobsOnDates(Job.getStart(jobName).toLocalDate(), Job.getEnd(jobName).toLocalDate());
+		for (final LocalDate date : jobs.keySet()) {
 			if (jobs.get(date).size() >= data.getMaxJobPerDay()) return true;
 		}
 		return false;
 	}
 	
 	private static boolean maxDaysFromNowExceeded(final String jobName) {
-		return Job.getEnd(jobName).isAfter(LocalDateTime.now().plusDays(DataStore.getInstance().getMaxDaysFromNowAllowedInSchedule()));
+		return Job.getEnd(jobName).toLocalDate().isAfter(LocalDate.now().plusDays(DataStore.getInstance().getMaxDaysFromNowAllowedInSchedule()));
 	}
 	
 	private static boolean userAlreadySignedUpForJobOnDay(final String userName, final String jobName) {
@@ -168,11 +171,10 @@ public final class Controller {
 	}
 	
 	private static boolean minimumNumberOfDaysFromNowToVolunteerViolated(final String jobName) {
-		return ChronoUnit.DAYS.between(LocalDateTime.now(), Job.getStart(jobName)) < DataStore.getInstance().getMinDaysFromNowToVolunteer();
+		return ChronoUnit.DAYS.between(LocalDate.now(), Job.getStart(jobName).toLocalDate()) < DataStore.getInstance().getMinDaysFromNowToVolunteer();
 	}
 	
 	private static boolean maxVolunteersPerJobExceeded(final String jobName) {
-		System.out.println(DataStore.getInstance().getVolunteers(jobName).size());
 		return DataStore.getInstance().getVolunteers(jobName).size() + 1 > DataStore.getInstance().getMaxVolunteersPerJob();
 	}
 	

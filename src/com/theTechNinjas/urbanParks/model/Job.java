@@ -15,29 +15,37 @@ final class Job implements Serializable {
 	private static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm";
 	
 	public static String getName(final String jobName) {
-		final String[] items = jobName.split("\t");
-		return items[0];
+		try {
+			final String[] items = jobName.split("\t");
+			return items[0];
+		} catch (final ArrayIndexOutOfBoundsException e) {
+			throw new IllegalFormatException("The specified Job is not of proper format.");
+		}
 	}
 	
 	public static String getDescription(final String jobName) {
-		final String[] items = jobName.split("\t");
-		return items[1];
+		try {
+			final String[] items = jobName.split("\t");
+			return items[1];
+		} catch (final ArrayIndexOutOfBoundsException e) {
+			throw new IllegalFormatException("The specified Job is not of proper format.");
+		}
 	}
 	
 	public static LocalDateTime getStart(final String jobName) throws IllegalFormatException {
-		final String[] items = jobName.split("\t");
 		try {
+			final String[] items = jobName.split("\t");
 			return LocalDateTime.parse(items[2], DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
-		} catch (final DateTimeParseException e) {
+		} catch (final DateTimeParseException | ArrayIndexOutOfBoundsException e) {
 			throw new IllegalFormatException("The specified Job is not of proper format.");
 		}
 	}
 	
 	public static LocalDateTime getEnd(final String jobName) throws IllegalFormatException {
-		final String[] items = jobName.split("\t");
 		try {
+			final String[] items = jobName.split("\t");
 			return LocalDateTime.parse(items[3], DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
-		} catch (final DateTimeParseException e) {
+		} catch (final DateTimeParseException | ArrayIndexOutOfBoundsException e) {
 			throw new IllegalFormatException("The specified Job is not of proper format.");
 		}
 	}
