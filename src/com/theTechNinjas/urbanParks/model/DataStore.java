@@ -276,6 +276,7 @@ final class DataStore implements Serializable {
 		do {
 			for (final String job : jobList) {
 				if (!(end.isBefore(Job.getStart(job).toLocalDate()) || start.isAfter(Job.getEnd(job).toLocalDate()))) {
+//				if (!(end.isBefore(Job.getStart(job).toLocalDate()) && start.isAfter(Job.getEnd(job).toLocalDate()))) {
 					if (!jobs.containsKey(day)) {
 						jobs.put(day, new ArrayList<>());
 					}
@@ -284,7 +285,7 @@ final class DataStore implements Serializable {
 			}
 			day.plusDays(1);
 			numDays--;
-		} while (numDays > 0);
+		} while (numDays >= 0);
 		return jobs;
 	}
 	

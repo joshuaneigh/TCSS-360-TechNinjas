@@ -73,8 +73,8 @@ public final class Controller {
 		Objects.requireNonNull(parkName);
 		Objects.requireNonNull(jobName);
 		if (!DataStore.getInstance().isUser(userName)) throw new NoSuchUserException(userName);
-		else if (DataStore.getInstance().getUserType(userName) != User.VOLUNTEER
-				&& DataStore.getInstance().getUserType(userName) != User.ADMINISTRATOR) throw new InvalidUserTypeException("User must be of type " + User.VOLUNTEER + " but was of type " + DataStore.getInstance().getUserType(userName) + ".");
+		else if (!DataStore.getInstance().getUserType(userName).equals(User.VOLUNTEER)
+				&& !DataStore.getInstance().getUserType(userName).equals(User.ADMINISTRATOR)) throw new InvalidUserTypeException("User must be of type " + User.VOLUNTEER + " but was of type " + DataStore.getInstance().getUserType(userName) + ".");
 		else if (userAlreadySignedUpForJobOnDay(userName, jobName)) throw new ScheduleConflictException("Specified user is already signed up for a job on that date");
 		else if (minimumNumberOfDaysFromNowToVolunteerViolated(jobName)) throw new ScheduleConflictException("Specified job must be greater than " + DataStore.getInstance().getMinDaysFromNowToVolunteer() + " days from now.");
 		else if (maxVolunteersPerJobExceeded(jobName)) throw new ScheduleConflictException("The maximum number of volunteers has been reached for the job " + jobName + ".");
@@ -94,6 +94,7 @@ public final class Controller {
 	}
 	
 	public static void reset() {
+		Controller.logout();
 		DataStore.getInstance().reset();
 	}
 	
@@ -141,7 +142,8 @@ public final class Controller {
 	}
 	
 	private static boolean maxJobLengthExceeded(final String jobName) {
-		return ChronoUnit.DAYS.between(Job.getStart(jobName), Job.getEnd(jobName)) > DataStore.getInstance().getMaxJobLengthDays();
+		return ChronoUnit.DAYS.between(Job.getStart(jobName).toLocalDate(), Job.getEnd(jobName).toLocalDate())
+		        >= DataStore.getInstance().getMaxJobLengthDays();
 	}
 	
 	private static boolean maxJobsPerDayExceeded(final String jobName) {
@@ -161,9 +163,13 @@ public final class Controller {
 	private static boolean userAlreadySignedUpForJobOnDay(final String userName, final String jobName) {
 		final DataStore data = DataStore.getInstance();
 		final List<String> jobs = data.getVolunteerJobs(userName);
+		final LocalDate givenJobStartDate = Job.getStart(jobName).toLocalDate();
+		final LocalDate givenJobEndDate = Job.getEnd(jobName).toLocalDate();
 		for (final String job : jobs) {
-			if (! (Job.getEnd(job).isBefore(Job.getStart(jobName)) 
-					|| Job.getStart(job).isAfter(Job.getEnd(jobName)))) {
+		    final LocalDate iteratedJobStartDate = Job.getStart(job).toLocalDate();
+		    final LocalDate iteratedJobEndDate = Job.getEnd(jobName).toLocalDate();
+			if (!(iteratedJobEndDate.isBefore(givenJobStartDate) 
+					&& iteratedJobStartDate.isAfter(givenJobEndDate))) {
 				return true;
 			}
 		}

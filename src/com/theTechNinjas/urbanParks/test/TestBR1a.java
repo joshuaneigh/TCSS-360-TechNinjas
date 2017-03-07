@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -36,9 +37,10 @@ public class TestBR1a {
     public static void setUpBeforeClass() throws Exception {    
         // create backup file if data exists
         if (DATA_PATH.toFile().isFile()) {
-            Files.copy(DATA_PATH, BACKUP_PATH);
+            Files.copy(DATA_PATH, BACKUP_PATH, StandardCopyOption.REPLACE_EXISTING);
         }
         
+        Controller.reset();
         Controller.login("admin");
 		Controller.addUser(VOLUNTEER_ONE, "Volunteer");
 		Controller.addPark(parkOne);
@@ -52,10 +54,9 @@ public class TestBR1a {
     @AfterClass
     public static void tearDownAfterClass() throws IOException {       
         
-    	Controller.reset();
     	// if backup file was created, overwrite data file to its original state.
     	if (BACKUP_PATH.toFile().isFile()) {
-            Files.copy(BACKUP_PATH, DATA_PATH);
+            Files.copy(BACKUP_PATH, DATA_PATH, StandardCopyOption.REPLACE_EXISTING);
             Files.delete(BACKUP_PATH);
         } // if it wasn't, delete new data file if it exists.
         else {

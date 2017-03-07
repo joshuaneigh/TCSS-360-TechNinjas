@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
 import org.junit.AfterClass;
@@ -30,10 +31,11 @@ public class ControllerGettersTest {
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        
+    	Controller.reset();
+    	
         //create backup file if data exists
         if (DATA_PATH.toFile().isFile()) {
-            Files.copy(DATA_PATH, BACKUP_PATH);
+            Files.copy(DATA_PATH, BACKUP_PATH, StandardCopyOption.REPLACE_EXISTING);
         }
         
         Controller.login("admin");
@@ -42,11 +44,10 @@ public class ControllerGettersTest {
 
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
-    	Controller.reset();
     	
         //if backup file was created, overwrite data file to its original state.
         if (BACKUP_PATH.toFile().isFile()) {
-            Files.copy(BACKUP_PATH, DATA_PATH);
+            Files.copy(BACKUP_PATH, DATA_PATH, StandardCopyOption.REPLACE_EXISTING);
             Files.delete(BACKUP_PATH);
         } // if it wasn't, delete new data file if it exists.
         else {
@@ -81,9 +82,9 @@ public class ControllerGettersTest {
     @Test
     public void getVolunteerJobs_userForUsernameExistsButUserHasNotSignedUpForAnyJob_emptyListReturned() {
         
-        final String username = "dreemc";
-        Controller.addUser(username, "Volunteer");
-        assertEquals(new ArrayList<String>(), Controller.getVolunteerJobs(username));
+        final String usernameWithNoJobs = "dreemc";
+        Controller.addUser(usernameWithNoJobs, "Volunteer");
+        assertEquals(new ArrayList<String>(), Controller.getVolunteerJobs(usernameWithNoJobs));
         
     }
     
