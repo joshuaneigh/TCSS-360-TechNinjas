@@ -67,14 +67,14 @@ public class DataEditor {
 			Controller.addJob("Ward-Meade Park", "5k Run Setup\tTables and water stations need set up.\t2017-03-28 12:00\t2017-03-28 16:00");
 			Controller.addJob("Forest Hill Park", "Rake Leaves\tThe leaves need raked into piles for the kids.\t2017-04-19 11:00\t2017-04-19 14:00");
 			Controller.addJob("Forest Hill Park", "Planting Flowers\tFlowers need planted around the new fountain.\t2017-03-15 12:00\t2017-03-15 17:00");
-			Controller.addJob("Forest Hill Park", "Dig Holes\tPost holes need dug for the new dog park.\t2017-03-07 06:00\t2017-03-07 18:00");
+			Controller.addJob("Forest Hill Park", "Dig Holes\tPost holes need dug for the new dog park.\t2017-03-10 06:00\t2017-03-10 18:00");
 			Controller.addJob("Forest Hill Park", "Water Garden\tThe roses need watered. Please ask for instructions.\t2017-03-31 17:00\t2017-03-31 19:00");
 			Controller.addJob("Boston Public Garden", "Lifeguard\tThe city lake party needs lifeguard support.\t2017-04-16 10:00\t2017-04-16 17:00");
 			Controller.addJob("Boston Public Garden", "Apple Picking\tThe apples need picked from the orchard for the bakeoff.\t2017-05-01 06:00\t2017-05-01 08:00");
 			Controller.addJob("Boston Public Garden", "Paint Shed\tThe tool shed needs fresh paint.\t2017-04-27 14:00\t2017-04-27 18:00");
-			Controller.addJob("Boston Public Garden", "Clean Latrines\tThe female latrine has been clogged and needs fixed.\t2017-03-04 06:00\t2017-03-04 08:00");
-			Controller.addJob("Santa Fe River Park", "Restock Fish\tThe live fish need stocked from the local fishery.\t2017-03-08 08:00\t2017-03-08 12:00");
-			Controller.addJob("Santa Fe River Park", "Birthday Cleanup\tLocals had a birthday party and left trash behind.\t2017-03-08 14:00\t2017-03-08 18:00");
+			Controller.addJob("Boston Public Garden", "Clean Latrines\tThe female latrine has been clogged and needs fixed.\t2017-03-10 06:00\t2017-03-10 08:00");
+			Controller.addJob("Santa Fe River Park", "Restock Fish\tThe live fish need stocked from the local fishery.\t2017-03-10 08:00\t2017-03-10 12:00");
+			Controller.addJob("Santa Fe River Park", "Birthday Cleanup\tLocals had a birthday party and left trash behind.\t2017-04-27 14:00\t2017-04-27 18:00");
 			Controller.addJob("Santa Fe River Park", "Ticket Booth\tTickets will be sold for the LARP event.\t2017-04-27 08:00\t2017-04-27 10:00");
 			Controller.addJob("Santa Fe River Park", "Concessions Stand\tConcessions will be sold during the LARP event.\t2017-04-27 11:00\t2017-04-27 13:00");
 		} catch (IllegalFormatException | ScheduleConflictException e) {
